@@ -12,14 +12,14 @@ export class CreatePackDto {
   stock: boolean;
 
   @IsBoolean()
-  commandes: boolean;
+  order: boolean;
 
   @IsBoolean()
-  articles: boolean;
+  article: boolean;
 
 
   @IsBoolean()
-  utilisateurs: boolean;
+  user: boolean;
 
  
 }

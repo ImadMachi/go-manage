@@ -37,11 +37,12 @@ export class UserService {
     return this.repo.remove(user);
   }
 
-  async updateUser(id: number) {
+  async updateUser(id: number,attrs: Partial<User>) {
     const user = await this.repo.findOne(id);
     if (!user) {
       throw new NotFoundException('user not found');
     }
+    Object.assign(user, attrs);
     return this.repo.save(user);
   }
 }

@@ -32,11 +32,12 @@ export class AccountsService {
     return this.repo.remove(compte);
   }
 
-  async updateCompte(ref: string) {
-    const compte = await this.repo.findOne({ ref });
+  async updateCompte(id: number , attrs: Partial<Account>) {
+    const compte = await this.repo.findOne({ id });
     if (!compte) {
       throw new NotFoundException('compte not found');
     }
+    Object.assign(compte, attrs);
     return this.repo.save(compte);
   }
 }

@@ -1,3 +1,4 @@
+import { Max, Min } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -21,9 +22,13 @@ export class Account {
   phone: string;
 
   @Column()
+  @Max(1000)
+  @Min(0)
   rc: number;
 
   @Column()
+  @Max(1000)
+  @Min(0)
   ice: number;
 
   @Column()

@@ -1,6 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { UpdateDateColumn } from 'typeorm';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import { UpdatePackDto } from 'src/pack/dto/update-pack.dto';
+
 import { CreateUserDto } from './dto/CreateUserDto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
 
 
@@ -25,9 +27,8 @@ export class UserController {
         return this.userService.deleteUser(id)
     }
      
-    @Patch('/id/:id')
-    updateUser(@Param ('id') id:number){
-        return this.userService.updateUser(id)
+    @Patch('/:id')
+    update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateUserDto) {
+      return this.userService.updateUser(id, body);
     }
-
 }
