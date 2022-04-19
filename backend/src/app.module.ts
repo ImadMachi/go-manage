@@ -1,18 +1,24 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-import { CompteModule } from './compte/compte.module';
-import { AccountModule } from './account/account.module';
-import { CompteService } from './compte/compte.service';
-import { CompteController } from './compte/compte.controller';
-import { AccountsModule } from './accounts/accounts.module';
-import { PackModule } from './pack/pack.module';
-import { AccountsModule } from './accounts/accounts.module';
+import { CompaniesModule } from './companies/companies.module';
 
 @Module({
-  imports: [UserModule, CompteModule, AccountModule, AccountsModule, PackModule],
-  controllers: [AppController, CompteController],
-  providers: [AppService, CompteService],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      database: 'go-manage',
+      // entities: [Company],
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    CompaniesModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
