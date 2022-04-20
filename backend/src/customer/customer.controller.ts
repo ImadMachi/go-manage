@@ -1,18 +1,18 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
-import { CompaniesService } from './customer.service';
+import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 
-@Controller('companies')
-export class CompaniesController {
-  constructor(private customerService: CompaniesService) {}
+@Controller('customer')
+export class CustomerController {
+  constructor(private customerService: CustomerService) {}
 
   @Post()
   create(@Body() body: CreateCustomerDto) {
     return this.customerService.create(body);
   }
 
-  @Get()
+  @Get('/id/:id')
   findByCustomer(@Param('id') id: number) {
     return this.customerService.findByCustomer(id);
   }

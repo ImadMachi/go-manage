@@ -5,13 +5,13 @@ import { Customer } from './customer.entity';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 
 @Injectable()
-export class CompaniesService {
+export class CustomerService {
   constructor(@InjectRepository(Customer) private repo: Repository<Customer>) {}
 
   async create(customerDto: CreateCustomerDto) {
-    const companies = await this.repo.find({ id: customerDto.id });
-    if (companies.length) {
-      throw new BadRequestException('Cet email est déjà utilisée');
+    const customers = await this.repo.find({ reference: customerDto.reference });
+    if (customers.length) {
+      throw new BadRequestException('Cet reference est déjà utilisée');
     }
     const customer = this.repo.create(customerDto);
     return this.repo.save(customer);

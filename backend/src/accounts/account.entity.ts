@@ -19,6 +19,9 @@ export class Account {
   city: string;
 
   @Column()
+  country: string;
+
+  @Column()
   phone: string;
 
   @Column()

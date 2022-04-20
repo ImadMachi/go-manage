@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -6,7 +7,7 @@ export class Pack {
   id: number;
 
   @Column()
- crm: boolean;
+  crm: boolean;
 
   @Column()
   stock: boolean;
@@ -20,5 +21,7 @@ export class Pack {
   @Column()
   user: boolean;
 
- 
+  @Transform(({ value }) => new Date(value))
+  @Column('text')
+  date: Date;
 }

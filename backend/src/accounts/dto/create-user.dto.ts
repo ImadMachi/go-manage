@@ -5,10 +5,7 @@ export class CreateAccountsDto {
   socialReason: string;
 
   @IsString()
-  fistName: string;
-
-  @IsString()
-  adress: string;
+  address: string;
 
   @IsString()
   zip: string;
@@ -20,17 +17,17 @@ export class CreateAccountsDto {
   country: string;
 
   @IsNumber()
-  rc:number;
+  rc: number;
 
   @IsNumber()
-  ice:number;
+  ice: number;
 
   @IsString()
-  ref:string;
+  ref: string;
 
   @IsString()
-  phone:string;
+  phone: string;
 
   @IsString()
-  currency:string;
+  currency: string;
 }

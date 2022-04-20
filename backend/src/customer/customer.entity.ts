@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -18,7 +19,7 @@ export class Customer {
   country: string;
 
   @Column()
-  adress: string;
+  address: string;
 
   @Column()
   category: string;
@@ -31,4 +32,12 @@ export class Customer {
 
   @Column()
   reference: string;
+
+  @Transform(({ value }) => new Date(value))
+  @Column('text')
+  creationDate: Date;
+
+  @Transform(({ value }) => new Date(value))
+  @Column('text')
+  paymentDate: Date;
 }

@@ -1,0 +1,30 @@
+### create pack
+
+POST http://localhost:5000/pack/
+Content-Type: application/json
+
+{
+"crm":false,
+"stock":true,
+"order":true,
+"article": true,
+"user":false,
+"date":"12-2-2020"
+   
+
+}
+
+### Update pack
+PATCH  http://localhost:5000/pack/1
+Content-Type: application/json
+
+{
+  "phone": "imadox",
+  "reference": "1222"
+}
+
+### Find by pack
+GET http://localhost:5000/pack/id/1
+
+### delete pack 
+DELETE  http:localhost:5000/pack/id/1

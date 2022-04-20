@@ -1,10 +1,6 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/CreateUserDto';
 import { User } from './user.entity';
@@ -13,12 +9,13 @@ import { User } from './user.entity';
 export class UserService {
   constructor(@InjectRepository(User) private repo: Repository<User>) {}
 
-  create(userDTO: CreateUserDto) {
-    const user = this.repo.create(userDTO);
-    if (this.findByUser(user.email)) {
-      throw new HttpException('this email already taken', 409);
+  async create(userDto: CreateUserDto) {
+    const companies = await this.repo.find({ email: userDto.email });
+    if (companies.length) {
+      throw new BadRequestException('Cet email est déjà utilisée');
     }
-    return this.repo.save(user);
+    const company = this.repo.create(userDto);
+    return this.repo.save(company);
   }
 
   async findByUser(email: string) {
@@ -29,15 +26,9 @@ export class UserService {
     return user;
   }
 
-  async deleteUser(id: number) {
-    const user = await this.repo.findOne(id);
-    if (!user) {
-      throw new NotFoundException('user not found');
-    }
-    return this.repo.remove(user);
-  }
+  
 
-  async updateUser(id: number,attrs: Partial<User>) {
+  async updateUser(id: number, attrs: Partial<User>) {
     const user = await this.repo.findOne(id);
     if (!user) {
       throw new NotFoundException('user not found');

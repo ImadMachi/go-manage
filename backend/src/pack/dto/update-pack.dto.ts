@@ -1,4 +1,4 @@
-import { IsOptional, IsBoolean, Max, Min } from 'class-validator';
+import { IsOptional, IsBoolean, Max, Min, IsDate } from 'class-validator';
 
 export class UpdatePackDto {
   @IsOptional()
@@ -20,4 +20,12 @@ export class UpdatePackDto {
   @IsOptional()
   @IsBoolean()
   user: boolean;
+
+  @IsOptional()
+  @IsDate()
+  date: Date;
+
+  @IsOptional()
+  @IsDate()
+  datedepaiement: Date;
 }

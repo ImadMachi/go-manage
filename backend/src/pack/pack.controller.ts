@@ -4,11 +4,11 @@ import { PackService } from './pack.service';
 import { CreatePackDto } from './dto/create-pack.dto';
 import { UpdatePackDto } from './dto/update-pack.dto';
 
-@Controller('user')
-export class PacksController {
+@Controller('pack')
+export class PackController {
   constructor(private packService: PackService) {}
 
-  @Post('/create')
+  @Post()
   create(@Body() pack: CreatePackDto) {
     return this.packService.create(pack);
   }

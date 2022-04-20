@@ -5,7 +5,7 @@ export class CreateUserDto {
   lastName: string;
 
   @IsString()
-  fistName: string;
+  firstName: string;
 
   @IsString()
   password: string;

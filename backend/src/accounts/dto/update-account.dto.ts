@@ -43,10 +43,7 @@ import {
     ice: number;
 */
   
-  /*
-    @IsOptional()
-    @IsString()
-    ref: string;*/
+  
   
     @IsOptional()
     @IsString()
