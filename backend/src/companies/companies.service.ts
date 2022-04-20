@@ -33,4 +33,17 @@ export class CompaniesService {
     Object.assign(company, attrs);
     return this.repo.save(company);
   }
+
+  async toggleIsActive(id: number) {
+    const company = await this.repo.findOne(id);
+    if (!company) {
+      throw new NotFoundException('company not found');
+    }
+    company.isActive = !company.isActive;
+    return this.repo.save(company);
+  }
+
+  async findAll() {
+    return this.repo.find();
+  }
 }
