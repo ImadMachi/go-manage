@@ -1,0 +1,32 @@
+### Create customer
+POST http://localhost:5000/customer/
+Content-Type: application/json
+
+{
+  
+    "lastName": "nouhaila",
+    "firstName":"skitina",
+    "address": "Machi",
+    "zip": "c2@c.com",
+    "city": "test1234",
+    "country":"maroc",
+    "phone": "0603444",
+    "reference": "12322",
+   "type":"hhaga",
+    "category": "agadir",
+    "creationDate":"12-2-2020",
+    "paymentDate":"12-12-2020"
+
+}
+
+### Update customer
+PATCH  http://localhost:5000/customer/1
+Content-Type: application/json
+
+{
+  "phone": "imadox",
+  "reference": "1222"
+}
+
+### Find by customer
+GET http://localhost:5000/customer/id/1

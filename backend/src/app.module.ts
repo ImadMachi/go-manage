@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AccountsModule } from './accounts/accounts.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CompaniesModule } from './companies/companies.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { CustomerModule } from './customer/customer.module';
+import { PackModule } from './pack/pack.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -21,6 +25,10 @@ import { APP_GUARD } from '@nestjs/core';
     }),
     CompaniesModule,
     AuthModule,
+    CustomerModule,
+    AccountsModule,
+    PackModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
