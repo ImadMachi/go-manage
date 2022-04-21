@@ -1,6 +1,7 @@
 import { Expose } from 'class-transformer';
+import { Role } from 'src/auth/enums/role.enum';
 
-export class CompanyDto {
+export class UserDto {
   @Expose()
   id: number;
 
@@ -36,4 +37,10 @@ export class CompanyDto {
 
   @Expose()
   phone: string;
+
+  @Expose()
+  isActive: boolean;
+
+  @Expose()
+  roles: Role[];
 }

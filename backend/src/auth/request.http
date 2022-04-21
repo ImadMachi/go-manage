@@ -1,0 +1,27 @@
+### Login user
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "test1234"
+}
+
+### signup user
+POST http://localhost:5000/auth/signup
+Content-Type: application/json
+
+{
+  "lastName": "nouhaila",
+  "firstName":"skitina",
+  "password":"test1234",
+  "phone": "0603444",
+  "email": "nouhailaskitina6@gmail.com",
+  "field": "test",
+  "size": 2,
+  "socialReason": "test",
+  "address": "test",
+  "city": "agadir",
+  "country": "Morocco",
+  "fix": "+21255458789"
+}

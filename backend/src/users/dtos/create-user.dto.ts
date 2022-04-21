@@ -1,6 +1,7 @@
-import { IsEmail, IsNumber, IsString, Max, Min } from 'class-validator';
+import { IsEmail, IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
+import { Role } from 'src/auth/enums/role.enum';
 
-export class CreateCompanyDto {
+export class CreateUserDto {
   @IsString()
   firstName: string;
 
@@ -38,4 +39,8 @@ export class CreateCompanyDto {
 
   @IsString()
   phone: string;
+
+  // @IsOptional()
+  // @IsString()
+  // roles: Role[];
 }

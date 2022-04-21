@@ -1,7 +1,8 @@
+import { Role } from 'src/auth/enums/role.enum';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Company {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -43,4 +44,7 @@ export class Company {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @Column({ type: 'enum', enum: Role, default: [Role.User] })
+  roles: Role[];
 }

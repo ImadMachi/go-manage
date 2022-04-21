@@ -1,7 +1,7 @@
 ### create pack
-
 POST http://localhost:5000/pack/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNAYy5jb20iLCJzdWIiOjE1LCJyb2xlcyI6InVzZXIiLCJpYXQiOjE2NTA0NzUyODgsImV4cCI6MTY1MzA2NzI4OH0.kgPHR-1LnBB51FvOISpt7emZv9xyb2w8AXkQ_sXb2RA
 
 {
 "crm":false,
@@ -10,8 +10,6 @@ Content-Type: application/json
 "article": true,
 "user":false,
 "date":"12-2-2020"
-   
-
 }
 
 ### Update pack
