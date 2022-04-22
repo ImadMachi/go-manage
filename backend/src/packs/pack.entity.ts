@@ -1,5 +1,6 @@
 import { Transform } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Pack {
@@ -7,21 +8,15 @@ export class Pack {
   id: number;
 
   @Column()
-  crm: boolean;
+  price: number;
 
   @Column()
-  stock: boolean;
-
-  @Column()
-  order: boolean;
-
-  @Column()
-  article: boolean;
-
-  @Column()
-  user: boolean;
+  description: string;
 
   @Transform(({ value }) => new Date(value))
   @Column('text')
   date: Date;
+
+  @ManyToOne(() => User, (user) => user.packs)
+  user: User;
 }

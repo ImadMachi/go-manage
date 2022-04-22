@@ -7,10 +7,10 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { CustomerModule } from './customer/customer.module';
-import { PackModule } from './pack/pack.module';
 import { RolesGuard } from './auth/guards/roles.guard';
 import { CaslModule } from './casl/casl.module';
 import { UsersModule } from './users/users.module';
+import { PacksModule } from './packs/packs.module';
 
 @Module({
   imports: [
@@ -27,9 +27,9 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     CustomerModule,
     AccountsModule,
-    PackModule,
     CaslModule,
     UsersModule,
+    PacksModule,
   ],
   controllers: [AppController],
   providers: [

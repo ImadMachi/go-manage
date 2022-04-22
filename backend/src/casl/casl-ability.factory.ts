@@ -2,7 +2,7 @@ import { Ability, AbilityBuilder, AbilityClass, ExtractSubjectType, InferSubject
 import { Injectable } from '@nestjs/common';
 import { Action } from 'src/auth/enums/action.enum';
 import { Role } from 'src/auth/enums/role.enum';
-import { Pack } from 'src/pack/pack.entity';
+import { Pack } from 'src/packs/pack.entity';
 import { User } from 'src/users/user.entity';
 
 // Add subjects
