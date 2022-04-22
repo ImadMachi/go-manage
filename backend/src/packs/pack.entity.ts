@@ -1,6 +1,6 @@
 import { Transform } from 'class-transformer';
 import { User } from 'src/users/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Pack {
@@ -17,6 +17,10 @@ export class Pack {
   @Column('text')
   date: Date;
 
-  @ManyToOne(() => User, (user) => user.packs)
+  @Column()
+  userId: number;
+
+  @ManyToOne(() => User, (user) => user.packs, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'userId' })
   user: User;
 }

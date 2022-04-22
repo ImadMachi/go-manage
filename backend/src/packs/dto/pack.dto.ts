@@ -12,4 +12,7 @@ export class PackDto {
 
   @Expose()
   date: Date;
+
+  @Expose()
+  userId: number;
 }

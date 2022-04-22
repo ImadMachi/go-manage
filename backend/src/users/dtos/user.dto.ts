@@ -1,5 +1,6 @@
 import { Expose } from 'class-transformer';
 import { Role } from 'src/auth/enums/role.enum';
+import { Pack } from 'src/packs/pack.entity';
 
 export class UserDto {
   @Expose()

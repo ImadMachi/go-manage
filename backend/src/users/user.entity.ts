@@ -49,6 +49,6 @@ export class User {
   @Column({ type: 'enum', enum: Role, default: [Role.User] })
   roles: Role[];
 
-  @OneToMany(() => Pack, (pack) => pack.user)
+  @OneToMany(() => Pack, (pack) => pack.user, { cascade: true })
   packs: Pack[];
 }

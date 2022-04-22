@@ -25,6 +25,14 @@ export class PacksService {
     return pack;
   }
 
+  async deleteByUser(userId: number) {
+    const packs = await this.repo.find({ userId });
+    if (!packs.length) {
+      throw new NotFoundException('aucun pack est trouvé');
+    }
+    return this.repo.remove(packs);
+  }
+
   async deleteOne(id: number) {
     const pack = await this.findOne(id);
     return this.repo.remove(pack);
