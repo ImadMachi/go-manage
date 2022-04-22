@@ -1,4 +1,5 @@
 ;
+import { Customer } from 'src/customer/customer.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -28,11 +29,14 @@ export class Shipping {
   zip: string;
 
  @Column()
- adresse1:string;
+ address1:string;
 
  @Column()
- adresse2:string;
+ address2:string;
 
  @Column()
  reference:number;
+
+ @ManyToOne(() => Customer, (customer) => customer.shippings)
+ customer:Customer;
 }

@@ -32,4 +32,6 @@ export class Currency {
 
  @ManyToOne(() => Customer, (customer) => customer.bills)
  customer:Customer;
+
+
 }

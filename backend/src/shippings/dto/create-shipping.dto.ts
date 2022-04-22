@@ -22,10 +22,10 @@ export class CreateShippingDto {
   zip: string;
 
   @IsString()
-  adresse1: string;
+  address1: string;
 
   @IsString()
-  adresse2: string;
+  address2: string;
 
   @IsNumber()
   reference: number;

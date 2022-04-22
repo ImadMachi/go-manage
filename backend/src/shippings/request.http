@@ -1,0 +1,33 @@
+### create shipping
+
+POST http://localhost:5000/shippings/
+Content-Type: application/json
+
+{
+ "firstName": "imad",
+    "lastName": "Machi",
+    "region":"marrakech asafi",
+    "address1": "test12imagine",
+    "address2": "test12imagine",
+    "city": "agadir",
+    "country": "morocco",
+    "reference": 12231,
+    "phone": "06********",
+    "zip":"12nhs"
+
+}
+
+### Update shipping
+PATCH  http://localhost:5000/shippings/1
+Content-Type: application/json
+
+{
+  "phone": "065116272",
+  "reference": "1222f"
+}
+
+### Find by shipping
+GET http://localhost:5000/shippings/id/2
+
+### delete shipping 
+DELETE  http:localhost:5000/shippings/id/1

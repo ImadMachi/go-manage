@@ -27,11 +27,11 @@ export class UpdateShippingDto {
 
   @IsOptional()
   @IsString()
-  adresse1: string;
+  address1: string;
  
   @IsOptional()
   @IsString()
-  adresse2: string;
+  address2: string;
 
    
   @IsOptional()

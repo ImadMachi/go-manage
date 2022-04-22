@@ -1,6 +1,9 @@
 import { Transform } from 'class-transformer';
 import { Account } from 'src/accounts/account.entity';
 import { Bill } from 'src/bills/bill.entity';
+import { Order } from 'src/order/order.entity';
+
+import { Shipping } from 'src/shippings/shipping.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -45,4 +48,11 @@ export class Customer extends Account{
 
   @OneToMany(() => Bill, (bill) => bill.customer)
   bills:Bill[];
+
+  @OneToMany(() => Shipping, (shipping) => shipping.customer)
+  shippings:Shipping[];
+
+  @OneToMany(() => Order, (order) => order.customer)
+  orders:Order[];
 }
+
