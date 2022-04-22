@@ -6,7 +6,10 @@ import { AppService } from './app.service';
 import { CompaniesModule } from './companies/companies.module';
 import { CustomerModule } from './customer/customer.module';
 import { PackModule } from './pack/pack.module';
-import { UserModule } from './user/user.module';
+
+import { BillsModule } from './bills/bills.module';
+import { CurrenciesModule } from './currencies/currencies.module';
+import { ShippingsModule } from './shippings/shippings.module';
 
 @Module({
   imports: [
@@ -24,7 +27,12 @@ import { UserModule } from './user/user.module';
     CustomerModule,
     AccountsModule,
     PackModule,
-    UserModule,
+
+    BillsModule,
+
+    CurrenciesModule,
+
+    ShippingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

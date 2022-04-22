@@ -1,31 +1,15 @@
-import { IsOptional, IsBoolean, Max, Min, IsDate } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdatePackDto {
   @IsOptional()
-  @IsBoolean()
-  crm: boolean;
+  @IsNumber()
+  price: number;
 
   @IsOptional()
-  @IsBoolean()
-  stock: boolean;
+  @IsString()
+  description: string;
 
   @IsOptional()
-  @IsBoolean()
-  order: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  article: boolean;
-
-  @IsOptional()
-  @IsBoolean()
-  user: boolean;
-
-  @IsOptional()
-  @IsDate()
-  date: Date;
-
-  @IsOptional()
-  @IsDate()
-  datedepaiement: Date;
+  @IsString()
+  date: string;
 }

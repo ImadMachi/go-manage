@@ -1,24 +1,21 @@
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Repository } from 'typeorm';
 import { CreatePackDto } from './dto/create-pack.dto';
-import {  Pack } from './pack.entity';
-
+import { UpdatePackDto } from './dto/update-pack.dto';
+import { Pack } from './pack.entity';
 
 @Injectable()
 export class PackService {
   constructor(@InjectRepository(Pack) private repo: Repository<Pack>) {}
-  create(packDTO:  CreatePackDto) {
-    const packs = this.repo.create(packDTO);
-    if (this.findByPack(packs.id)) {
-      throw new HttpException('this pack already taken', 409);
-    }
-    return this.repo.save(packs);
+  async create(packDto: CreatePackDto) {
+    const pack = this.repo.create(packDto);
+    return this.repo.save(pack);
   }
 
   async findByPack(id: number) {
-    const pack = await this.repo.findOne({ id });
+    const pack = await this.repo.findOne(id);
     if (!pack) {
       throw new NotFoundException('pack not found');
     }
@@ -33,7 +30,7 @@ export class PackService {
     return this.repo.remove(pack);
   }
 
-  async updatePack(id: number,attrs: Partial<Pack>) {
+  async update(id: number, attrs: Partial<UpdatePackDto>) {
     const pack = await this.repo.findOne({ id });
     if (!pack) {
       throw new NotFoundException('pack not found');

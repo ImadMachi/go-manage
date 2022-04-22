@@ -1,22 +1,16 @@
-import { IsBoolean, IsDate, IsNumber, IsString } from 'class-validator';
-import { PrimaryGeneratedColumn } from 'typeorm';
-import { isDate } from 'util/types';
+import {  IsNumber, IsString } from 'class-validator';
+
+
 
 export class CreatePackDto {
-  @IsBoolean()
-  crm: boolean;
+  @IsString()
+  ref: string;
 
-  @IsBoolean()
-  stock: boolean;
+  @IsNumber()
+  price: number;
 
-  @IsBoolean()
-  order: boolean;
-
-  @IsBoolean()
-  article: boolean;
-
-  @IsBoolean()
-  user: boolean;
+  @IsString()
+  description: string;
 
   @IsString()
   date: string;

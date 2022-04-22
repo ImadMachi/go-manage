@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Account } from 'src/accounts/account.entity';
+import { Pack } from 'src/pack/pack.entity';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Company {
@@ -43,4 +45,10 @@ export class Company {
 
   @Column({ default: true })
   isActive: boolean;
+
+  @OneToMany(() => Account, (account) => account.company)
+  accounts: Account[];
+
+  @OneToMany(() => Pack, (pack) => pack.company)
+  packs: Pack[];
 }

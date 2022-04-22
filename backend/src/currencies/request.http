@@ -1,0 +1,30 @@
+### create currency
+
+POST http://localhost:5000/currencies/
+Content-Type: application/json
+
+{
+ "description":"m233ah",
+ "unitPrice":3,
+ "tva":1,
+ "totalHt":12775,
+ "numCurrency":"11f",
+ "totalTtc":122,
+ "qte":122
+
+}
+
+### Update currency
+PATCH  http://localhost:5000/currencies/1
+Content-Type: application/json
+
+{
+  "description": "imadox",
+  "numBill": "1222f"
+}
+
+### Find by currency
+GET http://localhost:5000/currencies/id/2
+
+### delete currency 
+DELETE  http:localhost:5000/currencies/id/1

@@ -14,7 +14,7 @@ export class PackController {
   }
 
   @Get('/id/:id')
-  findByCompte(@Param('id') id: number) {
+  findByPack(@Param('id') id: number) {
     return this.packService.findByPack(id);
   }
 
@@ -23,7 +23,7 @@ export class PackController {
     return this.packService.deletePack(id);
   }
   @Patch('/:id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdatePackDto) {
-    return this.packService.updatePack(id, body);
+  update(@Param('id', ParseIntPipe) id: number, @Body() pack: UpdatePackDto) {
+    return this.packService.update(id, pack);
   }
 }

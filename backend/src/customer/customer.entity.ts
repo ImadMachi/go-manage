@@ -1,8 +1,10 @@
 import { Transform } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Account } from 'src/accounts/account.entity';
+import { Bill } from 'src/bills/bill.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Customer {
+export class Customer extends Account{
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -40,4 +42,7 @@ export class Customer {
   @Transform(({ value }) => new Date(value))
   @Column('text')
   paymentDate: Date;
+
+  @OneToMany(() => Bill, (bill) => bill.customer)
+  bills:Bill[];
 }

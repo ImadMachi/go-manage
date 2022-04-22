@@ -4,12 +4,10 @@ POST http://localhost:5000/pack/
 Content-Type: application/json
 
 {
-"crm":false,
-"stock":true,
-"order":true,
-"article": true,
-"user":false,
-"date":"12-2-2020"
+  "ref":"1233",
+"price":1222,
+"description":"ejjaas",
+"date":"30-07-2000"
    
 
 }
@@ -19,8 +17,8 @@ PATCH  http://localhost:5000/pack/1
 Content-Type: application/json
 
 {
-  "phone": "imadox",
-  "reference": "1222"
+  "description": "imadox",
+  "ref": "1222"
 }
 
 ### Find by pack

@@ -1,0 +1,30 @@
+### create bill
+
+POST http://localhost:5000/bills/
+Content-Type: application/json
+
+{
+ "description":"mamahhahah",
+ "unitPrice":23,
+ "tva":122,
+ "totalHt":12355,
+ "numBill":"123131f",
+ "totalTtc":12222,
+ "qte":12222
+
+}
+
+### Update bill
+PATCH  http://localhost:5000/bills/1
+Content-Type: application/json
+
+{
+  "description": "imadox",
+  "numBill": "1222f"
+}
+
+### Find by bill
+GET http://localhost:5000/bills/id/1
+
+### delete bill 
+DELETE  http:localhost:5000/bills/id/1

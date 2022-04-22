@@ -1,5 +1,6 @@
 import { Max, Min } from 'class-validator';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Company } from 'src/companies/company.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Account {
@@ -39,4 +40,7 @@ export class Account {
 
   @Column()
   currency: string;
+
+  @ManyToOne(() => Company, (company) => company.accounts)
+  company: Company;
 }

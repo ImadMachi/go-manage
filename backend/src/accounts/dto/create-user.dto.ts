@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumber, IsString } from 'class-validator';
+import {  IsNumber, IsString } from 'class-validator';
 
 export class CreateAccountsDto {
   @IsString()
@@ -30,4 +30,6 @@ export class CreateAccountsDto {
 
   @IsString()
   currency: string;
+
+
 }
