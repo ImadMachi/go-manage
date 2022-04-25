@@ -1,4 +1,5 @@
 import { Role } from 'src/auth/enums/role.enum';
+import { Customer } from 'src/customer/customer.entity';
 import { Pack } from 'src/packs/pack.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -51,4 +52,7 @@ export class User {
 
   @OneToMany(() => Pack, (pack) => pack.user, { cascade: true })
   packs: Pack[];
+
+  @OneToMany(() => Customer, (customer) => customer.user, { cascade: true })
+  customers: Customer[];
 }

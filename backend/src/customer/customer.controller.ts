@@ -1,24 +1,33 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request } from '@nestjs/common';
+import { request } from 'http';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { CustomerService } from './customer.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { CustomerDto } from './dto/customer.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 
-@Controller('customer')
+@Serialize(CustomerDto)
+@Controller('customers')
 export class CustomerController {
   constructor(private customerService: CustomerService) {}
 
   @Post()
-  create(@Body() body: CreateCustomerDto) {
-    return this.customerService.create(body);
+  create(@Body() body: CreateCustomerDto, @Request() request) {
+    return this.customerService.create(body, request.user.email);
   }
 
-  @Get('/id/:id')
-  findByCustomer(@Param('id') id: number) {
-    return this.customerService.findByCustomer(id);
+  @Get('/:id')
+  findOne(@Param('id') id: number, @Request() request) {
+    return this.customerService.findOne(id, request.user);
   }
+
+  // @Get('/:id')
+  // findBy(@Param('id') id: number) {
+  //   return this.customerService.findOne(id);
+  // }
 
   @Patch('/:id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateCustomerDto) {
-    return this.customerService.update(id, body);
+  update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateCustomerDto, @Request() request) {
+    return this.customerService.update(id, body, request.user);
   }
 }

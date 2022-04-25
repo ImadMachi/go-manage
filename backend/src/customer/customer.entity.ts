@@ -1,5 +1,5 @@
-import { Transform } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Customer {
@@ -7,37 +7,32 @@ export class Customer {
   id: number;
 
   @Column()
-  lastName: string;
+  name: string;
 
   @Column()
-  firstName: string;
-
-  @Column()
-  city: string;
-
-  @Column()
-  country: string;
+  email: string;
 
   @Column()
   address: string;
 
   @Column()
-  category: string;
-
-  @Column()
   phone: string;
 
-  @Column()
-  type: string;
+  @Column({ default: true })
+  isActive: boolean;
+
+  @Column({ default: 0 })
+  totalSpent: number;
+
+  @Column({ default: 0 })
+  orders: number;
 
   @Column()
-  reference: string;
+  creationDate: number;
 
-  @Transform(({ value }) => new Date(value))
-  @Column('text')
-  creationDate: Date;
+  @Column()
+  userId: number;
 
-  @Transform(({ value }) => new Date(value))
-  @Column('text')
-  paymentDate: Date;
+  @ManyToOne(() => User, (user) => user.customers, { onDelete: 'CASCADE' })
+  user: User;
 }

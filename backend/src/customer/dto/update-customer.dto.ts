@@ -1,21 +1,14 @@
-import { IsDate, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsEmail, IsOptional, IsString } from 'class-validator';
 
 export class UpdateCustomerDto {
   @IsOptional()
   @IsString()
-  firstName: string;
+  name: string;
 
   @IsOptional()
   @IsString()
-  lastName: string;
-
-  @IsOptional()
-  @IsString()
-  category: string;
-
-  @IsOptional()
-  @IsString()
-  type: string;
+  @IsEmail()
+  email: string;
 
   @IsOptional()
   @IsString()
@@ -23,16 +16,5 @@ export class UpdateCustomerDto {
 
   @IsOptional()
   @IsString()
-  city: string;
-
-  @IsOptional()
-  @IsString()
-  country: string;
-
-  @IsOptional()
-  @IsString()
   phone: string;
-
-  
- 
 }

@@ -12,6 +12,9 @@ export class PacksService {
 
   async create(packDTO: CreatePackDto, email: string) {
     const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      throw new NotFoundException('utilisateur non trouvé');
+    }
     const pack = this.repo.create(packDTO);
     pack.user = user;
     return this.repo.save(pack);

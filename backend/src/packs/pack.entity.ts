@@ -21,6 +21,5 @@ export class Pack {
   userId: number;
 
   @ManyToOne(() => User, (user) => user.packs, { onDelete: 'CASCADE' })
-  @JoinColumn({ name: 'userId' })
   user: User;
 }
