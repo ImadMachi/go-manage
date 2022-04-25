@@ -2,7 +2,6 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from 'src/auth/enums/role.enum';
 import { Customer } from 'src/customer/customer.entity';
 import { Pack } from 'src/packs/pack.entity';
-import { Customer } from 'src/customer/customer.entity';
 
 @Entity()
 export class User {
