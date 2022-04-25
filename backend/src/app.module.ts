@@ -3,7 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AccountsModule } from './accounts/accounts.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CompaniesModule } from './companies/companies.module';
+import { AuthModule } from './auth/auth.module';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { APP_GUARD } from '@nestjs/core';
 import { CustomerModule } from './customer/customer.module';
 
 
@@ -13,6 +15,10 @@ import { ShippingsModule } from './shippings/shippings.module';
 import { OrdersModule } from './order/orders.module';
 
 
+import { RolesGuard } from './auth/guards/roles.guard';
+import { CaslModule } from './casl/casl.module';
+import { UsersModule } from './users/users.module';
+import { PacksModule } from './packs/packs.module';
 
 @Module({
   imports: [
@@ -22,11 +28,11 @@ import { OrdersModule } from './order/orders.module';
       port: 3306,
       username: 'root',
       database: 'go-manage',
-      // entities: [Company],
+      // entities: [User],
       autoLoadEntities: true,
       synchronize: true,
     }),
-    CompaniesModule,
+    AuthModule,
     CustomerModule,
     AccountsModule,
     
@@ -37,8 +43,21 @@ import { OrdersModule } from './order/orders.module';
   
 
    
+    CaslModule,
+    UsersModule,
+    PacksModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}

@@ -1,9 +1,11 @@
 import { Account } from 'src/accounts/account.entity';
 
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Role } from 'src/auth/enums/role.enum';
+import { Pack } from 'src/packs/pack.entity';
 
 @Entity()
-export class Company {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -49,5 +51,9 @@ export class Company {
   @OneToMany(() => Account, (account) => account.company)
   accounts: Account[];
 
-  
+  @Column({ type: 'enum', enum: Role, default: [Role.User] })
+  roles: Role[];
+
+  @OneToMany(() => Pack, (pack) => pack.user)
+  packs: Pack[];
 }

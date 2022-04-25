@@ -1,0 +1,18 @@
+### Update User
+PATCH  http://localhost:5000/users/4
+Content-Type: application/json
+
+{
+  "firstName": "imadox",
+  "email": "test@test.com"
+}
+
+### Find all users
+GET http://localhost:5000/users
+
+### Find by email
+GET http://localhost:5000/users/c@c.com
+
+### Toggle isActive
+GET http://localhost:5000/users/toggle-active/4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImM0QGMuY29tIiwic3ViIjoxNCwiaWF0IjoxNjUwNDY5MTk3LCJleHAiOjE2NTMwNjExOTd9.8xraOZ101ok8MDGCvIVCHR1EwqebYwEWNia2JL6Snmc
