@@ -1,0 +1,25 @@
+### create orderline
+
+POST http://localhost:5000/orderlines/
+Content-Type: application/json
+
+{
+ "description":"mamahhahah",
+ "reference":122,
+"qte":12233
+
+}
+
+### Update orderline
+PATCH  http://localhost:5000/orderlines/1
+Content-Type: application/json
+
+{
+  
+}
+
+### Find by orderline
+GET http://localhost:5000/orderlines/id/1
+
+### delete orderline 
+DELETE  http:localhost:5000/orderlines/id/1

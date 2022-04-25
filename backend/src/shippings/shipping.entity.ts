@@ -1,4 +1,3 @@
-;
 import { Customer } from 'src/customer/customer.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -17,10 +16,10 @@ export class Shipping {
   country: string;
 
   @Column()
- region: string;
+  region: string;
 
   @Column()
- lastName: string;
+  lastName: string;
 
   @Column()
   firstName: string;
@@ -28,15 +27,15 @@ export class Shipping {
   @Column()
   zip: string;
 
- @Column()
- address1:string;
+  @Column()
+  address1: string;
 
- @Column()
- address2:string;
+  @Column()
+  address2: string;
 
- @Column()
- reference:number;
+  @Column()
+  reference: number;
 
- @ManyToOne(() => Customer, (customer) => customer.shippings)
- customer:Customer;
+  //  @ManyToOne(() => Customer, (customer) => customer.shippings)
+  //  customer:Customer;
 }

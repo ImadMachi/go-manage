@@ -1,15 +1,16 @@
 import { Transform } from 'class-transformer';
-import { Account } from 'src/accounts/account.entity';
 import { Bill } from 'src/bills/bill.entity';
-import { Order } from 'src/order/order.entity';
 
-import { Shipping } from 'src/shippings/shipping.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { User } from 'src/users/user.entity';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Customer extends Account{
+export class Customer {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  email: string;
 
   @Column()
   lastName: string;
@@ -33,9 +34,6 @@ export class Customer extends Account{
   phone: string;
 
   @Column()
-  type: string;
-
-  @Column()
   reference: string;
 
   @Transform(({ value }) => new Date(value))
@@ -46,13 +44,21 @@ export class Customer extends Account{
   @Column('text')
   paymentDate: Date;
 
-  @OneToMany(() => Bill, (bill) => bill.customer)
-  bills:Bill[];
+  @Column({ default: true })
+  isActive: boolean;
 
-  @OneToMany(() => Shipping, (shipping) => shipping.customer)
-  shippings:Shipping[];
+  @Column()
+  userId: number;
 
-  @OneToMany(() => Order, (order) => order.customer)
-  orders:Order[];
+  @ManyToOne(() => User, (user) => user.customers, { onDelete: 'CASCADE' })
+  user: User;
+
+  // @OneToMany(() => Bill, (bill) => bill.customer)
+  // bills: Bill[];
+
+  // @OneToMany(() => Shipping, (shipping) => shipping.customer)
+  // shippings: Shipping[];
+
+  // @OneToMany(() => Order, (order) => order.customer)
+  // orders: Order[];
 }
-

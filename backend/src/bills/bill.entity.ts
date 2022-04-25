@@ -1,4 +1,3 @@
-
 import { Customer } from 'src/customer/customer.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -28,8 +27,6 @@ export class Bill {
   @Column()
   totalTtc: number;
 
- 
-
- @ManyToOne(() => Customer, (customer) => customer.bills)
- customer:Customer;
+   //@ManyToOne(() => Customer, (customer) => customer.bills,{onDelete:'CASCADE'})
+    //customer:Customer;
 }

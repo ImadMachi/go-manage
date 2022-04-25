@@ -15,10 +15,6 @@ export class UpdateCustomerDto {
 
   @IsOptional()
   @IsString()
-  type: string;
-
-  @IsOptional()
-  @IsString()
   address: string;
 
   @IsOptional()
@@ -32,7 +28,4 @@ export class UpdateCustomerDto {
   @IsOptional()
   @IsString()
   phone: string;
-
-  
- 
 }

@@ -26,11 +26,11 @@ export class CreateCustomerDto {
   category: string;
 
   @IsString()
-  type: string;
-
-  @IsString()
   creationDate: string;
 
   @IsString()
   paymentDate: string;
+
+  @IsString()
+  email: string;
 }

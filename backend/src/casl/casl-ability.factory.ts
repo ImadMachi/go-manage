@@ -2,11 +2,12 @@ import { Ability, AbilityBuilder, AbilityClass, ExtractSubjectType, InferSubject
 import { Injectable } from '@nestjs/common';
 import { Action } from 'src/auth/enums/action.enum';
 import { Role } from 'src/auth/enums/role.enum';
+import { Customer } from 'src/customer/customer.entity';
 import { Pack } from 'src/packs/pack.entity';
 import { User } from 'src/users/user.entity';
 
 // Add subjects
-type Subjects = InferSubjects<typeof User | typeof Pack> | 'all';
+type Subjects = InferSubjects<typeof User | typeof Pack | typeof Customer> | 'all';
 
 export type AppAbility = Ability<[Action, Subjects]>;
 
@@ -21,7 +22,8 @@ export class CaslAbilityFactory {
       can(Action.Read, 'all'); // read-only access to everything
       cannot(Action.Read, User);
     }
-
+    can(Action.Create, Customer);
+    can(Action.Update, Customer, { userId: user.id });
     // can(Action.Update, User, { email: user.email });
 
     // can(Action.Update, Pack, { authorId: user.id });

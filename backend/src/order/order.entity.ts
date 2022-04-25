@@ -19,6 +19,6 @@ export class Order {
   reference:number;
 
  
-  @ManyToOne(() => Customer, (customer) => customer.orders)
-  customer: Customer;
+  // @ManyToOne(() => Customer, (customer) => customer.orders)
+  // customer: Customer;
 }
