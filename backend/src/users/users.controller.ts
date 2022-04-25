@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Request, UseGuards } from '@nestjs/common';
 import { PoliciesGuard } from 'src/auth/guards/policy.guard';
 import { CheckPolicies } from 'src/casl/decorators/policy.decorator';
 import { ReadUserPolicyHandler, ToggleUserIsActivePolicyHandler } from 'src/casl/handlers/users.handler';

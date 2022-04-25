@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from 'src/auth/enums/role.enum';
+import { Customer } from 'src/customer/customer.entity';
 import { Pack } from 'src/packs/pack.entity';
 import { Customer } from 'src/customer/customer.entity';
 
@@ -50,7 +51,7 @@ export class User {
   @Column({ type: 'enum', enum: Role, default: [Role.User] })
   roles: Role[];
 
-  @OneToMany(() => Pack, (pack) => pack.user)
+  @OneToMany(() => Pack, (pack) => pack.user, { cascade: true })
   packs: Pack[];
 
   @OneToMany(() => Customer, (customer) => customer.user, { cascade: true })

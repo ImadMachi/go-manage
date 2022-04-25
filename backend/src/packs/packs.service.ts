@@ -12,6 +12,9 @@ export class PacksService {
 
   async create(packDTO: CreatePackDto, email: string) {
     const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      throw new NotFoundException('utilisateur non trouvé');
+    }
     const pack = this.repo.create(packDTO);
     pack.user = user;
     return this.repo.save(pack);
@@ -23,6 +26,14 @@ export class PacksService {
       throw new NotFoundException('pack non trouvé');
     }
     return pack;
+  }
+
+  async deleteByUser(userId: number) {
+    const packs = await this.repo.find({ userId });
+    if (!packs.length) {
+      throw new NotFoundException('aucun pack est trouvé');
+    }
+    return this.repo.remove(packs);
   }
 
   async deleteOne(id: number) {

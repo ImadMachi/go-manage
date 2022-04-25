@@ -27,6 +27,13 @@ export class PacksController {
     return this.packsService.findOne(id);
   }
 
+  @Delete('/userId/:userId')
+  @UseGuards(PoliciesGuard)
+  @CheckPolicies(new ManagePackPolicyHandler())
+  deleteByUser(@Param('userId', ParseIntPipe) userId: number) {
+    return this.packsService.deleteByUser(userId);
+  }
+
   @Delete('/:id')
   @UseGuards(PoliciesGuard)
   @CheckPolicies(new ManagePackPolicyHandler())

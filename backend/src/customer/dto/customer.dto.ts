@@ -5,13 +5,10 @@ export class CustomerDto {
   id: number;
 
   @Expose()
-  lastName: string;
+  name: string;
 
   @Expose()
-  firstName: string;
-
-  @Expose()
-  reference: string;
+  email: string;
 
   @Expose()
   address: string;
@@ -20,29 +17,14 @@ export class CustomerDto {
   phone: string;
 
   @Expose()
-  city: string;
-
-  @Expose()
-  country: string;
-
-  @Expose()
-  category: string;
-
-  @Expose()
-  type: string;
-
-  @Expose()
-  creationDate: string;
-
-  @Expose()
-  paymentDate: string;
-
-  @Expose()
-  email: string;
-
-  @Expose()
-  userId: number;
-
-  @Expose()
   isActive: boolean;
+
+  @Expose()
+  totalSpent: number;
+
+  @Expose()
+  orders: number;
+
+  @Expose()
+  creationDate: number;
 }
