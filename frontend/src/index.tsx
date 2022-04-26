@@ -2,6 +2,7 @@ import React from "react";
 import { createContext } from "react";
 import { useReducer } from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import { DefaultTheme, ThemeProvider } from "styled-components";
 import App from "./App";
 import GlobalCSS from "./common/style/global-style";
@@ -25,7 +26,9 @@ const Index = () => {
     <ThemeProvider theme={theme}>
       <AppContext.Provider value={{ theme, dispatch }}>
         <GlobalCSS />
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </AppContext.Provider>
     </ThemeProvider>
   );
