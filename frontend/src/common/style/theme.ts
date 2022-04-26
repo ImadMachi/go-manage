@@ -36,7 +36,7 @@ export const lightTheme: DefaultTheme = {
   sm: "0.9rem",
   md: "1rem",
   lg: "1.35rem",
-
+//scren
   bp: {
     sm: "576px",
     md: "768px",
