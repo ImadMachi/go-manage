@@ -7,6 +7,7 @@ import { DefaultTheme, ThemeProvider } from "styled-components";
 import App from "./App";
 import GlobalCSS from "./common/style/global-style";
 import { lightTheme, themeReducer } from "./common/style/theme";
+import store from "./features/store";
 
 export interface AppContextInterface {
   theme: DefaultTheme;

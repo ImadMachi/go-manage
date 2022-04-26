@@ -16,7 +16,7 @@
 //   }, [htmlELEM]);
 // };
 
-import { Dispatch, MutableRefObject, SetStateAction, useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 
 export const useOutsideAlerter = (): [MutableRefObject<HTMLDivElement>, boolean, () => void] => {
   const ref = useRef<HTMLElement>(null) as MutableRefObject<HTMLDivElement>;
