@@ -16,6 +16,11 @@ export class CustomerController {
     return this.customerService.create(body, request.user.email);
   }
 
+  @Get()
+  findAll(@Request() request) {
+    return this.customerService.findAll(request.user.id);
+  }
+
   @Get('/:id')
   findOne(@Param('id') id: number, @Request() request) {
     return this.customerService.findOne(id, request.user);

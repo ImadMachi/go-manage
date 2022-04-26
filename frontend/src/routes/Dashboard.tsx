@@ -1,10 +1,15 @@
 import { Route, Routes } from "react-router-dom";
+import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
 
 const Dashboard = () => {
+  const [ref, isVisible, setIsVisibleTrue] = useOutsideAlerter();
+
   return (
     <>
-      <Sidebar />
+      <Sidebar forwardedRef={ref} isOpen={isVisible} />
+      <Navbar setSidebarIsOpen={setIsVisibleTrue} />
       <main>
         <Routes>
           {/* <Route index element={<Home />} />

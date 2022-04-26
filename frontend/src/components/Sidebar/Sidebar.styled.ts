@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const Sidebar = styled.div`
+interface SidebarProps {
+  isOpen: boolean;
+}
+export const Sidebar = styled.div<SidebarProps>`
   background-color: ${({ theme }) => theme.menu.bg};
   position: fixed;
   top: 0;
@@ -8,6 +11,7 @@ export const Sidebar = styled.div`
   height: 100vh;
   width: 260px;
   padding: 0.6rem 1.5rem;
+  margin-left: ${({ isOpen }) => (isOpen ? 0 : "-100%")};
 `;
 
 export const Logo = styled.div`

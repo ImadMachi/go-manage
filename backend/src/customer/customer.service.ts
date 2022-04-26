@@ -29,6 +29,11 @@ export class CustomerService {
     return this.repo.save(customer);
   }
 
+  async findAll(userId: number) {
+    const customers = await this.repo.find({ userId });
+    return customers;
+  }
+
   async findOne(id: number, user: Partial<User>) {
     const customer = await this.repo.findOne(id);
     if (!customer) {
