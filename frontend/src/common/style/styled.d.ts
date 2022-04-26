@@ -2,20 +2,24 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    colors: {
-      primary: {
-        dark: string;
-        main: string;
-        light: string;
-      };
-      secondary: {
-        dark: string;
-        main: string;
-        light: string;
-      };
+    menu: {
+      bg: string;
       textPrimary: string;
+      textSecondary: string;
     };
-    sizes: {
+
+    primary: string;
+    secondary: string;
+    bgPrimary: string;
+    bgSecondary: string;
+    textPrimary: string;
+    textSecondary: string;
+
+    sm: string;
+    md: string;
+    lg: string;
+
+    bp: {
       sm: string;
       md: string;
       lg: string;

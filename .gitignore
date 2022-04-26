@@ -1,5 +1,6 @@
 # compiled output
 /backend/dist
+/backend/build
 /node_modules
 node_modules/
 
@@ -17,7 +18,15 @@ lerna-debug.log*
 
 # Tests
 /backend/coverage
+/frontend/coverage
 /backend/.nyc_output
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # IDE - VSCode
 .vscode/*
@@ -25,3 +34,4 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
