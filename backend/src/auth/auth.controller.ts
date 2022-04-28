@@ -1,9 +1,12 @@
 import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { CreateUserDto } from 'src/users/dtos/create-user.dto';
 import { AuthService } from './auth.service';
 import { Public } from './decorators/public.decorator';
+import { AuthDto } from './dtos/auth.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 
+@Serialize(AuthDto)
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}

@@ -9,9 +9,12 @@ export const Sidebar = styled.div<SidebarProps>`
   top: 0;
   left: 0;
   height: 100vh;
-  width: 260px;
+  width: 270px;
   padding: 0.6rem 1.5rem;
   margin-left: ${({ isOpen }) => (isOpen ? 0 : "-100%")};
+  @media screen and (min-width: ${({ theme }) => theme.bp.md}) {
+    margin-left: 0;
+  }
 `;
 
 export const Logo = styled.div`
@@ -30,5 +33,5 @@ export const Logo = styled.div`
 
 export const Title = styled.h2`
   color: ${({ theme }) => theme.menu.textSecondary};
-  font-size: ${({ theme }) => theme.md};
+  font-size: ${({ theme }) => theme.sm};
 `;

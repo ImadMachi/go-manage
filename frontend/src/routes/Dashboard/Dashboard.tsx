@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import { useOutsideAlerter } from "../hooks/useOutsideAlerter";
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
+import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
+import CustomersScreen from "../../screens/CustomersScreen";
+import * as S from "./Dashboard.styled";
 
 const Dashboard = () => {
   const [ref, isVisible, setIsVisibleTrue] = useOutsideAlerter();
@@ -10,16 +12,16 @@ const Dashboard = () => {
     <>
       <Sidebar forwardedRef={ref} isOpen={isVisible} />
       <Navbar setSidebarIsOpen={setIsVisibleTrue} />
-      <main>
+      <S.Main>
         <Routes>
-          {/* <Route index element={<Home />} />
-      <Route path="teams" element={<Teams />}>
+          <Route path="/cutomers" element={<CustomersScreen />} />
+          {/* <Route path="teams" element={<Teams />}>
       <Route path=":teamId" element={<Team />} />
       <Route path="new" element={<NewTeamForm />} />
       <Route index element={<LeagueStandings />} /> */}
           {/* </Route> */}
         </Routes>
-      </main>
+      </S.Main>
     </>
   );
 };

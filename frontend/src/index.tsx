@@ -8,12 +8,15 @@ import App from "./App";
 import GlobalCSS from "./common/style/global-style";
 import { lightTheme, themeReducer } from "./common/style/theme";
 import store from "./features/store";
+import "normalize.css";
 
-export interface AppContextInterface {
+export interface ThemeContextInterface {
   theme: DefaultTheme;
   dispatch: any;
 }
-export const AppContext = createContext<AppContextInterface | null>(null);
+
+// export const ThemeContext = createContext<ThemeContextInterface | null>(null);
+export const ThemeContext = createContext<any>(null);
 
 // const { dispatch } = useContext(AppContext);
 // const toggleTheme = () => {
@@ -21,16 +24,19 @@ export const AppContext = createContext<AppContextInterface | null>(null);
 // };
 
 const Index = () => {
-  const [theme, dispatch] = useReducer(themeReducer, lightTheme);
+  const [theme, dispatch] = useReducer(
+    themeReducer,
+    localStorage.getItem("goManage:mode") ? JSON.parse(localStorage.getItem("goManage:mode") || "") : lightTheme
+  );
 
   return (
     <ThemeProvider theme={theme}>
-      <AppContext.Provider value={{ theme, dispatch }}>
+      <ThemeContext.Provider value={{ theme, dispatch }}>
         <GlobalCSS />
         <Provider store={store}>
           <App />
         </Provider>
-      </AppContext.Provider>
+      </ThemeContext.Provider>
     </ThemeProvider>
   );
 };

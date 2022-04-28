@@ -2,6 +2,7 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    type: string;
     menu: {
       bg: string;
       textPrimary: string;

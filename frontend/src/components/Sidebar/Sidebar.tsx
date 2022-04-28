@@ -20,10 +20,10 @@ const Sidebar = ({ forwardedRef, isOpen }: SidebarProps) => {
         gomanage
       </S.Logo>
       <S.Title>APP</S.Title>
-      <Dropdown {...commerceItems}>
+      <Dropdown {...commerceItems} maxHeight={`${commerceItems.items.length * 2.5}rem`}>
         <FontAwesomeIcon icon={faShop} />
       </Dropdown>
-      <Dropdown {...crmItems}>
+      <Dropdown {...crmItems} maxHeight={`${7.5}rem`}>
         <FontAwesomeIcon icon={faUsers} />
       </Dropdown>
     </S.Sidebar>

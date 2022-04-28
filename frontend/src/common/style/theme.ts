@@ -21,10 +21,12 @@ export function themeReducer(state: DefaultTheme, action: Action) {
 }
 
 export const lightTheme: DefaultTheme = {
+  type: "light",
+
   menu: {
-    bg: "#2B3140",
-    textPrimary: "#f8f8f8",
-    textSecondary: "#c2cce3",
+    bg: "#323847",
+    textPrimary: "#ded9d9",
+    textSecondary: "#7c809c",
   },
   primary: "#556ee6",
   secondary: "#34C38F",
@@ -36,7 +38,7 @@ export const lightTheme: DefaultTheme = {
   sm: "0.9rem",
   md: "1rem",
   lg: "1.35rem",
-//scren
+
   bp: {
     sm: "576px",
     md: "768px",
@@ -48,6 +50,8 @@ export const lightTheme: DefaultTheme = {
 
 export const darkTheme: DefaultTheme = {
   ...lightTheme,
+  type: "dark",
+
   bgPrimary: "#2B3140",
   bgSecondary: "#222736",
   textPrimary: "#f8f8f8",
