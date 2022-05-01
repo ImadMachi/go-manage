@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const Screen = styled.div`
-  padding-right: 1rem;
-`;
+export const Screen = styled.div``;
 
 export const Title = styled.h2`
   font-size: ${({ theme }) => theme.md};

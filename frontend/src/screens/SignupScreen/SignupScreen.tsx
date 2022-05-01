@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { NewUser, signup } from "../../features/slices/authSlice";
 import { useAppDispatch } from "../../features/store";
-import { useSelector } from "../../hooks/useTypedSelector";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const user: NewUser = {
   firstName: "admin",
@@ -21,7 +21,7 @@ const user: NewUser = {
 const Signup = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const userRegister = useSelector((state) => state.userInfo);
+  const userRegister = useTypedSelector((state) => state.authUser);
   const { loading, error, userInfo } = userRegister;
 
   useEffect(() => {

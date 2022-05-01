@@ -28,13 +28,6 @@ export type NewUser = {
 //   id: string;
 // };
 
-export type AuthState = {
-  userInfo: { user: User; access_token: string } | {};
-  loading: "idle" | "pending";
-  currentRequestId: undefined;
-  error: any;
-};
-
 export const signup = createAsyncThunk<any, NewUser, { rejectValue: any }>("auth/signup", async (newUser, thunkAPI) => {
   const { rejectWithValue } = thunkAPI;
 
@@ -70,6 +63,13 @@ export const login = createAsyncThunk<any, UserCredentials, { rejectValue: any }
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
   }
 });
+
+export type AuthState = {
+  userInfo: { user?: User; access_token?: string };
+  loading: "idle" | "pending";
+  currentRequestId: undefined;
+  error: any;
+};
 
 const initialState: AuthState = {
   userInfo: localStorage.getItem("goManage:userInfo") ? JSON.parse(localStorage.getItem("goManage:userInfo") || "") : {},

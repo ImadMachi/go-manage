@@ -4,8 +4,8 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "test@test.com",
-  "password": "admin"
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "test1234"
 }
 
 ### signup user

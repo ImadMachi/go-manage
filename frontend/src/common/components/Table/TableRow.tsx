@@ -52,10 +52,20 @@ const TableRow = <T extends Object>({ item, width, isTHeader }: TableProps<T>) =
           </S.Col>
         )}
         {displayedCols.slice(1).map(([_, col], i) => (
-          <S.Col key={i}>{typeof col === "boolean" ? (col ? "Active" : "Blocked") : col}</S.Col>
+          <S.Col key={i}>
+            {typeof col === "boolean" ? (
+              col ? (
+                <span style={{ color: "#0ab39c" }}>Active</span>
+              ) : (
+                <span style={{ color: "#f06548" }}>Blocked</span>
+              )
+            ) : (
+              col
+            )}
+          </S.Col>
         ))}
       </S.Row>
-      <S.Dropdown isOpen={isOpen} maxHeight={`${hiddenCols.length * 2}rem`}>
+      <S.Dropdown isOpen={isOpen}>
         {hiddenCols.map(([key, col], i) => (
           <S.DropdownItem key={i}>
             {key}: {typeof col === "boolean" ? (col ? "Active" : "Blocked") : col}

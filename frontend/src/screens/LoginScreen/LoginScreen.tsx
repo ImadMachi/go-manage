@@ -2,16 +2,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login, NewUser, signup, UserCredentials } from "../../features/slices/authSlice";
 import { useAppDispatch } from "../../features/store";
-import { useSelector } from "../../hooks/useTypedSelector";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const user: UserCredentials = {
-  email: "imad4@test.com",
-  password: "blabla",
+  email: "nouhailaskitina6@gmail.com",
+  password: "test1234",
 };
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { loading, error, userInfo } = useSelector((state) => state.userInfo);
+  const { loading, error, userInfo } = useTypedSelector((state) => state.authUser);
 
   useEffect(() => {
     // if (userInfo?.access_token) {

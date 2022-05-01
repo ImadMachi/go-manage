@@ -27,7 +27,6 @@ export const Col = styled.div`
 
 interface DropdownProps {
   isOpen: boolean;
-  maxHeight: string;
 }
 export const Dropdown = styled.ul<DropdownProps>`
   display: ${({ isOpen }) => (isOpen ? "block" : "none")};
