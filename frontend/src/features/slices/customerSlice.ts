@@ -1,18 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Customer } from "../../models/customerModel";
 import { RootState } from "../rootReducer";
-
-export type Customer = {
-  id: number;
-  name: string;
-  email: string;
-  address: string;
-  phone: string;
-  isActive: boolean;
-  totalSpent: number;
-  orders: number;
-  creationDate: number;
-};
 
 export const fetchCutomers = createAsyncThunk("customers/fetchCustomers", async (_arg, { getState, requestId }) => {
   // @ts-ignore

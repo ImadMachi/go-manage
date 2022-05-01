@@ -4,7 +4,7 @@ import { faShop, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 import * as S from "./Sidebar.styled";
 
-const commerceItems = { title: "Commerce", items: ["clients", "commandes", "produits"] };
+const commerceItems = { title: "Commerce", items: ["cutomers", "orders", "products"] };
 const crmItems = { title: "CRM", items: ["companies", "contacts", "leads", "deals"] };
 
 interface SidebarProps {
@@ -23,7 +23,7 @@ const Sidebar = ({ forwardedRef, isOpen }: SidebarProps) => {
       <Dropdown {...commerceItems} maxHeight={`${commerceItems.items.length * 2.5}rem`}>
         <FontAwesomeIcon icon={faShop} />
       </Dropdown>
-      <Dropdown {...crmItems} maxHeight={`${7.5}rem`}>
+      <Dropdown {...crmItems} maxHeight={`${commerceItems.items.length * 2.5}rem`}>
         <FontAwesomeIcon icon={faUsers} />
       </Dropdown>
     </S.Sidebar>

@@ -24,7 +24,6 @@ import { StocksModule } from './stocks/stocks.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrderLinesModule } from './order-lines/order-lines.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
-import { TestsModule } from './tests/tests.module';
 
 @Module({
   imports: [
@@ -40,16 +39,13 @@ import { TestsModule } from './tests/tests.module';
     }),
     AuthModule,
     CustomerModule,
-
     BillsModule,
     CurrenciesModule,
     ShippingsModule,
     OrdersModule,
-
     CaslModule,
     UsersModule,
     PacksModule,
-
     ArticlesModule,
     ServicesModule,
     ProductsModule,
@@ -57,7 +53,6 @@ import { TestsModule } from './tests/tests.module';
     SuppliersModule,
     OrderLinesModule,
     OrderFormsModule,
-    TestsModule,
   ],
   controllers: [AppController],
   providers: [

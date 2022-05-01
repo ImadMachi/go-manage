@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { User } from "../../models/user";
+import { User } from "../../models/userModel";
 
 export type UserCredentials = {
   email: string;

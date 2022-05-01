@@ -1,14 +1,15 @@
 ### Login user
-POST http://localhost:5000/auth/login
+# @name loginAPI
+POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "nouhailaskitina6@gmail.com",
-  "password": "test1234"
+  "email": "test@test.com",
+  "password": "admin"
 }
 
 ### signup user
-POST http://localhost:5000/auth/signup
+POST {{url}}/auth/signup
 Content-Type: application/json
 
 {

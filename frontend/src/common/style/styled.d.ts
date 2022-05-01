@@ -15,6 +15,7 @@ declare module "styled-components" {
     bgSecondary: string;
     textPrimary: string;
     textSecondary: string;
+    textTertiary: string;
 
     sm: string;
     md: string;

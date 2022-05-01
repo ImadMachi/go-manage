@@ -1,32 +1,40 @@
-### Create customer
-POST http://localhost:5000/customer/
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  
-    "lastName": "nouhaila",
-    "firstName":"skitina",
-    "address": "Machi",
-    "zip": "c2@c.com",
-    "city": "test1234",
-    "country":"maroc",
-    "phone": "0603444",
-    "reference": "12322",
-   "type":"hhaga",
-    "category": "agadir",
-    "creationDate":"12-2-2020",
-    "paymentDate":"12-12-2020",
+  "email": "test@test.com",
+  "password": "admin"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
 
+### Create customer
+POST {{url}}/customers/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "skitina nouhail",
+  "email": "skitinanouhail44@gmail.com",
+  "address": "Bab lakhmiss, Derb Foura, 28",
+  "phone": "0603065801"
 }
 
 ### Update customer
-PATCH  http://localhost:5000/customer/1
+PATCH  {{url}}/customers/3
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "phone": "imadox",
-  "reference": "1222"
+  "phone": "872726263"
 }
 
-### Find by customer
-GET http://localhost:5000/customer/id/1
+### Find a customer
+GET {{url}}/customers/3
+Authorization: Bearer {{token}}
+
+### Find all customers
+GET {{url}}/customers
+Authorization: Bearer {{token}}

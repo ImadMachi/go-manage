@@ -34,6 +34,7 @@ export const lightTheme: DefaultTheme = {
   bgSecondary: "#F4F5F8",
   textPrimary: "#495057",
   textSecondary: "#74788d",
+  textTertiary: "#b2b5c2",
 
   sm: "0.9rem",
   md: "1rem",

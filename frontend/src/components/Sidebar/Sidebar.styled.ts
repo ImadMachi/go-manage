@@ -12,7 +12,7 @@ export const Sidebar = styled.div<SidebarProps>`
   width: 270px;
   padding: 0.6rem 1.5rem;
   margin-left: ${({ isOpen }) => (isOpen ? 0 : "-100%")};
-  @media screen and (min-width: ${({ theme }) => theme.bp.md}) {
+  @media screen and (min-width: ${({ theme }) => theme.bp.lg}) {
     margin-left: 0;
   }
 `;
@@ -26,7 +26,7 @@ export const Logo = styled.div`
   padding: 1.3rem;
   font-style: italic;
   display: none;
-  @media screen and (min-width: ${({ theme }) => theme.bp.md}) {
+  @media screen and (min-width: ${({ theme }) => theme.bp.lg}) {
     display: block;
   }
 `;

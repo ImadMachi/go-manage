@@ -4,7 +4,7 @@ export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1.2rem;
   background-color: ${({ theme }) => theme.bgPrimary};
 `;
 

@@ -1,18 +1,36 @@
-### Update User
-PATCH  http://localhost:5000/users/4
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "firstName": "imadox",
-  "email": "test@test.com"
+  "email": "test@test.com",
+  "password": "admin"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
+
+### Get profile
+GET {{url}}/users/profile
+Authorization: Bearer {{token}}
+
+### Update profile
+PATCH  {{url}}/users/profile
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "firstName": "imado"
 }
 
-### Find all users
-GET http://localhost:5000/users
+### Find all users (roles = admin)
+GET {{url}}/users
+Authorization: Bearer {{token}}
 
-### Find by email
-GET http://localhost:5000/users/c@c.com
+### Find by email (roles = admin)
+GET {{url}}/users/c@c.com
+Authorization: Bearer {{token}}
 
-### Toggle isActive
-GET http://localhost:5000/users/toggle-active/4
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImM0QGMuY29tIiwic3ViIjoxNCwiaWF0IjoxNjUwNDY5MTk3LCJleHAiOjE2NTMwNjExOTd9.8xraOZ101ok8MDGCvIVCHR1EwqebYwEWNia2JL6Snmc
+### Toggle isActive (roles = admin)
+GET {{url}}/users/toggle-active/nouhailaskitina6@gmail.com
+Authorization: Bearer {{token}}
