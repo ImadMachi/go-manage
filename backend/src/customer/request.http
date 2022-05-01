@@ -16,8 +16,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Jane Doe",
-  "email": "jane@gmail.com",
+  "name": "Abraham Pick",
+  "email": "abraham@gmail.com",
   "address": "Bab lakhmiss, Derb Foura, 28",
   "phone": "0603065801"
 }
