@@ -8,6 +8,7 @@ import * as S from "./CustomerScreen.styled";
 import { ThemeContext } from "../..";
 import { deleteCustomer } from "../../features/thunks/customerThunk";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
+import Button from "../../common/components/Button";
 
 const headers = ["#", "Customer", "Email", "Address", "Phone", "Status", "Total Spent", "Orders", "Joining Date", "Actions"];
 
@@ -43,7 +44,7 @@ const CustomerScreen = () => {
       <S.Container ref={ref}>
         <Flex justifyContent="space-between" alignItems="center">
           <S.Search>Search</S.Search>
-          <S.AddCustomer onClick={() => setIsModalOpen(true)}>Add Customer</S.AddCustomer>
+          <Button onClick={() => setIsModalOpen(true)}>Add Customer</Button>
         </Flex>
         {!!customers && <Table items={displayedCustomers} headers={headers} width={width} deleteItem={deleteCustomer} />}
         <Pagination page={activePage} total={customers.length / 10 + 1} onChange={onPageChange} style={{ margin: "20px 0" }} />

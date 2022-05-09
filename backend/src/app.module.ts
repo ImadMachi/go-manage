@@ -66,10 +66,10 @@ import { OrderLinesModule } from './order-lines/orderLines.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
-    {
-      provide: APP_FILTER,
-      useClass: AllExceptionsFilter,
-    },
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: AllExceptionsFilter,
+    // },
   ],
 })
 export class AppModule {}

@@ -27,10 +27,14 @@ export class OrdersService {
     order.date = currDate;
     await this.repo.save(order);
 
-    orderDto.products.forEach(async ({ id, qty }) => {
-      const product = await this.productsService.findOne(id, user);
-      await this.orderLinesService.create(product, order, qty);
-    });
+    // orderDto.products.forEach(async ({ id, qty }) => {
+    //   const product = await this.productsService.findOne(id, user);
+    //   await this.orderLinesService.create(product, order, qty);
+    // });
+    for (const item of orderDto.products) {
+      const product = await this.productsService.findOne(item.id, user);
+      await this.orderLinesService.create(product, order, item.qty);
+    }
 
     return this.repo.save(order);
   }
