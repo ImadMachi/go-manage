@@ -16,4 +16,10 @@ export default createGlobalStyle`
       font-size: 100%;
     } */
   }
+
+  @media (hover: hover) {
+  button {
+    cursor: pointer;
+  }
+}
 `;

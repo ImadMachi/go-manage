@@ -1,7 +1,8 @@
-import { Button, Group, TextInput } from "@mantine/core";
+import { Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import isEmail from "validator/es/lib/isEmail";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
+import Button from "../../common/components/Button";
 import { useAppDispatch } from "../../features/store";
 import { createCustomer } from "../../features/thunks/customerThunk";
 import * as S from "./CreateCustomerForm.styled";

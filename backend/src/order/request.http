@@ -17,11 +17,11 @@ Authorization: Bearer {{token}}
 
 {
   "billingName":"skitina",
-"total":123,
-"paymentMethod":"visa",
-"paymentStatus":"paid",
-"customerId":5,
-"products":[{"id": 1, "qty": 30}]
+  "total":123,
+  "paymentMethod":"visa",
+  "paymentStatus":"paid",
+  "customerId":8,
+  "products":[{"id": 2, "qty": 30}]
 }
 
 ### Update order
