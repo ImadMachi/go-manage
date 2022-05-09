@@ -10,5 +10,6 @@ import { CaslModule } from 'src/casl/casl.module';
   imports: [TypeOrmModule.forFeature([Customer]), UsersModule, CaslModule],
   providers: [CustomerService],
   controllers: [CustomerController],
+  exports: [CustomerService],
 })
 export class CustomerModule {}

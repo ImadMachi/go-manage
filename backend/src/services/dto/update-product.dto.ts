@@ -1,7 +1,7 @@
 import { IsNumber, IsObject, IsOptional, IsString } from 'class-validator';
 
-export class UpdateProductDto {
-  @IsOptional()
+export class UpdateServiceDto {
+    @IsOptional()
   @IsNumber()
   price: number;
 
@@ -11,13 +11,13 @@ export class UpdateProductDto {
 
   @IsOptional()
   @IsString()
-  image: string;
+  imag: string;
 
   @IsOptional()
   @IsNumber()
   rating: number;
 
-  @IsOptional()
-  @IsNumber()
-  stock: number;
+ @IsOptional()
+  @IsString()
+  promo: string;
 }

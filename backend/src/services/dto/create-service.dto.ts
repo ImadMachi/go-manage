@@ -1,6 +1,6 @@
 import { IsNumber, IsString } from 'class-validator';
 
-export class CreateProductDto {
+export class CreateServiceDto {
   @IsNumber()
   price: number;
 
@@ -8,11 +8,14 @@ export class CreateProductDto {
   title: string;
 
   @IsString()
-  image: string;
+  imag: string;
 
   @IsNumber()
   rating: number;
 
+  @IsString()
+  promo: string;
+
   @IsNumber()
-  stock: number;
+  userId:number;
 }

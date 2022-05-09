@@ -1,9 +1,8 @@
 import { OrderLine } from 'src/order-lines/orderLine.entity';
-import { User } from 'src/users/user.entity';
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity,  OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class Product {
+export class Service {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -14,20 +13,22 @@ export class Product {
   title: string;
 
   @Column()
-  userId: number;
+  userId:number;
+
 
   @Column()
-  image: string;
+  imag: string;
 
+  
   @Column()
   rating: number;
 
+  
   @Column()
-  stock: number;
+  promo: string;
+
+ 
 
   @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { onDelete: 'CASCADE' })
-  orderLines: OrderLine[];
-
-  @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
-  user: User;
+ orderLine: OrderLine[];
 }

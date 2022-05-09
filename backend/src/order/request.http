@@ -1,26 +1,42 @@
-### create order
-
-POST http://localhost:5000/orders/
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
 Content-Type: application/json
 
 {
- "description":"mamahhahah",
- "reference":122,
- "date":"12-02-12"
-
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "test1234"
 }
+###
+@token = {{ loginAPI.response.body.access_token }}
 
-### Update order
-PATCH  http://localhost:5000/orders/1
+### Create order
+POST {{url}}/orders
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "description": "imadox",
-  "numBill": "1222f"
+  "billingName":"skitina",
+"total":123,
+"paymentMethod":"visa",
+"paymentStatus":"paid",
+"customerId":5,
+"products":[{"id": 1, "qty": 30}]
 }
 
-### Find by order
-GET http://localhost:5000/orders/id/1
+### Update customer
+PATCH  {{url}}/customers/3
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
-### delete order 
-DELETE  http:localhost:5000/orders/id/1
+{
+  "phone": "872726263"
+}
+
+### Find a customer
+GET {{url}}/customers/3
+Authorization: Bearer {{token}}
+
+### Find all orders
+GET {{url}}/orders/customer/1
+Authorization: Bearer {{token}}

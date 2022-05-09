@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrderLinesController } from './order-lines.controller';
+import { OrderLinesController } from './orderLines.controller';
 
-describe('OrderLinesController', () => {
+describe('OrdersLinesController', () => {
   let controller: OrderLinesController;
 
   beforeEach(async () => {

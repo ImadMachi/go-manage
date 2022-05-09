@@ -11,7 +11,7 @@ Content-Type: application/json
 @token = {{ loginAPI.response.body.$.access_token }}
 
 ### Create customer
-POST {{url}}/customers/
+POST {{url}}/customers
 Content-Type: application/json
 Authorization: Bearer {{token}}
 

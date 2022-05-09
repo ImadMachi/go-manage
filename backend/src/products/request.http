@@ -1,0 +1,41 @@
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "test1234"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
+
+### Create product
+POST {{url}}/products/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "price": 12,
+  "title": "Fancy Product",
+  "image": "imagePath",
+  "rating": 4.5,
+  "stock": 15
+}
+
+### Update products
+PATCH  {{url}}/products/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "stock": 8
+}
+
+### Find a product
+GET {{url}}/products/1
+Authorization: Bearer {{token}}
+
+### Find all products
+GET {{url}}/products
+Authorization: Bearer {{token}}

@@ -1,13 +1,21 @@
-import { IsNumber, IsString } from "class-validator";
-
+import { IsArray, IsNumber, IsString } from 'class-validator';
 
 export class CreateOrderDto {
- @IsNumber()
- reference:number;
-  
-   @IsString()
-   date: string;
-  
-    @IsString()
-    description: string;
+  @IsString()
+  billingName: string;
+
+  @IsNumber()
+  total: number;
+
+  @IsString()
+  paymentStatus: string;
+
+  @IsString()
+  paymentMethod: string;
+
+  @IsNumber()
+  customerId: number;
+
+  @IsArray()
+  products: { id; qty }[];
 }

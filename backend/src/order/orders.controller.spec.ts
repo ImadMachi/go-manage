@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-<<<<<<< HEAD:backend/src/order/orders.controller.spec.ts
+import { AuthController } from 'src/auth/auth.controller';
 import { OrdersController } from './orders.controller';
 
 describe('OrdersController', () => {
@@ -11,22 +11,21 @@ describe('OrdersController', () => {
     }).compile();
 
     controller = module.get<OrdersController>(OrdersController);
-=======
-import { AuthController } from './auth.controller';
 
-describe('AuthController', () => {
-  let controller: AuthController;
+    describe('AuthController', () => {
+      let controller: AuthController;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      controllers: [AuthController],
-    }).compile();
+      beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+          controllers: [AuthController],
+        }).compile();
 
-    controller = module.get<AuthController>(AuthController);
->>>>>>> 1c4ab76fb55c40f6a3cc1974d9eb682415ca1b6a:backend/src/auth/auth.controller.spec.ts
-  });
+        controller = module.get<AuthController>(AuthController);
+      });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+      it('should be defined', () => {
+        expect(controller).toBeDefined();
+      });
+    });
   });
 });
