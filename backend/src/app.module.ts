@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { CustomerModule } from './customer/customer.module';
 
 import { BillsModule } from './bills/bills.module';
@@ -24,6 +24,7 @@ import { StocksModule } from './stocks/stocks.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrderLinesModule } from './order-lines/order-lines.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
+import { AllExceptionsFilter } from './filters/http-exception.filter';
 
 @Module({
   imports: [
@@ -64,6 +65,10 @@ import { OrderFormsModule } from './order-forms/order-forms.module';
     {
       provide: APP_GUARD,
       useClass: RolesGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
     },
   ],
 })
