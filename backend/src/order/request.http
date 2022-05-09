@@ -24,8 +24,8 @@ Authorization: Bearer {{token}}
 "products":[{"id": 1, "qty": 30}]
 }
 
-### Update customer
-PATCH  {{url}}/customers/3
+### Update order
+PATCH  {{url}}/orders/3
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -33,8 +33,8 @@ Authorization: Bearer {{token}}
   "phone": "872726263"
 }
 
-### Find a customer
-GET {{url}}/customers/3
+### Find a orders
+GET {{url}}/orders/3
 Authorization: Bearer {{token}}
 
 ### Find all orders
