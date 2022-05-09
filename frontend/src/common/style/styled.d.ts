@@ -17,6 +17,11 @@ declare module "styled-components" {
     textSecondary: string;
     textTertiary: string;
 
+    success: string;
+    danger: string;
+    warning: string;
+    info: string;
+
     sm: string;
     md: string;
     lg: string;

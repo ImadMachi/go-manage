@@ -1,26 +1,53 @@
+import { useContext, useEffect, useMemo, useState } from "react";
+import { Modal, Pagination } from "@mantine/core";
 import { Flex } from "../../common/components/Flex";
 import Table from "../../common/components/Table/Table";
 import { useCustomers } from "../../hooks/useCustomers";
 import { useElementWidth } from "../../hooks/useElementWidth";
-import { Customer } from "../../models/customerModel";
 import * as S from "./CustomerScreen.styled";
+import { ThemeContext } from "../..";
+import { deleteCustomer } from "../../features/thunks/customerThunk";
+import CreateCustomerForm from "../../components/CreateCustomerForm";
+
+const headers = ["#", "Customer", "Email", "Address", "Phone", "Status", "Total Spent", "Orders", "Joining Date", "Actions"];
+
+const PAGE_SIZE = 10;
 
 const CustomerScreen = () => {
+  const [activePage, setActivePage] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [width, ref] = useElementWidth();
-  const headers = ["#", "Customer", "Email", "Address", "Phone", "Status", "Total Spent", "Orders", "Joining Date", "Actions"];
   const { loading, error, customers } = useCustomers();
+  const displayedCustomers = useMemo(() => {
+    const firstPageIndex = (activePage - 1) * 10;
+    const lastPageIndex = firstPageIndex + PAGE_SIZE;
+    return customers.slice(firstPageIndex, lastPageIndex);
+  }, [activePage, customers]);
+  const { theme, dispatch } = useContext(ThemeContext);
+
+  const onPageChange = (page: number) => {
+    setActivePage(page);
+  };
   return (
     <S.Screen>
+      <Modal
+        opened={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={<S.ModalTitle>Add Customer</S.ModalTitle>}
+        size={550}
+        centered={true}
+      >
+        <CreateCustomerForm onCloseModal={() => setIsModalOpen(false)} />
+      </Modal>
       <S.Title>Customers</S.Title>
       <S.Container ref={ref}>
         <Flex justifyContent="space-between" alignItems="center">
           <S.Search>Search</S.Search>
-          <S.AddCustomer>Add Customer</S.AddCustomer>
+          <S.AddCustomer onClick={() => setIsModalOpen(true)}>Add Customer</S.AddCustomer>
         </Flex>
-        {customers && <Table items={customers} headers={headers} width={width} />}
-        {error}
+        {!!customers && <Table items={displayedCustomers} headers={headers} width={width} deleteItem={deleteCustomer} />}
+        <Pagination page={activePage} total={customers.length / 10 + 1} onChange={onPageChange} style={{ margin: "20px 0" }} />
       </S.Container>
-      {/* <TableRow item={customers[1]} width={width} /> */}
     </S.Screen>
   );
 };

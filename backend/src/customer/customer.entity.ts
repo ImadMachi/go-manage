@@ -21,6 +21,9 @@ export class Customer {
   @Column({ default: true })
   isActive: boolean;
 
+  @Column({ default: false })
+  isDeleted: boolean;
+
   @Column({ default: 0 })
   totalSpent: number;
 

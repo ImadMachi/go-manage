@@ -1,20 +1,23 @@
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
+import TableDropdown from "./TableDropdown";
 import * as S from "./TableRow.styled";
 
 interface TableProps<T> {
   item: T;
   width: number;
   isTHeader?: boolean;
+  deleteItem: Function;
 }
-const TableRow = <T extends Object>({ item, width, isTHeader }: TableProps<T>) => {
+const TableRow = <T extends Object>({ item, width, isTHeader, deleteItem }: TableProps<T>) => {
   const cols = Object.entries(item);
   const [displayedCols, setDisplayedCols] = useState<Array<Array<keyof T>>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<Array<keyof T>>>([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownHandler = () => {
-    setIsOpen(!isOpen);
+    setIsDropdownOpen(!isDropdownOpen);
   };
   useEffect(() => {
     if (width < 360) {
@@ -53,25 +56,11 @@ const TableRow = <T extends Object>({ item, width, isTHeader }: TableProps<T>) =
         )}
         {displayedCols.slice(1).map(([_, col], i) => (
           <S.Col key={i}>
-            {typeof col === "boolean" ? (
-              col ? (
-                <span style={{ color: "#0ab39c" }}>Active</span>
-              ) : (
-                <span style={{ color: "#f06548" }}>Blocked</span>
-              )
-            ) : (
-              col
-            )}
+            {typeof col === "boolean" ? col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> : col}
           </S.Col>
         ))}
       </S.Row>
-      <S.Dropdown isOpen={isOpen}>
-        {hiddenCols.map(([key, col], i) => (
-          <S.DropdownItem key={i}>
-            {key}: {typeof col === "boolean" ? (col ? "Active" : "Blocked") : col}
-          </S.DropdownItem>
-        ))}
-      </S.Dropdown>
+      <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} itemId={cols[0][1]} deleteItem={deleteItem} />
     </S.Container>
   );
 };

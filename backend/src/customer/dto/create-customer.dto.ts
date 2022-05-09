@@ -1,6 +1,7 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsBoolean, IsEmail, IsString } from 'class-validator';
 
 export class CreateCustomerDto {
+  // @IsEmail() for test purpose
   @IsString()
   name: string;
 
@@ -13,4 +14,7 @@ export class CreateCustomerDto {
 
   @IsString()
   phone: string;
+
+  // @IsBoolean()
+  // isDeleted: boolean;
 }

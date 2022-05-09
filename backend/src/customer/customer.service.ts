@@ -7,7 +7,6 @@ import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { Customer } from './customer.entity';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { CustomerDto } from './dto/customer.dto';
 
 @Injectable()
 export class CustomerService {
@@ -30,7 +29,7 @@ export class CustomerService {
   }
 
   async findAll(userId: number) {
-    const customers = await this.repo.find({ userId });
+    const customers = await this.repo.find({ userId, isDeleted: false });
     return customers;
   }
 
@@ -61,6 +60,20 @@ export class CustomerService {
     }
 
     Object.assign(customer, attrs);
+    return this.repo.save(customer);
+  }
+
+  async delete(id: number, user: Partial<User>) {
+    const customer = await this.repo.findOne(id);
+    if (!customer) {
+      throw new NotFoundException('customer not found');
+    }
+    const ability = this.caslAbilityFactory.createForUser(user);
+    if (!ability.can(Action.Delete, customer)) {
+      throw new ForbiddenException('Forbidden');
+    }
+
+    customer.isDeleted = true;
     return this.repo.save(customer);
   }
 }

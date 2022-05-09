@@ -6,13 +6,14 @@ interface TableProps<T> {
   items: Array<T>;
   width: number;
   headers: Array<any>;
+  deleteItem: Function;
 }
-const Table = <T extends Customer>({ items, width, headers }: TableProps<T>) => {
+const Table = <T extends Customer>({ items, width, headers, deleteItem }: TableProps<T>) => {
   return (
     <S.Container>
-      <TableRow item={headers} width={width} isTHeader={true} />
+      <TableRow item={headers} width={width} isTHeader={true} deleteItem={deleteItem} />
       {items.map((item) => (
-        <TableRow item={item} width={width} key={item.id} />
+        <TableRow item={item} width={width} key={item.id} deleteItem={deleteItem} />
       ))}
     </S.Container>
   );

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Request } from '@nestjs/common';
 import { request } from 'http';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { CustomerService } from './customer.service';
@@ -34,5 +34,10 @@ export class CustomerController {
   @Patch('/:id')
   update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateCustomerDto, @Request() request) {
     return this.customerService.update(id, body, request.user);
+  }
+
+  @Delete('/:id')
+  delete(@Param('id', ParseIntPipe) id: number, @Request() request) {
+    return this.customerService.delete(id, request.user);
   }
 }

@@ -1,27 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Customer } from "../../models/customerModel";
 import { RootState } from "../rootReducer";
-
-export const fetchCutomers = createAsyncThunk<Array<Customer>, unknown, { state: RootState }>(
-  "customers/fetchCustomers",
-  async (_, thunkAPI) => {
-    const { rejectWithValue, getState } = thunkAPI;
-
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${getState().authUser.userInfo.access_token}`,
-        },
-      };
-      const { data } = await axios.get("/customers", config);
-      return data;
-    } catch (err: any) {
-      return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
-    }
-  }
-);
+import { createCustomer, deleteCustomer, fetchCustomers } from "../thunks/customerThunk";
 
 type CustomersState = {
   customers: Customer[];
@@ -42,15 +22,39 @@ export const customersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCutomers.pending, (state) => {
+    builder.addCase(fetchCustomers.pending, (state) => {
       state.loading = "pending";
     });
-    builder.addCase(fetchCutomers.fulfilled, (state, { payload }) => {
+    builder.addCase(fetchCustomers.fulfilled, (state, { payload }) => {
       state.loading = "idle";
       state.error = undefined;
       state.customers = payload;
     });
-    builder.addCase(fetchCutomers.rejected, (state, { payload }) => {
+    builder.addCase(fetchCustomers.rejected, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = payload;
+    });
+    builder.addCase(deleteCustomer.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(deleteCustomer.fulfilled, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = undefined;
+      state.customers = state.customers.filter((customer) => customer.id !== payload.id);
+    });
+    builder.addCase(deleteCustomer.rejected, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = payload;
+    });
+    builder.addCase(createCustomer.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(createCustomer.fulfilled, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = undefined;
+      state.customers.push(payload);
+    });
+    builder.addCase(createCustomer.rejected, (state, { payload }) => {
       state.loading = "idle";
       state.error = payload;
     });
@@ -58,16 +62,9 @@ export const customersSlice = createSlice({
 });
 
 // Selectors
-export const selectCustomers = (state: RootState) => state.customers;
+export const selectCustomers = createSelector(
+  (state: RootState) => state.customers,
+  (customers) => customers
+);
 
 export default customersSlice.reducer;
-
-// export const fetchCutomers = createAsyncThunk("customers/fetchCustomers", async (_arg, { getState, requestId }) => {
-//   // @ts-ignore
-//   const { currentRequestId, loading } = getState().customers;
-//   if (loading !== "pending" || requestId !== currentRequestId) {
-//     return;
-//   }
-//   const { data } = await axios.get("/customers");
-//   return data;
-// });

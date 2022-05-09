@@ -27,3 +27,7 @@ export const Container = styled.div`
   padding: 1rem;
   background-color: ${({ theme }) => theme.bgPrimary};
 `;
+
+export const ModalTitle = styled.h2`
+  margin-top: 0;
+`;

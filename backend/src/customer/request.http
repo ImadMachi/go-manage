@@ -16,10 +16,11 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "Abraham Pick",
-  "email": "abraham@gmail.com",
-  "address": "Bab lakhmiss, Derb Foura, 28",
-  "phone": "0603065801"
+  "name": "deleted",
+  "email": "deleted@gmail.com",
+  "address": "Nowhere",
+  "phone": "0603065801",
+  "isDeleted": true
 }
 
 ### Update customer
