@@ -3,12 +3,23 @@ import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class UpdateOrderDto {
    
+    @IsOptional()
+    @IsNumber()
+    date: number;
   
     @IsOptional()
-   @IsString()
-   date: string;
-  
-   @IsOptional()
     @IsString()
-    description: string;
+    billingName: string;
+  
+    @IsOptional()
+    @IsNumber()
+    total:number;
+  
+    @IsOptional()
+    @IsString()
+    paymentStatus:string;
+  
+    @IsOptional()
+    @IsString()
+    paymentMethod:string;
 }

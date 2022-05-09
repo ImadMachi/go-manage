@@ -2,6 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from 'src/auth/enums/role.enum';
 import { Customer } from 'src/customer/customer.entity';
 import { Pack } from 'src/packs/pack.entity';
+import { Product } from 'src/products/product.entity';
 
 @Entity()
 export class User {
@@ -55,4 +56,7 @@ export class User {
 
   @OneToMany(() => Customer, (customer) => customer.user, { cascade: true })
   customers: Customer[];
+
+  @OneToMany(() => Product, (product) => product.user, { cascade: true })
+  products: Product[];
 }

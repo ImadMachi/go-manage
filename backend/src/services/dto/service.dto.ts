@@ -1,6 +1,6 @@
 import { Expose } from 'class-transformer';
 
-export class ProductDto {
+export class ServiceDto {
   @Expose()
   id: number;
 
@@ -11,14 +11,13 @@ export class ProductDto {
   title: string;
 
   @Expose()
-  image: string;
+  imag: string;
 
   @Expose()
   rating: number;
 
   @Expose()
-  stock: number;
+  promo: string;
 
-  @Expose()
-  userId: number;
+ 
 }

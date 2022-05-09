@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrderLinesService } from './order-lines.service';
+import { OrderLinesService } from './orderLines.service';
 
-describe('OrderLinesService', () => {
+describe('OrderslineService', () => {
   let service: OrderLinesService;
 
   beforeEach(async () => {

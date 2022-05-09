@@ -1,24 +1,34 @@
-import { Transform } from "class-transformer";
-import { Customer } from "src/customer/customer.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-
+import { Transform } from 'class-transformer';
+import { Customer } from 'src/customer/customer.entity';
+import { OrderLine } from 'src/order-lines/orderLine.entity';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Transform(({ value }) => new Date(value))
-  @Column('text')
-  date: Date;
+  @Column()
+  date: number;
 
   @Column()
-  description: string;
+  billingName: string;
 
   @Column()
-  reference:number;
+  total: number;
 
- 
-  // @ManyToOne(() => Customer, (customer) => customer.orders)
-  // customer: Customer;
+  @Column()
+  paymentStatus: string;
+
+  @Column()
+  paymentMethod: string;
+
+  @Column()
+  customerId: number;
+
+  @OneToMany(() => OrderLine, (orderLine) => orderLine.order)
+  orderLines: OrderLine[];
+
+  @ManyToOne(() => Customer, (customer) => customer.orders)
+  customer: Customer;
 }

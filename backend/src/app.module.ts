@@ -22,8 +22,8 @@ import { ServicesModule } from './services/services.module';
 import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
-import { OrderLinesModule } from './order-lines/order-lines.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
+import { OrderLinesModule } from './order-lines/orderLines.module';
 
 @Module({
   imports: [
