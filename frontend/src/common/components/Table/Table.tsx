@@ -1,6 +1,7 @@
 import * as S from "./Table.styled";
 import { Customer } from "../../../models/customerModel";
 import TableRow from "./TableRow";
+import { Order } from "../../../models/orderModel";
 
 interface TableProps<T> {
   items: Array<T>;
@@ -8,7 +9,7 @@ interface TableProps<T> {
   headers: Array<any>;
   deleteItem: Function;
 }
-const Table = <T extends Customer>({ items, width, headers, deleteItem }: TableProps<T>) => {
+const Table = <T extends Customer|Order>({ items, width, headers, deleteItem }: TableProps<T>) => {
   return (
     <S.Container>
       <TableRow item={headers} width={width} isTHeader={true} deleteItem={deleteItem} />

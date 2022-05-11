@@ -25,6 +25,9 @@ export class Product {
   @Column()
   stock: number;
 
+  @Column()
+  description:string;
+
   @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { onDelete: 'CASCADE' })
   orderLines: OrderLine[];
 

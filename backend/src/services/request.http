@@ -1,0 +1,41 @@
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "test1234"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
+
+### Create service
+POST {{url}}/services/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "price": 12,
+  "title": "Fancy Product",
+  "image": "imagePath",
+  "rating": 4.5,
+  "description":"service taille m"
+}
+
+### Update a service
+PATCH  {{url}}/services/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "price": 8
+}
+
+### Find a service
+GET {{url}}/services/1
+Authorization: Bearer {{token}}
+
+### Find all service
+GET {{url}}/services
+Authorization: Bearer {{token}}

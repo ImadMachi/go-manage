@@ -8,14 +8,14 @@ export class CreateServiceDto {
   title: string;
 
   @IsString()
-  imag: string;
+  image: string;
 
   @IsNumber()
   rating: number;
 
-  @IsString()
-  promo: string;
+  
 
-  @IsNumber()
-  userId:number;
+  @IsString()
+  description:string;
+
 }

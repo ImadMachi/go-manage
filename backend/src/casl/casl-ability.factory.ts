@@ -33,6 +33,7 @@ export class CaslAbilityFactory {
 
     can(Action.Manage, Customer, { userId: user.id });
     can(Action.Manage, Product, { userId: user.id });
+    can(Action.Manage, Service, { userId: user.id });
 
     //  can(Action.Manage, Order, { userId: user.id });
 

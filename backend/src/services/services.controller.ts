@@ -1,19 +1,20 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request } from '@nestjs/common';
+
+import { CreateServiceDto } from './dto/create-Service.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
-import { CreateServiceDto } from './dto/create-service.dto';
+
+import { ServicesService } from './services.service';
 import { ServiceDto } from './dto/service.dto';
 import { UpdateServiceDto } from './dto/update-product.dto';
-import { ServicesService } from './services.service';
-
 
 @Serialize(ServiceDto)
-@Controller('Services')
+@Controller('services')
 export class ServicesController {
-  constructor(private servicesService:  ServicesService) {}
+  constructor(private servicesService: ServicesService) {}
 
   @Post()
-  create(@Body() body: CreateServiceDto) {
-    return this. servicesService.create(body);
+  create(@Body() body: CreateServiceDto, @Request() request) {
+    return this.servicesService.create(body, request.user.email);
   }
 
   @Get()
@@ -23,7 +24,7 @@ export class ServicesController {
 
   @Get('/:id')
   findOne(@Param('id') id: number, @Request() request) {
-    return this. servicesService.findOne(id, request.user);
+    return this.servicesService.findOne(id, request.user);
   }
 
   // @Get('/:id')
@@ -36,5 +37,3 @@ export class ServicesController {
     return this.servicesService.update(id, body, request.user);
   }
 }
-
-

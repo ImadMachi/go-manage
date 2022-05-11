@@ -21,4 +21,8 @@ export class ProductDto {
 
   @Expose()
   userId: number;
+
+  
+  @Expose()
+  description:string;
 }

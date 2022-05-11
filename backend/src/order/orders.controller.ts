@@ -12,11 +12,15 @@ export class OrdersController {
     return this.ordersService.create(body, request.user);
   }
 
-  @Get('/customer/:customerId')
-  findAll(@Param('customerId') customerId: number) {
-    return this.ordersService.findAll(customerId);
+  @Get()
+  findAll() {
+    return this.ordersService.findAll();
   }
 
+  @Get('/customer/:customerId')
+  findByCustomer(@Param('customerId') customerId: number) {
+    return this.ordersService.findByCustomer(customerId);
+  }
   // @Get('/id/:id')
   // findOne(id: number) {
   //   return this.orderService.findOne(id);

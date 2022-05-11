@@ -20,11 +20,12 @@ Authorization: Bearer {{token}}
   "total":123,
   "paymentMethod":"visa",
   "paymentStatus":"paid",
-  "customerId":8,
-  "products":[{"id": 2, "qty": 30}]
+  "customerId":1,
+  "products":[{"id": 3, "qty": 30}]
 }
 
 ### Update order
+
 PATCH  {{url}}/orders/3
 Content-Type: application/json
 Authorization: Bearer {{token}}

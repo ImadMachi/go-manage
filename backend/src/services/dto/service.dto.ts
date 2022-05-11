@@ -11,13 +11,17 @@ export class ServiceDto {
   title: string;
 
   @Expose()
-  imag: string;
+  image: string;
 
   @Expose()
   rating: number;
 
-  @Expose()
-  promo: string;
-
  
+
+  @Expose()
+  userId: number;
+
+  
+  @Expose()
+  description:string;
 }

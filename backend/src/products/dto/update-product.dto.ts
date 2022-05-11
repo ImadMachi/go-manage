@@ -20,4 +20,8 @@ export class UpdateProductDto {
   @IsOptional()
   @IsNumber()
   stock: number;
+
+  @IsOptional()
+  @IsNumber()
+  description:string;
 }

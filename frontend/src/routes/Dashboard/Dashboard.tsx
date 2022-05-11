@@ -3,6 +3,9 @@ import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
 import CustomersScreen from "../../screens/CustomersScreen";
+import OrderScreen from "../../screens/OrderScreen";
+import ProductScreen from "../../screens/ProductScreen";
+import ServiceScreen from "../../screens/ServiceScreen";
 import * as S from "./Dashboard.styled";
 
 const Dashboard = () => {
@@ -15,6 +18,12 @@ const Dashboard = () => {
       <S.Main>
         <Routes>
           <Route path="/cutomers" element={<CustomersScreen />} />
+          <Route path="/products" element={<ProductScreen />} />
+          <Route path="/services" element={<ServiceScreen />} />
+          <Route path="/orders" element={<OrderScreen />} />
+
+
+
           {/* <Route path="teams" element={<Teams />}>
       <Route path=":teamId" element={<Team />} />
       <Route path="new" element={<NewTeamForm />} />

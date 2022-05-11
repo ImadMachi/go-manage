@@ -15,4 +15,8 @@ export class CreateProductDto {
 
   @IsNumber()
   stock: number;
+
+  @IsString()
+  description:string;
+
 }

@@ -39,11 +39,13 @@ export class OrdersService {
     return this.repo.save(order);
   }
 
-  async findAll(customerId: number) {
+  async findAll() {
+    const orders = await this.repo.find();
+    return orders;
+  }
+
+  async findByCustomer(customerId: number) {
     const orders = await this.repo.find({ customerId });
-    if (!orders.length) {
-      throw new NotFoundException('no orders found');
-    }
     return orders;
   }
 
