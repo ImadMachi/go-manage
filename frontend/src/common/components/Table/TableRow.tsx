@@ -1,6 +1,5 @@
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Modal } from "@mantine/core";
 import { useEffect, useState } from "react";
 import TableDropdown from "./TableDropdown";
 import * as S from "./TableRow.styled";
@@ -9,9 +8,10 @@ interface TableProps<T> {
   item: T;
   width: number;
   isTHeader?: boolean;
-  deleteItem: Function;
+  deleteItemAction: Function;
+  editItemHandler: Function;
 }
-const TableRow = <T extends Object>({ item, width, isTHeader, deleteItem }: TableProps<T>) => {
+const TableRow = <T extends Object>({ item, width, isTHeader, deleteItemAction, editItemHandler }: TableProps<T>) => {
   const cols = Object.entries(item);
   const [displayedCols, setDisplayedCols] = useState<Array<Array<keyof T>>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<Array<keyof T>>>([]);
@@ -60,7 +60,14 @@ const TableRow = <T extends Object>({ item, width, isTHeader, deleteItem }: Tabl
           </S.Col>
         ))}
       </S.Row>
-      <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} itemId={cols[0][1]} deleteItem={deleteItem} />
+      <TableDropdown
+        isOpen={isDropdownOpen}
+        hiddenCols={hiddenCols}
+        deleteItemAction={deleteItemAction}
+        editItemHandler={editItemHandler}
+        itemId={cols[0][1]}
+        item={item}
+      />
     </S.Container>
   );
 };

@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Customer } from "../../models/customerModel";
 import { RootState } from "../rootReducer";
-import { createCustomer, deleteCustomer, fetchCustomers } from "../thunks/customerThunk";
+import { createCustomer, deleteCustomer, editCustomer, fetchCustomers } from "../thunks/customerThunk";
 
 type CustomersState = {
   customers: Customer[];
@@ -58,13 +58,39 @@ export const customersSlice = createSlice({
       state.loading = "idle";
       state.error = payload;
     });
+    builder.addCase(editCustomer.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(editCustomer.fulfilled, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = undefined;
+      state.customers = state.customers.map((customer) => {
+        if (customer.id === payload.id) {
+          return { ...customer, ...payload };
+        } else {
+          return customer;
+        }
+      });
+    });
+    builder.addCase(editCustomer.rejected, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = payload;
+    });
   },
 });
 
-// Selectors
+// Selectors;
 export const selectCustomers = createSelector(
   (state: RootState) => state.customers,
   (customers) => customers
 );
+
+// export const selectCustomers = createSelector(
+//   [
+//     state:RootState=>state.customers,
+//     (state, searchCriteria)=>searchCriteria
+//   ],
+//   (customers, searchCriteria) => customers
+// );
 
 export default customersSlice.reducer;

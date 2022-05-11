@@ -49,6 +49,34 @@ export const createCustomer = createAsyncThunk<Customer, CreateCustomer, { state
   }
 );
 
+interface EditCustomer {
+  id: number;
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  isActive: boolean;
+}
+export const editCustomer = createAsyncThunk<Customer, EditCustomer, { state: RootState }>(
+  "customers/editCustomer",
+  async (customer, thunkAPI) => {
+    const { rejectWithValue, getState } = thunkAPI;
+
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getState().authUser?.userInfo?.access_token}`,
+        },
+      };
+      const { data } = await axios.patch(`/customers/${customer.id}`, customer, config);
+      return data;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
+    }
+  }
+);
+
 export const deleteCustomer = createAsyncThunk<Customer, number, { state: RootState }>(
   "customers/deleteCustomer",
   async (id: number, thunkAPI) => {

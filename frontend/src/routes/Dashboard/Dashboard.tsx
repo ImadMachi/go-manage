@@ -17,7 +17,7 @@ const Dashboard = () => {
       <Navbar setSidebarIsOpen={setIsVisibleTrue} />
       <S.Main>
         <Routes>
-          <Route path="/cutomers" element={<CustomersScreen />} />
+          <Route path="/customers" element={<CustomersScreen />} />
           <Route path="/products" element={<ProductScreen />} />
           <Route path="/services" element={<ServiceScreen />} />
           <Route path="/orders" element={<OrderScreen />} />
