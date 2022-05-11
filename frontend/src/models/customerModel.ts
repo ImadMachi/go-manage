@@ -7,5 +7,5 @@ export interface Customer {
   isActive: boolean;
   totalSpent: number;
   orders: number;
-  creationDate: string;
+  creationDate: number;
 }

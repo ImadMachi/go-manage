@@ -15,6 +15,8 @@ const Dashboard = () => {
       <S.Main>
         <Routes>
           <Route path="/customers" element={<CustomersScreen />} />
+          <Route path="/orders" element={<CustomersScreen />} />
+
           {/* <Route path="teams" element={<Teams />}>
       <Route path=":teamId" element={<Team />} />
       <Route path="new" element={<NewTeamForm />} />

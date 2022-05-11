@@ -18,15 +18,18 @@ export const Sidebar = styled.div<SidebarProps>`
   }
 `;
 
-export const Logo = styled.div`
-  color: ${({ theme }) => theme.menu.textPrimary};
-  font-size: ${({ theme }) => theme.lg};
-  font-weight: bold;
-  text-transform: uppercase;
+export const Logo = styled.img`
+  /* color: ${({ theme }) => theme.menu.textPrimary}; */
+  /* font-size: ${({ theme }) => theme.lg}; */
+  /* font-weight: bold; */
+  /* text-transform: uppercase; */
+  display: inline-block;
+  width: 150px;
   text-align: center;
-  padding: 1.3rem;
-  font-style: italic;
-  display: none;
+  margin: 0 auto;
+  /* padding: 1.3rem; */
+  /* font-style: italic; */
+  /* display: none; */
   @media screen and (min-width: ${({ theme }) => theme.bp.lg}) {
     display: block;
   }

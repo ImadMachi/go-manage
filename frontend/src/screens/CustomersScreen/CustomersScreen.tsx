@@ -1,29 +1,25 @@
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Modal, Pagination } from "@mantine/core";
 import { Flex } from "../../common/components/Flex";
-import Table from "../../common/components/Table/Table";
 import { useCustomers } from "../../hooks/useCustomers";
 import { useElementWidth } from "../../hooks/useElementWidth";
-import * as S from "./CustomerScreen.styled";
-import { ThemeContext } from "../..";
-import { deleteCustomer, editCustomer } from "../../features/thunks/customerThunk";
+import * as S from "./CustomersScreen.styled";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
 import Button from "../../common/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Customer } from "../../models/customerModel";
 import EditCustomerForm from "../../components/EditCustomerForm";
-
-const headers = ["#", "Customer", "Email", "Address", "Phone", "Status", "Total Spent", "Orders", "Joining Date", "Actions"];
+import CustomersTable from "../../components/CustomersTable/CustomersTable";
 
 const PAGE_SIZE = 10;
 
-const CustomerScreen = () => {
+const CustomersScreen = () => {
   const [activePage, setActivePage] = useState(1);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("");
-  const [customerToEdit, setcustomerToEdit] = useState<Customer>({
+  const [customerToEdit, setCustomerToEdit] = useState<Customer>({
     id: -1,
     name: "",
     email: "",
@@ -32,7 +28,7 @@ const CustomerScreen = () => {
     isActive: true,
     totalSpent: -1,
     orders: -1,
-    creationDate: "",
+    creationDate: -1,
   });
 
   const [width, ref] = useElementWidth();
@@ -47,14 +43,12 @@ const CustomerScreen = () => {
       .slice(firstPageIndex, lastPageIndex);
   }, [activePage, customers, searchCriteria]);
 
-  const { theme, dispatch } = useContext(ThemeContext);
-
   const onPageChange = (page: number) => {
     setActivePage(page);
   };
 
-  const editItemHandler = (item: Customer) => {
-    setcustomerToEdit(item);
+  const editCustomerHandler = (customer: Customer) => {
+    setCustomerToEdit(customer);
     setIsEditModalOpen(true);
   };
 
@@ -88,19 +82,11 @@ const CustomerScreen = () => {
             Add Customer
           </Button>
         </Flex>
-        {!!customers && (
-          <Table
-            items={displayedCustomers}
-            headers={headers}
-            width={width}
-            deleteItemAction={deleteCustomer}
-            editItemHandler={editItemHandler}
-          />
-        )}
+        {!!customers && <CustomersTable items={displayedCustomers} width={width} editCustomerHandler={editCustomerHandler} />}
         <Pagination page={activePage} total={customers.length / 10 + 1} onChange={onPageChange} style={{ margin: "20px 0" }} />
       </S.Container>
     </S.Screen>
   );
 };
 
-export default CustomerScreen;
+export default CustomersScreen;
