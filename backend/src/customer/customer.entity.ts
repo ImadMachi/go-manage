@@ -18,12 +18,6 @@ export class Customer {
   @Column()
   phone: string;
 
-  @Column({ default: true })
-  isActive: boolean;
-
-  @Column({ default: false })
-  isDeleted: boolean;
-
   @Column({ default: 0 })
   totalSpent: number;
 
@@ -32,6 +26,12 @@ export class Customer {
 
   @Column()
   creationDate: number;
+
+  @Column({ default: true })
+  isActive: boolean;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 
   @Column()
   userId: number;

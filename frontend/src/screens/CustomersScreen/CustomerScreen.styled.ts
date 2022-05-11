@@ -9,10 +9,11 @@ export const Title = styled.h2`
   margin: 1.5rem 0;
 `;
 
-export const Search = styled.div`
-  padding: 0.5rem 1.5rem;
-  border: solid 1px ${({ theme }) => theme.textSecondary};
+export const Search = styled.input`
+  padding: 0.7rem 0.5rem;
+  border: solid 0.5px ${({ theme }) => theme.textTertiary};
   border-radius: 10px;
+  background-color: ${({ theme }) => theme.bgSecondary};
   color: ${({ theme }) => theme.textSecondary};
 `;
 

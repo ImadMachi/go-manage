@@ -4,7 +4,7 @@ import { faShop, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 import * as S from "./Sidebar.styled";
 
-const commerceItems = { title: "Commerce", items: ["cutomers", "orders", "products"] };
+const commerceItems = { title: "Commerce", items: ["customers", "orders", "products"] };
 const crmItems = { title: "CRM", items: ["companies", "contacts", "leads", "deals"] };
 
 interface SidebarProps {

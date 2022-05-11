@@ -1,20 +1,31 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as S from "./TableDropdown.styled";
 
-interface TableDropdownProps {
+interface TableDropdownProps<T> {
   hiddenCols: Array<any>;
   isOpen: boolean;
   itemId: number;
-  deleteItem: Function;
+  deleteItemAction: Function;
+  editItemHandler: Function;
+  item: T;
 }
-const TableDropdown = ({ hiddenCols, isOpen, itemId, deleteItem }: TableDropdownProps) => {
+const TableDropdown = <T extends Object>({
+  hiddenCols,
+  isOpen,
+  itemId,
+  deleteItemAction,
+  item,
+  editItemHandler,
+}: TableDropdownProps<T>) => {
   const dispatch = useDispatch();
-
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const deleteItemHandler = () => {
-    dispatch(deleteItem(itemId));
+    dispatch(deleteItemAction(itemId));
   };
+
   return (
     <S.Dropdown isOpen={isOpen}>
       {hiddenCols.map(([key, col], i) => (
@@ -26,7 +37,7 @@ const TableDropdown = ({ hiddenCols, isOpen, itemId, deleteItem }: TableDropdown
       <S.DropdownItem>
         Actions:{" "}
         <S.EditIcon>
-          <FontAwesomeIcon icon={faEdit} />
+          <FontAwesomeIcon icon={faEdit} onClick={() => editItemHandler(item)} />
         </S.EditIcon>{" "}
         <S.TrashIcon onClick={() => deleteItemHandler()}>
           <FontAwesomeIcon icon={faTrash} />

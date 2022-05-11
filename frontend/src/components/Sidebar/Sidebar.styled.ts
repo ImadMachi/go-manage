@@ -6,6 +6,7 @@ interface SidebarProps {
 export const Sidebar = styled.div<SidebarProps>`
   background-color: ${({ theme }) => theme.menu.bg};
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   height: 100vh;

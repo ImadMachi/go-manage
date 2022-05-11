@@ -14,7 +14,7 @@ const Dashboard = () => {
       <Navbar setSidebarIsOpen={setIsVisibleTrue} />
       <S.Main>
         <Routes>
-          <Route path="/cutomers" element={<CustomersScreen />} />
+          <Route path="/customers" element={<CustomersScreen />} />
           {/* <Route path="teams" element={<Teams />}>
       <Route path=":teamId" element={<Team />} />
       <Route path="new" element={<NewTeamForm />} />
