@@ -38,5 +38,5 @@ GET {{url}}/orders/3
 Authorization: Bearer {{token}}
 
 ### Find all orders
-GET {{url}}/orders/customer/1
+GET {{url}}/orders
 Authorization: Bearer {{token}}

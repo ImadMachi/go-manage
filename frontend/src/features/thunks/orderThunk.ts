@@ -21,10 +21,13 @@ export const fetchOrders = createAsyncThunk<Array<Order>, unknown, { state: Root
 });
 
 interface CreateOrder {
-  name: string;
-  email: string;
-  address: string;
-  phone: string;
+  billingName: string;
+  date: number;
+  total: number;
+  paymentStatus: string;
+  paymentMethod: string;
+  customerId: number;
+  products: { id: number; qty: number }[];
 }
 export const createOrder = createAsyncThunk<Order, CreateOrder, { state: RootState }>("orders/createOrder", async (order, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
@@ -45,11 +48,12 @@ export const createOrder = createAsyncThunk<Order, CreateOrder, { state: RootSta
 
 interface EditOrder {
   id: number;
-  name: string;
-  email: string;
-  address: string;
-  phone: string;
-  isActive: boolean;
+  billingName: string;
+  date: number;
+  total: number;
+  paymentStatus: string;
+  paymentMethod: string;
+  customerId: number;
 }
 export const editOrder = createAsyncThunk<Order, EditOrder, { state: RootState }>("orders/editOrder", async (order, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;

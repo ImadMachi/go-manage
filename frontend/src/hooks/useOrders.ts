@@ -1,16 +1,15 @@
 import { useEffect, useMemo } from "react";
-import { selectCustomers } from "../features/slices/customerSlice";
+import { selectOrders } from "../features/slices/orderSlice";
 import { useAppDispatch } from "../features/store";
-import { fetchCustomers } from "../features/thunks/customerThunk";
+import { fetchOrders } from "../features/thunks/orderThunk";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useOrders = () => {
-  const data = useTypedSelector(selectCustomers);
+  const data = useTypedSelector(selectOrders);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const load = () => dispatch(fetchCustomers(null));
-
+    const load = () => dispatch(fetchOrders(null));
     load();
   }, [dispatch]);
 

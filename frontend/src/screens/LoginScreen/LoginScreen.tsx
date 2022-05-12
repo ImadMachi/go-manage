@@ -21,8 +21,6 @@ const Login = () => {
 
   const clickHandler = () => {
     dispatch(login(user));
-    console.log(error);
-    console.log(userInfo);
   };
 
   return (

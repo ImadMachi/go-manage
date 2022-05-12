@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteCustomer } from "../../features/thunks/customerThunk";
-import { Customer } from "../../models/customerModel";
+import { deleteOrder } from "../../features/thunks/orderThunk";
+import { Order } from "../../models/orderModel";
 import * as S from "./TableDropdown.styled";
 import { useAppDispatch } from "../../features/store";
 
 interface TableDropdownProps {
   hiddenCols: Array<[string, string | number | boolean]>;
   isOpen: boolean;
-  item: Customer;
-  editCustomerHandler: (customer: Customer) => void;
+  item: Order;
+  editOrderHandler: (order: Order) => void;
 }
-const TableDropdown = ({ hiddenCols, isOpen, item, editCustomerHandler }: TableDropdownProps) => {
+const TableDropdown = ({ hiddenCols, isOpen, item, editOrderHandler }: TableDropdownProps) => {
   const dispatch = useAppDispatch();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const deleteItemHandler = () => {
-    dispatch(deleteCustomer(item.id));
+    dispatch(deleteOrder(item.id));
   };
 
   return (
@@ -31,7 +31,7 @@ const TableDropdown = ({ hiddenCols, isOpen, item, editCustomerHandler }: TableD
       <S.DropdownItem>
         Actions:{" "}
         <S.EditIcon>
-          <FontAwesomeIcon icon={faEdit} onClick={() => editCustomerHandler(item)} />
+          <FontAwesomeIcon icon={faEdit} onClick={() => editOrderHandler(item)} />
         </S.EditIcon>{" "}
         <S.TrashIcon onClick={() => deleteItemHandler()}>
           <FontAwesomeIcon icon={faTrash} />

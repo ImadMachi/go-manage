@@ -16,8 +16,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "price": 12,
-  "title": "Fancy Product",
+  "price": 50,
+  "title": "Good Pants",
   "image": "imagePath",
   "rating": 4.5,
   "stock": 15

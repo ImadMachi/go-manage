@@ -31,7 +31,7 @@ const TableHeader = ({ width }: TableProps) => {
     <S.Container>
       <S.Row colsLength={displayedCols.length}>
         {displayedCols.map((header) => (
-          <S.Col>{header}</S.Col>
+          <S.Col key={header}>{header}</S.Col>
         ))}
       </S.Row>
     </S.Container>

@@ -1,17 +1,18 @@
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { Customer } from "../../models/customerModel";
+import { Order } from "../../models/orderModel";
 import TableDropdown from "./TableDropdown";
 import * as S from "./TableRow.styled";
 
 interface TableProps {
-  item: Customer;
+  item: Order;
   width: number;
-  editCustomerHandler: (customer: Customer) => void;
+  editOrderHandler: (order: Order) => void;
 }
-const TableRow = ({ item, width, editCustomerHandler }: TableProps) => {
-  const cols = Object.entries(item);
+const TableRow = ({ item, width, editOrderHandler }: TableProps) => {
+  const { customerId, ...restItem } = item;
+  const cols = Object.entries(restItem);
   const [displayedCols, setDisplayedCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -50,12 +51,10 @@ const TableRow = ({ item, width, editCustomerHandler }: TableProps) => {
           <FontAwesomeIcon icon={faAngleRight} onClick={dropdownHandler} />
         </S.Col>
         {displayedCols.slice(1).map(([_, col], i) => (
-          <S.Col key={i}>
-            {typeof col === "boolean" ? col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> : col}
-          </S.Col>
+          <S.Col key={i}>{col}</S.Col>
         ))}
       </S.Row>
-      <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} item={item} editCustomerHandler={editCustomerHandler} />
+      <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} item={item} editOrderHandler={editOrderHandler} />
     </S.Container>
   );
 };

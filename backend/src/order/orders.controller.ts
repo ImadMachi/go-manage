@@ -1,8 +1,10 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, Request } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { UpdateOrderDto } from './dto/update-order.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { OrderDto } from './dto/order.dto';
 
+@Serialize(OrderDto)
 @Controller('orders')
 export class OrdersController {
   constructor(private ordersService: OrdersService) {}
@@ -12,10 +14,15 @@ export class OrdersController {
     return this.ordersService.create(body, request.user);
   }
 
-  @Get('/customer/:customerId')
-  findAll(@Param('customerId') customerId: number) {
-    return this.ordersService.findAll(customerId);
+  @Get()
+  findAll(@Request() request) {
+    return this.ordersService.findAll(request.user.id);
   }
+
+  // @Get('/customer/:customerId')
+  // findByCustomer(@Param('customerId') customerId: number) {
+  //   return this.ordersService.findByCustomer(customerId);
+  // }
 
   // @Get('/id/:id')
   // findOne(id: number) {
@@ -27,8 +34,8 @@ export class OrdersController {
   //   return this.orderService.update(id, body);
   // }
 
-  // @Delete('/id/:id')
-  // deleteUser(@Param('id') id: number) {
-  //   return this.orderService.deleteOrder(id);
-  // }
+  @Delete('/:id')
+  deleteOne(@Param('id', ParseIntPipe) id: number) {
+    return this.ordersService.deleteOne(id);
+  }
 }
