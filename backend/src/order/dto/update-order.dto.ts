@@ -1,5 +1,4 @@
-import { IsNumber, IsOptional, IsString } from "class-validator";
-
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateOrderDto {
 
@@ -19,4 +18,24 @@ export class UpdateOrderDto {
     @IsOptional()
     @IsString()
     paymentMethod:string;
+}
+  @IsOptional()
+  @IsNumber()
+  date: number;
+
+  @IsOptional()
+  @IsString()
+  billingName: string;
+
+  @IsOptional()
+  @IsNumber()
+  total: number;
+
+  @IsOptional()
+  @IsString()
+  paymentStatus: string;
+
+  @IsOptional()
+  @IsString()
+  paymentMethod: string;
 }

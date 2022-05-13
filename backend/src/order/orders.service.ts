@@ -47,6 +47,20 @@ export class OrdersService {
   async findByCustomer(customerId: number) {
     const orders = await this.repo.find({ customerId });
     return orders;
+   async findAll(userId: number) {
+    return this.repo
+      .createQueryBuilder('order')
+      .leftJoin('order.customer', 'customer')
+      .where('customer.userId = :userId', { userId })
+      .getMany();
+
+    // return this.repo
+    //   .createQueryBuilder('order')
+    //   .leftJoinAndSelect('order.customer', 'customer')
+    //   .where('customer.userId = :userId', { userId })
+    //   .leftJoinAndSelect('order.orderLines', 'orderLine')
+    //   .leftJoinAndSelect('orderLine.product', 'product')
+    //   .getMany();
   }
 
   // async findOne(id: number) {
@@ -57,14 +71,6 @@ export class OrdersService {
   //   return order;
   // }
 
-  // async delete(id: number) {
-  //   const order = await this.repo.findOne({ id });
-  //   if (!order) {
-  //     throw new NotFoundException('order not found');
-  //   }
-  //   return this.repo.remove(order);
-  // }
-
   async update(id: number, attrs: Partial<UpdateOrderDto>) {
     const order = await this.repo.findOne({ id });
     if (!order) {
@@ -72,5 +78,14 @@ export class OrdersService {
     }
     Object.assign(order, attrs);
     return this.repo.save(order);
+  }
+
+  async deleteOne(id: number) {
+    const order = await this.repo.findOne(id);
+    if (!order) {
+      throw new NotFoundException('order not found');
+    }
+    const removedOrder = await this.repo.remove(order);
+    return { ...removedOrder, id };
   }
 }

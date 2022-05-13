@@ -6,6 +6,7 @@ import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
 import CustomersScreen from "../../screens/CustomersScreen";
 import ProductScreen from "../../screens/ProductScreen";
 import ServiceScreen from "../../screens/ServiceScreen";
+import OrdersScreen from "../../screens/OrdersScreen";
 import * as S from "./Dashboard.styled";
 
 const Dashboard = () => {
@@ -25,6 +26,7 @@ const Dashboard = () => {
           <Route path="/services" element={<ServiceScreen />} />
 
 
+          <Route path="/orders" element={<OrdersScreen />} />
 
           {/* <Route path="teams" element={<Teams />}>
       <Route path=":teamId" element={<Team />} />

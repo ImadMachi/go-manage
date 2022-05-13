@@ -70,6 +70,7 @@ export const editCustomer = createAsyncThunk<Customer, EditCustomer, { state: Ro
         },
       };
       const { data } = await axios.patch(`/customers/${customer.id}`, customer, config);
+
       return data;
     } catch (err: any) {
       return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);

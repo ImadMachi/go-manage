@@ -9,6 +9,11 @@ const rootReducer = combineReducers({
   customers: customersReducer,
   products:productReducer,
   services:serviceReducer,
+import ordersReducer from "./slices/orderSlice";
+
+const rootReducer = combineReducers({
+  customers: customersReducer,
+  orders: ordersReducer,
   authUser: authReducer,
 });
 export default rootReducer;

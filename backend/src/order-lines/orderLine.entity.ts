@@ -16,10 +16,10 @@ export class OrderLine {
   @Column()
   qty: number;
 
-  @ManyToOne(() => Order, (order) => order.orderLines)
+  @ManyToOne(() => Order, (order) => order.orderLines, { onDelete: 'CASCADE' })
   order: Order;
 
-  @ManyToOne(() => Product, (product) => product.orderLines)
+  @ManyToOne(() => Product, (product) => product.orderLines, { onDelete: 'CASCADE' })
   product: Product;
 
   //ranzid prosuit rah blati ncreeih o bit nzid order

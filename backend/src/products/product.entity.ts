@@ -1,3 +1,4 @@
+import { Blob } from 'buffer';
 import { OrderLine } from 'src/order-lines/orderLine.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -19,8 +20,8 @@ export class Product {
   @Column()
   userId: number;
 
-  @Column()
-  image: string;
+  @Column({ type: 'blob' })
+  image: Blob;
 
   @Column()
   rating: number;

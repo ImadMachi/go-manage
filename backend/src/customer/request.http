@@ -16,11 +16,10 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "deleted",
-  "email": "deleted@gmail.com",
+  "name": "test12",
+  "email": "test12@gmail.com",
   "address": "Nowhere",
-  "phone": "0603065801",
-  "isDeleted": true
+  "phone": "0603065801"
 }
 
 ### Update customer

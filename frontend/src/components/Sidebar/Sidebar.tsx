@@ -15,10 +15,7 @@ interface SidebarProps {
 const Sidebar = ({ forwardedRef, isOpen }: SidebarProps) => {
   return (
     <S.Sidebar isOpen={isOpen} ref={forwardedRef}>
-      <S.Logo>
-        <FontAwesomeIcon icon={faUser} />
-        gomanage
-      </S.Logo>
+      <S.Logo src="/images/logo.png"></S.Logo>
       <S.Title>APP</S.Title>
       <Dropdown {...commerceItems} maxHeight={`${commerceItems.items.length * 2.5}rem`}>
         <FontAwesomeIcon icon={faShop} />

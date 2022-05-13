@@ -1,1 +1,1 @@
-export { default } from "./CustomerScreen";
+export { default } from "./CustomersScreen";

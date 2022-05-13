@@ -7,6 +7,8 @@ import { Repository } from 'typeorm';
 import { Product } from './Product.entity';
 import { CreateProductDto } from './dto/create-Product.dto';
 import { UsersService } from 'src/users/users.service';
+import { UpdateProductDto } from './dto/update-product.dto';
+import { base64ToBlob } from 'src/utils/base64ToBlob';
 
 @Injectable()
 export class ProductsService {
@@ -19,10 +21,14 @@ export class ProductsService {
   async create(productDto: CreateProductDto, email: string) {
     const user = await this.usersService.findByEmail(email);
     if (!user) {
-      throw new NotFoundException('utilisateur non trouve');
+      throw new NotFoundException('user not found');
     }
-    const product = this.repo.create(productDto);
-    product.user = user;
+    const { image, ...attrbs } = productDto;
+    const imageBlob = base64ToBlob(image);
+
+    const product = this.repo.create(attrbs);
+
+    product.image = imageBlob;
     return this.repo.save(product);
   }
 
@@ -47,7 +53,7 @@ export class ProductsService {
     return product;
   }
 
-  async update(id: number, attrs: Partial<Product>, user: Partial<User>) {
+  async update(id: number, attrs: UpdateProductDto, user: Partial<User>) {
     const product = await this.repo.findOne(id);
     if (!product) {
       throw new NotFoundException('Product not found');

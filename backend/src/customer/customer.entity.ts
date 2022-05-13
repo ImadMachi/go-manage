@@ -1,5 +1,6 @@
+import { Order } from 'src/order/order.entity';
 import { User } from 'src/users/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Customer {
@@ -38,4 +39,7 @@ export class Customer {
 
   @ManyToOne(() => User, (user) => user.customers, { onDelete: 'CASCADE' })
   user: User;
+
+  @OneToMany(() => Order, (order) => order.customer, { cascade: true })
+  customers: Customer[];
 }

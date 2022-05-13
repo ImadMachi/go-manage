@@ -1,4 +1,3 @@
-import { Transform } from 'class-transformer';
 import { Customer } from 'src/customer/customer.entity';
 import { OrderLine } from 'src/order-lines/orderLine.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -26,7 +25,7 @@ export class Order {
   @Column()
   customerId: number;
 
-  @OneToMany(() => OrderLine, (orderLine) => orderLine.order)
+  @OneToMany(() => OrderLine, (orderLine) => orderLine.order, { cascade: true })
   orderLines: OrderLine[];
 
   @ManyToOne(() => Customer, (customer) => customer.orders)
