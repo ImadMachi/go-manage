@@ -1,15 +1,13 @@
-import React from 'react'
+import { Link } from 'react-router-dom';
+import { Product } from '../../models/productModel';
+import { Service } from '../../models/serviceModel';
 import Rating from '../Rating';
 import * as S from './Card.styled'
-interface CardProps {
-  image:string;
-  title:string;
-  price:number;
-  rating:number;
 
-}
- const Card = ({title,image,price,rating}:CardProps) => {
+ const Card = ({id, title,image,price,rating}:Product|Service) => {
+
   return (
+    <Link to={`/dashboard/products/${id}`}>
     <S.Container>
     <S.ImageContainer>
 <S.Image src='/images/cerave.jfif'/>
@@ -22,6 +20,7 @@ interface CardProps {
 </S.Actions>
 
   </S.Container>
+  </Link>
   )
 }
 export default Card;

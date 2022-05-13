@@ -10,7 +10,6 @@ export const useProducts = () => {
   
     useEffect(() => {
       const load = () => dispatch(fetchProducts(null));
-  
       load();
     }, [dispatch]);
   

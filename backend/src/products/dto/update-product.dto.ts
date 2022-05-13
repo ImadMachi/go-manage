@@ -18,6 +18,10 @@ export class UpdateProductDto {
   rating: number;
 
   @IsOptional()
+  @IsString()
+  category:string;
+
+  @IsOptional()
   @IsNumber()
   stock: number;
 

@@ -6,7 +6,7 @@ import { useCustomers } from "../../hooks/useCustomers";
 import { useElementWidth } from "../../hooks/useElementWidth";
 import * as S from "./CustomerScreen.styled";
 import { ThemeContext } from "../..";
-import { deleteCustomer, editCustomer } from "../../features/thunks/customerThunk";
+import { deleteCustomer} from "../../features/thunks/customerThunk";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
 import Button from "../../common/components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

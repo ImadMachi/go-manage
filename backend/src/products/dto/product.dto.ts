@@ -25,4 +25,7 @@ export class ProductDto {
   
   @Expose()
   description:string;
+
+  @Expose()
+  category:string;
 }

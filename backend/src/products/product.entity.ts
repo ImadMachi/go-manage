@@ -11,6 +11,9 @@ export class Product {
   price: number;
 
   @Column()
+  category:string;
+
+  @Column()
   title: string;
 
   @Column()

@@ -67,4 +67,11 @@ export const selectproducts = createSelector(
   (products) => products
 );
 
+export const selectSingleProduct = createSelector(
+  (state: RootState) => state.products,
+  (_:any, id: number) => id,
+  (products: productsState, id:number ) => products.products.find(product=>product.id === id)
+)
+
+
 export default productsSlice.reducer;

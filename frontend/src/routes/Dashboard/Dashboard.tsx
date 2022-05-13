@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "../../components/Navbar";
+import ProductDetail from "../../components/ProductDetail";
 import Sidebar from "../../components/Sidebar";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
 import CustomersScreen from "../../screens/CustomersScreen";
-import OrderScreen from "../../screens/OrderScreen";
 import ProductScreen from "../../screens/ProductScreen";
 import ServiceScreen from "../../screens/ServiceScreen";
 import * as S from "./Dashboard.styled";
@@ -19,8 +19,10 @@ const Dashboard = () => {
         <Routes>
           <Route path="/customers" element={<CustomersScreen />} />
           <Route path="/products" element={<ProductScreen />} />
+          <Route path="/products/:productId" element={<ProductDetail />} />
+
+
           <Route path="/services" element={<ServiceScreen />} />
-          <Route path="/orders" element={<OrderScreen />} />
 
 
 

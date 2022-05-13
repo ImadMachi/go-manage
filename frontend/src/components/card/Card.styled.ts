@@ -28,6 +28,8 @@ text-align: center;
 export const Title=styled.div`
 font-family: sans-serif;
 font-weight: bold;
+color:black;
+text-decoration:none
 `
 
 export const Price=styled.div`

@@ -19,4 +19,8 @@ export class CreateProductDto {
   @IsString()
   description:string;
 
+
+  @IsString()
+  category:string;
+
 }

@@ -4,12 +4,11 @@ import * as S from './ProductScreen.styled'
 
  const ProductScreen = () => {
   const { loading, error, products } = useProducts();
-  
 
-  
+console.log(products)
   
   return (<S.Container>
-    {products.map(product=><Card {...product} />)}
+    {products.map(product=><Card {...product}/>)}
   </S.Container>
   )
   }
