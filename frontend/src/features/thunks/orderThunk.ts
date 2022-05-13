@@ -82,6 +82,7 @@ export const deleteOrder = createAsyncThunk<Order, number, { state: RootState }>
       },
     };
     const { data } = await axios.delete(`/orders/${id}`, config);
+
     return data;
   } catch (err: any) {
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);

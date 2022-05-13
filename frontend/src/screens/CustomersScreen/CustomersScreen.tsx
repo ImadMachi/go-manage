@@ -11,6 +11,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Customer } from "../../models/customerModel";
 import EditCustomerForm from "../../components/EditCustomerForm";
 import CustomersTable from "../../components/CustomersTable/CustomersTable";
+import { fileToBase64 } from "../../utils/fileToBase64";
 
 const PAGE_SIZE = 10;
 
@@ -52,8 +53,19 @@ const CustomersScreen = () => {
     setIsEditModalOpen(true);
   };
 
+  const [file, setFile] = useState<File>();
+
+  const HandleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    // @ts-ignore
+    setFile((prev) => e.target.files[0]);
+    if (file) {
+      const base64 = (await fileToBase64(file)) as string;
+    }
+  };
   return (
     <S.Screen>
+      <input type="file" value="" onChange={HandleChange} />
+
       <Modal
         opened={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}

@@ -64,13 +64,10 @@ export const customersSlice = createSlice({
     builder.addCase(editCustomer.fulfilled, (state, { payload }) => {
       state.loading = "idle";
       state.error = undefined;
-      state.customers = state.customers.map((customer) => {
-        if (customer.id === payload.id) {
-          return { ...customer, ...payload };
-        } else {
-          return customer;
-        }
-      });
+      state.customers = state.customers.map((customer) => (customer.id === payload.id ? payload : customer));
+
+      // state.customers = state.customers.filter((customer) => customer.id !== payload.id);
+      // state.customers.push(payload);
     });
     builder.addCase(editCustomer.rejected, (state, { payload }) => {
       state.loading = "idle";

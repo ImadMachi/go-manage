@@ -77,6 +77,7 @@ export class OrdersService {
     if (!order) {
       throw new NotFoundException('order not found');
     }
-    return this.repo.remove(order);
+    const removedOrder = await this.repo.remove(order);
+    return { ...removedOrder, id };
   }
 }

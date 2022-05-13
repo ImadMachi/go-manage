@@ -25,7 +25,7 @@ export class Order {
   @Column()
   customerId: number;
 
-  @OneToMany(() => OrderLine, (orderLine) => orderLine.order)
+  @OneToMany(() => OrderLine, (orderLine) => orderLine.order, { cascade: true })
   orderLines: OrderLine[];
 
   @ManyToOne(() => Customer, (customer) => customer.orders)
