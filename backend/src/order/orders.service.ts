@@ -39,21 +39,16 @@ export class OrdersService {
     return this.repo.save(order);
   }
 
-  async findAll() {
-    const orders = await this.repo.find();
-    return orders;
-  }
-
-  async findByCustomer(customerId: number) {
-    const orders = await this.repo.find({ customerId });
-    return orders;
-   async findAll(userId: number) {
+  async findAll(userId:number) {
     return this.repo
       .createQueryBuilder('order')
       .leftJoin('order.customer', 'customer')
       .where('customer.userId = :userId', { userId })
       .getMany();
 
+  
+
+ 
     // return this.repo
     //   .createQueryBuilder('order')
     //   .leftJoinAndSelect('order.customer', 'customer')

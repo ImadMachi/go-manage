@@ -3,9 +3,7 @@ import { Modal, Pagination } from "@mantine/core";
 import { Flex } from "../../common/components/Flex";
 import { useCustomers } from "../../hooks/useCustomers";
 import { useElementWidth } from "../../hooks/useElementWidth";
-import * as S from "./CustomerScreen.styled";
 import { ThemeContext } from "../..";
-import { deleteCustomer} from "../../features/thunks/customerThunk";
 import * as S from "./CustomersScreen.styled";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
 import Button from "../../common/components/Button";
@@ -56,18 +54,17 @@ const CustomersScreen = () => {
     setIsEditModalOpen(true);
   };
 
-  const [file, setFile] = useState<File>();
+  // const [file, setFile] = useState<File>();
 
-  const HandleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    setFile((prev) => e.target.files[0]);
-    if (file) {
-      const base64 = (await fileToBase64(file)) as string;
-    }
-  };
+  // const HandleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   // @ts-ignore
+  //   setFile((prev) => e.target.files[0]);
+  //   if (file) {
+  //     const base64 = (await fileToBase64(file)) as string;
+  //   }
+  // };
   return (
     <S.Screen>
-      <input type="file" value="" onChange={HandleChange} />
 
       <Modal
         opened={isCreateModalOpen}

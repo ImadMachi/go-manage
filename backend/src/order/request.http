@@ -20,7 +20,7 @@ Authorization: Bearer {{token}}
   "total":123,
   "paymentMethod":"visa",
   "paymentStatus":"paid",
-  "customerId":1,
+  "customerId":5,
   "products":[{"id": 3, "qty": 30}]
 }
 

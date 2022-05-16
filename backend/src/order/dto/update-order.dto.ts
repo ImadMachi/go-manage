@@ -10,6 +10,10 @@ export class UpdateOrderDto {
     @IsOptional()
     @IsNumber()
     total:number;
+
+    // @IsOptional()
+    // @IsNumber()
+    // date:number;
   
     @IsOptional()
     @IsString()
@@ -18,24 +22,5 @@ export class UpdateOrderDto {
     @IsOptional()
     @IsString()
     paymentMethod:string;
-}
-  @IsOptional()
-  @IsNumber()
-  date: number;
 
-  @IsOptional()
-  @IsString()
-  billingName: string;
-
-  @IsOptional()
-  @IsNumber()
-  total: number;
-
-  @IsOptional()
-  @IsString()
-  paymentStatus: string;
-
-  @IsOptional()
-  @IsString()
-  paymentMethod: string;
 }

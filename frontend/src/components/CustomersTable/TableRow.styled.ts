@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  border-bottom: 1px solid ${({ theme }) => theme.textTertiary};
+`;
 
 interface RowProps {
   colsLength: number;
@@ -13,7 +15,6 @@ export const Row = styled.div<RowProps>`
   grid-template-columns: 60px repeat(${({ colsLength }) => colsLength - 1}, minmax(150px, 1fr));
   gap: 10px;
   padding: 1.3rem 0.5rem;
-  border-bottom: 1px solid ${({ theme }) => theme.textTertiary};
   font-size: ${({ theme }) => theme.sm};
   color: ${({ theme }) => theme.textPrimary};
   font-weight: ${({ isTHeader }) => (isTHeader ? "bold" : "normal")};

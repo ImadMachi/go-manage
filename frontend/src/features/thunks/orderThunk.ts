@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { Order } from "../../models/orderModel";
-import { RootState } from "../rootReducer";
+import { RootState } from "../store";
 
 export const fetchOrders = createAsyncThunk<Array<Order>, unknown, { state: RootState }>("orders/fetchOrders", async (_, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;

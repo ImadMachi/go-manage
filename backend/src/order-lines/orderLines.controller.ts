@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { OrderLinesService } from './orderLines.service';
 
-@Controller('ordersLine')
-export class OrderLinesController {}
+@Controller('orderLines')
+export class OrderLinesController {
+  constructor(private orderLinesService: OrderLinesService) {}
+  @Get()
+  findByOrder(orderId: number) {
+    return this.orderLinesService.findByOrder(orderId);
+  }
+}

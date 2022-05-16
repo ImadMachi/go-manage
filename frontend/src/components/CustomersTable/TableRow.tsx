@@ -51,7 +51,7 @@ const TableRow = ({ item, width, editCustomerHandler }: TableProps) => {
         </S.Col>
         {displayedCols.slice(1).map(([_, col], i) => (
           <S.Col key={i}>
-            {typeof col === "boolean" ? col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> : col}
+            {typeof col === "boolean" ? (col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> ): col}
           </S.Col>
         ))}
       </S.Row>

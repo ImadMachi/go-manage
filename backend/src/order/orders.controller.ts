@@ -14,18 +14,6 @@ export class OrdersController {
     return this.ordersService.create(body, request.user);
   }
 
-  @Get()
-  findAll() {
-    return this.ordersService.findAll();
-  }
-
-  @Get('/customer/:customerId')
-  findByCustomer(@Param('customerId') customerId: number) {
-    return this.ordersService.findByCustomer(customerId);
-  }
-  findAll(@Request() request) {
-    return this.ordersService.findAll(request.user.id);
-  }
 
   // @Get('/customer/:customerId')
   // findByCustomer(@Param('customerId') customerId: number) {

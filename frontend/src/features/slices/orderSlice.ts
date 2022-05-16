@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Order } from "../../models/orderModel";
-import { RootState } from "../rootReducer";
+import { RootState } from "../store";
 import { createOrder, deleteOrder, editOrder, fetchOrders } from "../thunks/orderThunk";
 
 type OrdersState = {
