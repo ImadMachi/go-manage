@@ -3,6 +3,7 @@ import { Role } from 'src/auth/enums/role.enum';
 import { Customer } from 'src/customer/customer.entity';
 import { Pack } from 'src/packs/pack.entity';
 import { Product } from 'src/products/product.entity';
+import { Stock } from 'src/stocks/stock.entity';
 
 @Entity()
 export class User {
@@ -22,16 +23,22 @@ export class User {
   password: string;
 
   @Column()
-  field: string;
+  businessSector: string;
+
+  @Column()
+  website: string;
 
   @Column()
   size: number;
 
   @Column()
-  socialReason: string;
+  companyName: string;
 
   @Column()
   address: string;
+
+  @Column()
+  zip: number;
 
   @Column()
   city: string;
@@ -45,6 +52,7 @@ export class User {
   @Column()
   phone: string;
 
+  @Column()
   @Column({ default: true })
   isActive: boolean;
 
@@ -59,4 +67,7 @@ export class User {
 
   @OneToMany(() => Product, (product) => product.user, { cascade: true })
   products: Product[];
+
+  @OneToMany(() => Stock, (stock) => stock.user, { cascade: true })
+  stocks: Stock[];
 }

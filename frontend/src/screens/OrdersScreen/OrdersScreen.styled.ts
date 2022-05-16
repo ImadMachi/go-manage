@@ -10,7 +10,7 @@ export const Title = styled.h2`
 `;
 
 export const Search = styled.input`
-  padding: 0.7rem 0.5rem;
+  padding: 0.4rem 0.5rem;
   border: solid 0.5px ${({ theme }) => theme.textTertiary};
   border-radius: 10px;
   background-color: ${({ theme }) => theme.bgSecondary};

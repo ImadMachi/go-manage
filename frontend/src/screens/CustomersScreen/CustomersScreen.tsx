@@ -65,6 +65,7 @@ const CustomersScreen = () => {
   // };
   return (
     <S.Screen>
+      {/* <input type="file" value="" onChange={HandleChange} /> */}
 
       <Modal
         opened={isCreateModalOpen}

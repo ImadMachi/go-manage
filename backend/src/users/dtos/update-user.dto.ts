@@ -42,4 +42,20 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   phone: string;
+
+  @IsOptional()
+  @IsString()
+  businessSector: string;
+
+  @IsOptional()
+  @IsString()
+  website: string;
+
+  @IsOptional()
+  @IsString()
+  companyName: string;
+
+  @IsOptional()
+  @IsNumber()
+  zip: number;
 }

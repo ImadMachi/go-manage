@@ -8,39 +8,41 @@ export class CreateUserDto {
   @IsString()
   lastName: string;
 
+  @IsString()
+  phone: string;
+
   @IsEmail()
   email: string;
 
   @IsString()
   password: string;
 
-  @IsString()
-  field: string;
+  // @IsNumber()
+  // @Max(1000)
+  // @Min(0)
+  // size: number;
 
-  @IsNumber()
-  @Max(1000)
-  @Min(0)
-  size: number;
-
-  @IsString()
-  socialReason: string;
-
-  @IsString()
-  address: string;
-
-  @IsString()
-  city: string;
-
-  @IsString()
-  country: string;
-
-  @IsString()
-  fix: string;
-
-  @IsString()
-  phone: string;
-
-  // @IsOptional()
   // @IsString()
-  // roles: Role[];
+  // address: string;
+
+  // @IsString()
+  // city: string;
+
+  // @IsString()
+  // country: string;
+
+  // @IsString()
+  // fix: string;
+
+  // @IsString()
+  // businessSector: string;
+
+  // @IsString()
+  // website: string;
+
+  // @IsString()
+  // companyName: string;
+
+  // @IsNumber()
+  // zip: number;
 }

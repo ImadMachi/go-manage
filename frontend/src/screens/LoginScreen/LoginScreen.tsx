@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { login, NewUser, signup, UserCredentials } from "../../features/slices/authSlice";
 import { useAppDispatch } from "../../features/store";
+import { loginThunk, UserCredentials } from "../../features/thunks/authThunk";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 const user: UserCredentials = {
@@ -20,7 +20,7 @@ const Login = () => {
   }, [navigate, userInfo]);
 
   const clickHandler = () => {
-    dispatch(login(user));
+    dispatch(loginThunk(user));
   };
 
   return (

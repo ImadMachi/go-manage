@@ -20,8 +20,8 @@ export class Product {
   @Column()
   userId: number;
 
-  @Column({ type: 'blob' })
-  image: Blob;
+  @Column()
+  image: string;
 
   @Column()
   rating: number;
@@ -32,7 +32,7 @@ export class Product {
   @Column()
   description:string;
 
-  @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { onDelete: 'CASCADE' })
+  @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { cascade: true })
   orderLines: OrderLine[];
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
