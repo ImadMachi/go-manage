@@ -8,5 +8,6 @@ const rootReducer = combineReducers({
   orders: ordersReducer,
   authUser: authReducer,
 });
+
 export default rootReducer;
 export type RootState = ReturnType<typeof rootReducer>;

@@ -55,16 +55,16 @@ const CustomersScreen = () => {
 
   const [file, setFile] = useState<File>();
 
-  const HandleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    // @ts-ignore
-    setFile((prev) => e.target.files[0]);
-    if (file) {
-      const base64 = (await fileToBase64(file)) as string;
-    }
-  };
+  // const HandleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   // @ts-ignore
+  //   setFile((prev) => e.target.files[0]);
+  //   if (file) {
+  //     const base64 = (await fileToBase64(file)) as string;
+  //   }
+  // };
   return (
     <S.Screen>
-      <input type="file" value="" onChange={HandleChange} />
+      {/* <input type="file" value="" onChange={HandleChange} /> */}
 
       <Modal
         opened={isCreateModalOpen}

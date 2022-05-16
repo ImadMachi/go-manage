@@ -23,7 +23,6 @@ import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
-import { AllExceptionsFilter } from './filters/http-exception.filter';
 import { OrderLinesModule } from './order-lines/orderLines.module';
 
 @Module({

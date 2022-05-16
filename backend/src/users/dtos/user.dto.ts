@@ -1,6 +1,5 @@
 import { Expose } from 'class-transformer';
 import { Role } from 'src/auth/enums/role.enum';
-import { Pack } from 'src/packs/pack.entity';
 
 export class UserDto {
   @Expose()
@@ -16,13 +15,7 @@ export class UserDto {
   email: string;
 
   @Expose()
-  field: string;
-
-  @Expose()
   size: number;
-
-  @Expose()
-  socialReason: string;
 
   @Expose()
   address: string;
@@ -41,6 +34,18 @@ export class UserDto {
 
   @Expose()
   isActive: boolean;
+
+  @Expose()
+  businessSector: string;
+
+  @Expose()
+  website: string;
+
+  @Expose()
+  companyName: string;
+
+  @Expose()
+  zip: number;
 
   @Expose()
   roles: Role[];

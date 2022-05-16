@@ -26,7 +26,7 @@ export class Product {
   @Column()
   stock: number;
 
-  @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { onDelete: 'CASCADE' })
+  @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { cascade: true })
   orderLines: OrderLine[];
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })
