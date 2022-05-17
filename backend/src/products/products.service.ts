@@ -23,12 +23,9 @@ export class ProductsService {
     if (!user) {
       throw new NotFoundException('user not found');
     }
-    const { image, ...attrbs } = productDto;
-    const imageBlob = base64ToBlob(image);
 
-    const product = this.repo.create(attrbs);
+    const product = this.repo.create(productDto);
 
-    product.image = imageBlob;
     return this.repo.save(product);
   }
 
