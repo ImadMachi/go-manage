@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -36,52 +37,38 @@ padding: 20px;
 background-color:#FFFFFF;
 `;
 
-export const TabsContainer =styled.div`
-  max-width: 65em;
 
+export const Tabs = styled.div`
+  overflow: hidden;
+  background: #fff;
+  height: 3em;
 `;
 
-
-  export const TabInput=styled.input`
-position: absolute;
-  left: -200vw;
-&:first-child{
-    checked
-
-&:nth-child(3):checked{
-
+interface TabProps {
+  active: boolean
 }
-}
-
-`;
-export const TabLabel=styled.label`
-  position: relative;
-  display: inline-block;
-  padding: 15px 15px 25px;
-  border: 1px solid transparent;
-  border-bottom: 0;
+export const Tab = styled.button<TabProps>`
+  border: none;
+  outline: none;
   cursor: pointer;
-  font-weight: 600;
-  &::before{
-    content: "";
-  position: absolute;
-  left: 15px;
-  bottom: 10px;
-  width: 22px;
-  height: 4px;
-  background: #8d8d8d;
+  width: 30%;
+  position: relative;
+
+  margin-right: 0.1em;
+  font-size: 1em;
+  border: ${props => (props.active ? "1px solid #ccc" : "")};
+  border-bottom: ${props => (props.active ? "none" : "")};
+  background-color: ${props => (props.active ? "white" : "lightgray")};
+  height: ${props => (props.active ? "3em" : "2.6em; top:.4em")};
+  transition: background-color 0.5s ease-in-out;
+
+  :hover {
+    background-color: white;
   }
-&:hover::after{
-
-}
 `;
-
-export const TabSection=styled.section`
-padding: 30px 0;
-  border-top: 1px solid #ccc;
-`;
-
-export const TabPane=styled.div`
-  display: none;
-
+export const Content = styled.div<TabProps>`
+  ${props => (props.active ? "" : "display:none")}
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 `;

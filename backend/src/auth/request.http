@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "email": "nouhailaskitina6@gmail.com",
-  "password": "test1234"
+  "password": "Nouha123@"
 }
 
 ### signup user
@@ -15,7 +15,7 @@ Content-Type: application/json
 {
   "lastName": "nouhaila",
   "firstName":"skitina",
-  "password":"test1234",
+  "password":"Nouha123@",
   "phone": "0603444",
   "email": "nouhailaskitina6@gmail.com",
   "field": "test",

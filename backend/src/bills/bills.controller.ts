@@ -8,23 +8,5 @@ import { UpdateBillDto } from './dto/update-bill.dto';
 export class BillsController {
   constructor(private billService: BillsService) {}
 
-  @Post()
-  create(@Body() body: CreateBillDto) {
-    return this.billService.create(body);
-  }
-
-  @Get('/id/:id')
-  findByBill(id: number) {
-    return this.billService.findByBill(id);
-  }
-
-  @Patch('/:id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateBillDto) {
-    return this.billService.update(id, body);
-  }
-
-  @Delete('/id/:id')
-  deleteUser(@Param('id') id: number) {
-    return this.billService.deleteBill(id);
-}
+ 
 }

@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "email": "nouhailaskitina6@gmail.com",
-  "password": "test1234"
+  "password": "Nouha123@"
 }
 ###
 @token = {{ loginAPI.response.body.access_token }}

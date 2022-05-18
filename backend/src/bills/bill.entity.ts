@@ -1,5 +1,6 @@
 import { Customer } from 'src/customer/customer.entity';
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from 'src/order/order.entity';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Bill {
@@ -27,6 +28,9 @@ export class Bill {
   @Column()
   totalTtc: number;
 
-   //@ManyToOne(() => Customer, (customer) => customer.bills,{onDelete:'CASCADE'})
-    //customer:Customer;
+  @ManyToOne(() => Customer, (customer) => customer.bills, { onDelete: 'CASCADE' })
+  customer: Customer;
+
+  @OneToOne(() => Order, (order) => order.bill, { cascade: true })
+  order: Order;
 }

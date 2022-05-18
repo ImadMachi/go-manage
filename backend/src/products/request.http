@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "email": "nouhailaskitina6@gmail.com",
-  "password": "test1234"
+  "password": "Nouha123@"
 }
 ###
 @token = {{ loginAPI.response.body.$.access_token }}
@@ -18,11 +18,11 @@ Authorization: Bearer {{token}}
 {
   "price": 50,
   "title": "Good Pants",
-  "image": "image3",
+  "image": "imag1",
   "rating": 4.5,
-  "description": "description",
-  "category": "pant",
-  "stock": 15
+  "stock": 15,
+  "description":"hhh",
+  "category":"blouse"
 }
 
 ### Update products
