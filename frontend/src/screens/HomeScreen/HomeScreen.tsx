@@ -1,10 +1,19 @@
 
 import { Button } from "@mantine/core";
+import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import * as S from "./HomeScreen.styled";
 
 const HomeScreen = () => {
   const navigate = useNavigate();
+  const [active, setActive] = useState(0);
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const target  = e.target as Element
+    const index = parseInt(target.id, 0);
+    if (index !== active) {
+      setActive(index);
+    }
+  }
 
   return( 
 <S.Container>
@@ -23,22 +32,21 @@ const HomeScreen = () => {
   
 <S.Text><h1>Why CRM?</h1>
   Close more deals than ever, automatice lead captures,in-built phone,smart alerts with push notifcations.</S.Text>
-<S.TabsContainer>
-  <S.TabInput type="radio" id="tab1" checked/>
-  <S.TabLabel htmlFor="tab1">Use Built-in Phone and Email</S.TabLabel>
+  <S.Tabs>
+ 
+  <S.Tab onClick={handleClick} active={active === 0} id='0'>Use Built-in Phone and Email</S.Tab>
 
-  <S.TabInput type="radio" id="tab2" checked/>
-  <S.TabLabel htmlFor="tab2">Find the Best Sales Leads</S.TabLabel>
+ 
+  <S.Tab onClick={handleClick} active={active === 1} id='1'>Find the Best Sales Leads</S.Tab>
 
-  <S.TabInput type="radio" id="tab3" checked/>
-  <S.TabLabel htmlFor="tab3">Find the Best Sales Leads</S.TabLabel>
+  <S.Tab onClick={handleClick} active={active === 2} id='2'>Find the Best Sales Leads</S.Tab>
 
-  <S.TabInput type="radio" id="tab4" checked/>
-  <S.TabLabel htmlFor="tab3">Manage Sales Pipeline Better</S.TabLabel>
+  <S.Tab onClick={handleClick} active={active === 3} id='3'>Manage Sales Pipeline Better</S.Tab>
 
-  <S.TabPane>
-    <S.TabSection id="marzen"></S.TabSection>
-    <div>
+  </S.Tabs>
+  <>
+  <S.Content active={active === 0}>
+   
     <h2>Finds the best Sales leads</h2>
     <p>Li Europan lingues es membres del sam familie. </p>
     <p>  Lor separat existentie es un myth. Por scientie,</p>
@@ -48,13 +56,12 @@ const HomeScreen = () => {
     <p>   vocabules. Omnicos directe al desirabilite de un </p>
     <p>   nov lingua franca: On refusa continuar.</p>
     <S.ContainerImage src='/images/img2.png' />
-    </div>
-</S.TabPane>
+   
+  </S.Content>
+  <S.Content active={active === 1}>
+ 
 
-<S.TabPane>
-  <div>
 <S.ContainerImage src='/images/img3.png' />
-    <S.TabSection id="marzen"></S.TabSection>
     
     <h2>Finds the best Sales leads</h2>
     <p>CRM used Bootstrap, the most popular HTML, CSS, and JS framework. Thanks </p>
@@ -63,14 +70,11 @@ const HomeScreen = () => {
     <h2> More UI Components </h2>
     <p> They are designed for simple and flexible user interface (UI) rendering.</p>
    
+    </S.Content>
+
+
+    <S.Content active={active === 2}>
    
-    </div>
-</S.TabPane>
-
-
-<S.TabPane>
-    <S.TabSection id="marzen"></S.TabSection>
-    <div>
     <h2>Finds the best Sales leads</h2>
     <p>Li Europan lingues es membres del sam familie. </p>
     <p>  Lor separat existentie es un myth. Por scientie,</p>
@@ -80,33 +84,41 @@ const HomeScreen = () => {
     <p>   vocabules. Omnicos directe al desirabilite de un </p>
     <p>   nov lingua franca: On refusa continuar.</p>
     <S.ContainerImage src='/images/img4.png' />
-    </div>
-</S.TabPane>
+   
+    </S.Content>
 
-<S.TabPane>
-  <div>
-    <S.TabSection id="marzen"></S.TabSection>
+    <S.Content active={active === 3}>
+   
     
     <h2>Finds the best Sales leads</h2>
     <p>We used CSS3 for most of our components to avoid using unnecessary </p>
     <p> JavaScript libraries. All this to make it fast, reliable and pleasant to use by</p>
     <p>everyone!</p>
+    <S.ContainerImage src='/images/img5.png' />
    
    
-<S.ContainerImage src='/images/img5.png' />
-   
-    </div>
-</S.TabPane>
+    </S.Content>
 
-</S.TabsContainer>
- 
+    <S.Content active={active === 4}>
+  
+   
+
+<S.ContainerImage src='/images/img5.png' />
+    <h2>Finds the best Sales leads</h2>
+    <p>CRM used Bootstrap, the most popular HTML, CSS, and JS framework. Thanks </p>
+    <p> to this developers without experience can modify code without any</p>
+    <p>problems.</p>
+    <h2> More UI Components </h2>
+    <p> They are designed for simple and flexible user interface (UI) rendering.</p>
+   
+    </S.Content>
+    </>
 
 </S.Sub1Container>
-
 </S.Container>
   )
 };
 
 
 
-export default HomeScreen;
+export default HomeScreen

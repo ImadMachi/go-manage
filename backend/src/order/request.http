@@ -5,7 +5,7 @@ Content-Type: application/json
 
 {
   "email": "nouhailaskitina6@gmail.com",
-  "password": "test1234"
+  "password": "Nouha123@"
 }
 ###
 @token = {{ loginAPI.response.body.access_token }}
@@ -20,7 +20,7 @@ Authorization: Bearer {{token}}
   "total":123,
   "paymentMethod":"visa",
   "paymentStatus":"paid",
-  "customerId":5,
+  "customerId":7,
   "products":[{"id": 3, "qty": 30}]
 }
 

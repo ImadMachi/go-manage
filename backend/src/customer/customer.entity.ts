@@ -1,3 +1,4 @@
+import { Bill } from 'src/bills/bill.entity';
 import { Order } from 'src/order/order.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -23,7 +24,7 @@ export class Customer {
   totalSpent: number;
 
   @Column({ default: 0 })
-  orders: number;
+  ordersCount: number;
 
   @Column()
   creationDate: number;
@@ -41,5 +42,8 @@ export class Customer {
   user: User;
 
   @OneToMany(() => Order, (order) => order.customer, { cascade: true })
-  customers: Customer[];
+  orders: Order[];
+
+  @OneToMany(() => Bill, (bill) => bill.customer, { cascade: true })
+  bills: Bill[];
 }
