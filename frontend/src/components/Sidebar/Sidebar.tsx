@@ -1,10 +1,10 @@
 import { RefObject } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShop, faUser, faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faShop, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 import * as S from "./Sidebar.styled";
 
-const commerceItems = { title: "Commerce", items: ["customers", "orders", "products","services"] };
+const commerceItems = { title: "Commerce", items: ["customers", "orders", "products", "services", "stocks"] };
 const crmItems = { title: "CRM", items: ["companies", "contacts", "leads", "deals"] };
 
 interface SidebarProps {

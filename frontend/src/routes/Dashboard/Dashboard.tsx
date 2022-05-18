@@ -8,6 +8,7 @@ import ProductScreen from "../../screens/ProductScreen";
 import ServiceScreen from "../../screens/ServiceScreen";
 import OrdersScreen from "../../screens/OrdersScreen";
 import * as S from "./Dashboard.styled";
+import StocksScreen from "../../screens/StocksScreen";
 
 const Dashboard = () => {
   const [ref, isVisible, setIsVisibleTrue] = useOutsideAlerter();
@@ -21,11 +22,8 @@ const Dashboard = () => {
           <Route path="/customers" element={<CustomersScreen />} />
           <Route path="/products" element={<ProductScreen />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
-
-
+          <Route path="/stocks" element={<StocksScreen />} />
           <Route path="/services" element={<ServiceScreen />} />
-
-
           <Route path="/orders" element={<OrdersScreen />} />
 
           {/* <Route path="teams" element={<Teams />}>

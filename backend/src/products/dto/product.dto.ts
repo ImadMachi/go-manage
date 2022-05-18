@@ -22,10 +22,9 @@ export class ProductDto {
   @Expose()
   userId: number;
 
-  
   @Expose()
-  description:string;
+  description: string;
 
   @Expose()
-  category:string;
+  category: string;
 }

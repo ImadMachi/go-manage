@@ -3,23 +3,21 @@ export class OrderDto {
   @Expose()
   id: number;
 
-@Expose()
-customersId:number; 
+  @Expose()
+  customersId: number;
 
   @Expose()
-  date:number;
+  date: number;
 
   @Expose()
-  billingName:string;
+  billingName: string;
 
   @Expose()
-  total:number;
+  total: number;
 
   @Expose()
-  paymentStatus:string;
+  paymentStatus: string;
 
   @Expose()
-  paymentMethod:string;
- }
-  
-
+  paymentMethod: string;
+}

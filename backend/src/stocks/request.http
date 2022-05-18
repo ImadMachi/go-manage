@@ -10,19 +10,15 @@ Content-Type: application/json
 ###
 @token = {{ loginAPI.response.body.$.access_token }}
 
-### Create product
-POST {{url}}/products
+### Create Stock
+POST {{url}}/stocks?productId=2
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "price": 50,
-  "title": "Good Pants",
-  "image": "image3",
-  "rating": 4.5,
-  "description": "description",
-  "category": "pant",
-  "stock": 15
+  "qty": 20,
+  "creationDate": "2022-05-17T11:51:32.198Z",
+  "warehouse": "wh1"
 }
 
 ### Update products
@@ -41,3 +37,5 @@ Authorization: Bearer {{token}}
 ### Find all products
 GET {{url}}/products
 Authorization: Bearer {{token}}
+
+

@@ -14,7 +14,6 @@ export class OrdersController {
     return this.ordersService.create(body, request.user);
   }
 
-
   // @Get('/customer/:customerId')
   // findByCustomer(@Param('customerId') customerId: number) {
   //   return this.ordersService.findByCustomer(customerId);

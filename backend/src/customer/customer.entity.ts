@@ -23,7 +23,7 @@ export class Customer {
   totalSpent: number;
 
   @Column({ default: 0 })
-  orders: number;
+  ordersCount: number;
 
   @Column()
   creationDate: number;
@@ -41,5 +41,5 @@ export class Customer {
   user: User;
 
   @OneToMany(() => Order, (order) => order.customer, { cascade: true })
-  customers: Customer[];
+  orders: Order[];
 }

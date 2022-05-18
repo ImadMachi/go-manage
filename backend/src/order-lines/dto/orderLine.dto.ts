@@ -3,16 +3,12 @@ export class OrderLineDto {
   @Expose()
   id: number;
 
-
-
   @Expose()
-  qty:number;
+  qty: number;
 
   @Expose()
   productId: number;
 
   @Expose()
   orderId: number;
-
-
- }
+}
