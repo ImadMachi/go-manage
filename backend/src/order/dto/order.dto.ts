@@ -33,4 +33,16 @@ export class OrderDto {
 
   @Expose()
   billId: number;
+
+  @Expose()
+  customersId: number;
+
+  @Expose()
+  date: number;
+
+  @Expose()
+  billingName: string;
+
+  @Expose()
+  total: number;
 }

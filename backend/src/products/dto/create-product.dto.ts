@@ -17,10 +17,8 @@ export class CreateProductDto {
   stock: number;
 
   @IsString()
-  description:string;
-
+  description: string;
 
   @IsString()
-  category:string;
-
+  category: string;
 }

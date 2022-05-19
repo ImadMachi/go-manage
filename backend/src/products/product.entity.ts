@@ -1,4 +1,3 @@
-import { Blob } from 'buffer';
 import { OrderLine } from 'src/order-lines/orderLine.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
@@ -18,9 +17,6 @@ export class Product {
   title: string;
 
   @Column()
-  userId: number;
-
-  @Column()
   image: string;
 
   @Column()
@@ -31,6 +27,9 @@ export class Product {
 
   @Column()
   description: string;
+
+  @Column()
+  userId: number;
 
   @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { cascade: true })
   @JoinColumn()

@@ -1,10 +1,13 @@
-import { IsDate, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateStockDto {
   @IsNumber()
+  @Min(0)
   qty: number;
 
-  @IsDate()
+  @IsDateString()
+  creationDate: string;
+
   @IsString()
-  creationDate: Date;
+  warehouse: string;
 }

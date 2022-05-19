@@ -1,6 +1,7 @@
+import { Type } from 'class-transformer';
 import { Product } from 'src/products/product.entity';
 import { User } from 'src/users/user.entity';
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Stock {
@@ -13,12 +14,10 @@ export class Stock {
   @Column({ type: 'date' })
   creationDate: Date;
 
-  @Column()
-  userId: number;
-
   @ManyToOne(() => User, (user) => user.stocks, { onDelete: 'CASCADE' })
   user: User;
 
   @OneToOne(() => Product, (product) => product.stock, { onDelete: 'CASCADE' })
+  @JoinColumn()
   product: Product;
 }

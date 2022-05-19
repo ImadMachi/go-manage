@@ -8,7 +8,6 @@ import { Product } from './Product.entity';
 import { CreateProductDto } from './dto/create-Product.dto';
 import { UsersService } from 'src/users/users.service';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { base64ToBlob } from 'src/utils/base64ToBlob';
 
 @Injectable()
 export class ProductsService {
@@ -23,7 +22,6 @@ export class ProductsService {
     if (!user) {
       throw new NotFoundException('user not found');
     }
-
     const product = this.repo.create(productDto);
     product.user = user;
     return this.repo.save(product);
