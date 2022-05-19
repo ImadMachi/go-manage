@@ -1,25 +1,36 @@
 import { Expose } from 'class-transformer';
+
 export class OrderDto {
   @Expose()
   id: number;
 
-@Expose()
-customersId:number; 
+  @Expose()
+  creationDate: Date;
 
   @Expose()
-  date:number;
+  totalPrice: number;
 
   @Expose()
-  billingName:string;
+  paymentStatus: string;
 
   @Expose()
-  total:number;
+  paymentMethod: string;
 
   @Expose()
-  paymentStatus:string;
+  paymentDate: Date;
 
   @Expose()
-  paymentMethod:string;
- }
-  
+  isDelivered: boolean;
 
+  @Expose()
+  deliveringDate: Date;
+
+  @Expose()
+  vat: number;
+
+  @Expose()
+  customerId: number;
+
+  @Expose()
+  billId: number;
+}

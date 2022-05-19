@@ -11,5 +11,6 @@ import { OrderLinesModule } from 'src/order-lines/orderLines.module';
   imports: [TypeOrmModule.forFeature([Order]), CustomerModule, ProductsModule, OrderLinesModule],
   providers: [OrdersService],
   controllers: [OrdersController],
+  exports: [OrdersService],
 })
 export class OrdersModule {}

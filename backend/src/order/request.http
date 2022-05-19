@@ -17,11 +17,16 @@ Authorization: Bearer {{token}}
 
 {
   "billingName":"skitina",
-  "total":123,
+  "totalPrice":120,
   "paymentMethod":"visa",
   "paymentStatus":"paid",
+  "creationDate": "2022-05-19T10:54:07.902Z",
+  "paymentDate": "2022-05-19T10:54:07.902Z",
+  "deliveringDate": "2022-05-19T10:54:07.902Z",
+  "isDelivered": false,
+  "vat": 20,
   "customerId":7,
-  "products":[{"id": 3, "qty": 30}]
+  "products":[{"id": 11, "qty": 30}]
 }
 
 ### Update order

@@ -20,17 +20,16 @@ export class OrdersService {
 
   async create(orderDto: CreateOrderDto, user: Partial<User>) {
     const customer = await this.customerService.findOne(orderDto.customerId, user);
-
     const order = this.repo.create(orderDto);
     order.customer = customer;
-    const currDate = new Date().getTime();
-    order.date = currDate;
     await this.repo.save(order);
 
+    // can't await inside foreach
     // orderDto.products.forEach(async ({ id, qty }) => {
     //   const product = await this.productsService.findOne(id, user);
     //   await this.orderLinesService.create(product, order, qty);
     // });
+
     for (const item of orderDto.products) {
       const product = await this.productsService.findOne(item.id, user);
       await this.orderLinesService.create(product, order, item.qty);
@@ -39,16 +38,13 @@ export class OrdersService {
     return this.repo.save(order);
   }
 
-  async findAll(userId:number) {
+  async findAll(userId: number) {
     return this.repo
       .createQueryBuilder('order')
       .leftJoin('order.customer', 'customer')
       .where('customer.userId = :userId', { userId })
       .getMany();
 
-  
-
- 
     // return this.repo
     //   .createQueryBuilder('order')
     //   .leftJoinAndSelect('order.customer', 'customer')
@@ -56,6 +52,16 @@ export class OrdersService {
     //   .leftJoinAndSelect('order.orderLines', 'orderLine')
     //   .leftJoinAndSelect('orderLine.product', 'product')
     //   .getMany();
+  }
+
+  findOrderDetailsForBill(orderId: number) {
+    return this.repo
+      .createQueryBuilder('order')
+      .where('order.id = :orderId', { orderId })
+      .leftJoinAndSelect('order.customer', 'customer')
+      .leftJoinAndSelect('order.orderLines', 'orderLine')
+      .leftJoinAndSelect('orderLine.product', 'product')
+      .getOne();
   }
 
   // async findOne(id: number) {

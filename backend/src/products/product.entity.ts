@@ -1,7 +1,7 @@
 import { Blob } from 'buffer';
 import { OrderLine } from 'src/order-lines/orderLine.entity';
 import { User } from 'src/users/user.entity';
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Product {
@@ -12,7 +12,7 @@ export class Product {
   price: number;
 
   @Column()
-  category:string;
+  category: string;
 
   @Column()
   title: string;
@@ -30,9 +30,10 @@ export class Product {
   stock: number;
 
   @Column()
-  description:string;
+  description: string;
 
   @OneToMany(() => OrderLine, (orderLine) => orderLine.product, { cascade: true })
+  @JoinColumn()
   orderLines: OrderLine[];
 
   @ManyToOne(() => User, (user) => user.products, { onDelete: 'CASCADE' })

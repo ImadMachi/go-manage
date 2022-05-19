@@ -1,17 +1,23 @@
-### create bill
-
-POST http://localhost:5000/bills/
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
 Content-Type: application/json
 
 {
- "description":"mamahhahah",
- "unitPrice":23,
- "tva":122,
- "totalHt":12355,
- "numBill":"123131f",
- "totalTtc":12222,
- "qte":12222
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "Nouha123@"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
 
+
+### create bill
+GET http://localhost:5000/bills
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+ "orderId": 28
 }
 
 ### Update bill

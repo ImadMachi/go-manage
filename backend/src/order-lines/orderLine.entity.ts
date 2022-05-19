@@ -21,6 +21,4 @@ export class OrderLine {
 
   @ManyToOne(() => Product, (product) => product.orderLines, { onDelete: 'CASCADE' })
   product: Product;
-
-  //ranzid prosuit rah blati ncreeih o bit nzid order
 }

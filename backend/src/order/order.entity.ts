@@ -8,14 +8,11 @@ export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  date: number;
+  @Column({ type: 'date' })
+  creationDate: Date;
 
   @Column()
-  billingName: string;
-
-  @Column()
-  total: number;
+  totalPrice: number;
 
   @Column()
   paymentStatus: string;
@@ -23,15 +20,30 @@ export class Order {
   @Column()
   paymentMethod: string;
 
+  @Column({ type: 'date' })
+  paymentDate: Date;
+
+  @Column()
+  isDelivered: boolean;
+
+  @Column({ type: 'date' })
+  deliveringDate: Date;
+
+  @Column()
+  vat: number;
+
   @Column()
   customerId: number;
+
+  @Column()
+  billId: number;
 
   @OneToMany(() => OrderLine, (orderLine) => orderLine.order, { cascade: true })
   orderLines: OrderLine[];
 
-  @ManyToOne(() => Customer, (customer) => customer.orders ,{onDelete: 'CASCADE'})
+  @ManyToOne(() => Customer, (customer) => customer.orders, { onDelete: 'CASCADE' })
   customer: Customer;
 
-  @OneToOne(()=>Bill,(bill)=>bill.order,{onDelete: 'CASCADE'})
-  bill:Bill;
+  @OneToOne(() => Bill, (bill) => bill.order, { onDelete: 'CASCADE' })
+  bill: Bill;
 }

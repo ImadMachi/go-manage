@@ -25,7 +25,7 @@ export class ProductsService {
     }
 
     const product = this.repo.create(productDto);
-
+    product.user = user;
     return this.repo.save(product);
   }
 

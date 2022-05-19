@@ -1,17 +1,29 @@
-import { IsArray, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsDateString, IsNumber, IsString } from 'class-validator';
 
 export class CreateOrderDto {
-  @IsString()
-  billingName: string;
+  @IsDateString()
+  creationDate: Date;
 
   @IsNumber()
-  total: number;
+  totalPrice: number;
 
   @IsString()
   paymentStatus: string;
 
   @IsString()
   paymentMethod: string;
+
+  @IsDateString()
+  paymentDate: Date;
+
+  @IsBoolean()
+  isDelivered: boolean;
+
+  @IsDateString()
+  deliveringDate: Date;
+
+  @IsNumber()
+  vat: number;
 
   @IsNumber()
   customerId: number;
