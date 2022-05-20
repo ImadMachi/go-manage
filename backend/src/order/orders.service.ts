@@ -59,6 +59,7 @@ export class OrdersService {
       .createQueryBuilder('order')
       .where('order.id = :orderId', { orderId })
       .leftJoinAndSelect('order.customer', 'customer')
+      .leftJoinAndSelect('customer.user', 'user')
       .leftJoinAndSelect('order.orderLines', 'orderLine')
       .leftJoinAndSelect('orderLine.product', 'product')
       .getOne();

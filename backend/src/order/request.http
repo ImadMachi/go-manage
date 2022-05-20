@@ -26,7 +26,7 @@ Authorization: Bearer {{token}}
   "isDelivered": false,
   "vat": 20,
   "customerId":7,
-  "products":[{"id": 11, "qty": 3},{"id": 12, "qty": 3},{"id": 13, "qty": 3},{"id": 14, "qty": 3},{"id": 15, "qty": 3},{"id": 16, "qty": 3},{"id": 17, "qty": 3},{"id": 18, "qty": 3},{"id": 19, "qty": 3},{"id": 20, "qty": 3},{"id": 21, "qty": 3},{"id": 22, "qty": 3},{"id": 23, "qty": 3},{"id": 24, "qty": 3}]
+  "products":[{"id": 11, "qty": 3},{"id": 12, "qty": 3},{"id": 13, "qty": 3},{"id": 14, "qty": 3},{"id": 15, "qty": 3},{"id": 16, "qty": 3},{"id": 17, "qty": 3},{"id": 18, "qty": 3},{"id": 19, "qty": 3},{"id": 20, "qty": 3},{"id": 21, "qty": 3},{"id": 22, "qty": 3},{"id": 23, "qty": 3},{"id": 24, "qty": 3},{"id": 27, "qty": 3}]
 }
 
 ### Update order

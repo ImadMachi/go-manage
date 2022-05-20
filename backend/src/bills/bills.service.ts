@@ -22,16 +22,21 @@ export class BillsService {
       let steps = Math.floor(invoice.orderLines.length / 7);
       doc.on('pageAdded', () => {
         this.generateHeader(doc);
-        this.generateFooter(doc);
+        this.generateCompanyInformation(doc, invoice);
+        this.generateCustomerInformation(doc, invoice);
+        // this.generateTotal(doc,invoice, )
+        this.generateFooter(doc, invoice);
       });
 
       this.generateHeader(doc);
-      this.generateFooter(doc);
+      this.generateCompanyInformation(doc, invoice);
+      this.generateCustomerInformation(doc, invoice);
+      this.generateFooter(doc, invoice);
 
       for (let i = 0; i <= steps; i++) {
-        this.generateCustomerInformation(doc, invoice);
+        // this.generateCustomerInformation(doc, invoice);
         const position = this.generateInvoiceTable(doc, invoice, i);
-        if (i >= steps) {
+        if (i == steps) {
           this.generateTotal(doc, invoice, totalPrice, position);
         }
 
@@ -52,10 +57,24 @@ export class BillsService {
   }
 
   generateHeader(doc) {
-    doc.image('dist/images/logo.png', 270, 45, { width: 100 }).moveDown();
+    doc.image('dist/images/logo.png', 50, 45, { width: 100 }).moveDown();
   }
 
-  generateFooter(doc) {
+  generateCompanyInformation(doc: typeof PDFDocument, invoice) {
+    doc
+      .fontSize(10)
+      .text(invoice.customer.user.companyName, 50, 160)
+      .text(invoice.customer.user.address, 50, 175)
+      .text(`${invoice.customer.user.city}, ${invoice.customer.user.country}`, 50, 190)
+      .text(`Phone: ${invoice.customer.user.phone}`, 50, 205)
+      .text(`Fix: ${invoice.customer.user.fix}`, 50, 220)
+      .text(`Email: ${invoice.customer.user.email}`, 50, 235)
+      .text(`Invoice N ${invoice.id}`, 50, 270)
+      .text(`Emmission Date ${invoice.creationDate}`, 50, 285);
+  }
+
+  generateFooter(doc, invoice) {
+    doc.moveTo(50, 700).lineTo(565, 700).stroke();
     doc.fontSize(10).text('Payment is due within 15 days. Thank you for your business.', 50, 710, { align: 'center', width: 500 });
   }
 
@@ -64,30 +83,15 @@ export class BillsService {
       name: 'John Doe',
       address: '1234 Main Street',
       city: 'San Francisco',
-      state: 'CA',
       country: 'US',
-      postal_code: 94111,
+      phone: '0638928374',
     };
 
     doc
-      .fontSize(20)
-      .text('Invoice', 50, 160)
-      .moveTo(50, 185)
-      .lineTo(565, 185)
-      .stroke()
-      .fontSize(10)
-      .text(`Invoice Number:`, 50, 200)
-      .text(`${invoice.id}`, 170, 200)
-      .text(`Invoice Date:`, 50, 215)
-      .text(`${new Date().getDate()}/${new Date().getMonth() + 1}/${new Date().getFullYear()}`, 170, 215)
-      .text(`Balance Due:`, 50, 230)
-      .text(`${invoice.totalPrice}`, 170, 230)
-      .text(shipping.name, 300, 200)
-      .text(shipping.address, 300, 215)
-      .text(`${shipping.city}, ${shipping.state}, ${shipping.country}`, 300, 230)
-      .moveTo(50, 245)
-      .lineTo(565, 245)
-      .stroke()
+      .text(`Mr ${shipping.name}`, 450, 160)
+      .text(`${shipping.address}`, 450, 175)
+      .text(`${shipping.city}, ${shipping.country}`, 450, 190)
+      .text(`${shipping.phone}`, 450, 205)
       .moveDown();
   }
 
