@@ -4,8 +4,8 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "imadoxmachi@gmail.com",
-  "password": "Qwerty@1234"
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "Nouha123@"
 }
 ###
 @token = {{ loginAPI.response.body.$.access_token }}
