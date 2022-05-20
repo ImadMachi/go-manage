@@ -98,6 +98,7 @@ export class BillsService {
   generateInvoiceTable(doc: typeof PDFDocument, invoice) {
     let i,
       invoiceTableTop = 330;
+    const totalPrice = invoice.orderLines.reduce((acc, curr) => acc + curr.product.price * curr.qty, 0);
 
     //Table Header
     this.generateTableRow(doc, 330, 'Item', 'Description', 'Unit Price', 'Quantity', 'Total Price');
@@ -117,9 +118,9 @@ export class BillsService {
     }
     doc
       .fontSize(12)
-      .text(`SUBTOTAL: $${invoice.totalPrice}`, 50, invoiceTableTop + (i++ + 1) * 20, { align: 'right' })
-      .text(`SUBTOTAL: $${invoice.totalPrice}`, 50, invoiceTableTop + (i++ + 1) * 20, { align: 'right' })
-      .text(`VAT: $${invoice.totalPrice * invoice.vat}`, 50, invoiceTableTop + (i++ + 1) * 20, { align: 'right' })
-      .text(`TOTAL: $${invoice.totalPrice + invoice.totalPrice * invoice.vat}`, 50, invoiceTableTop + (i++ + 1) * 20, { align: 'right' });
+      // .text('', 50, invoiceTableTop + (i++ + 1) * 30, { align: 'right' })
+      .text(`SUBTOTAL: $${totalPrice}`, 50, invoiceTableTop + (i++ + 1) * 30, { align: 'right' })
+      .text(`VAT(${invoice.vat}%): $${(invoice.vat / 100) * totalPrice}`, 50, invoiceTableTop + (i++ + 1) * 30, { align: 'right' })
+      .text(`TOTAL: $${totalPrice + totalPrice * (invoice.vat / 100)}`, 50, invoiceTableTop + (i++ + 1) * 30, { align: 'right' });
   }
 }
