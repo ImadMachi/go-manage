@@ -4,8 +4,8 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "nouhailaskitina6@gmail.com",
-  "password": "Nouha123@"
+  "email": "imadoxmachi@gmail.com",
+  "password": "Qwerty@1234"
 }
 ###
 @token = {{ loginAPI.response.body.$.access_token }}
@@ -21,7 +21,7 @@ Authorization: Bearer {{token}}
   "image": "imag1",
   "rating": 4.5,
   "stock": 15,
-  "description":"hhh",
+  "description":"description",
   "category":"blouse"
 }
 
