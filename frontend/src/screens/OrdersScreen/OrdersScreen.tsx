@@ -12,6 +12,7 @@ import OrdersTable from "../../components/OrdersTable/OrdersTable";
 import EditOrderForm from "../../components/EditOrderForm";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
 import CreateOrderForm from "../../components/CreateOrderForm";
+import OrderDetails from "../../components/OrderDetails";
 
 const PAGE_SIZE = 10;
 
@@ -19,6 +20,7 @@ const OrdersScreen = () => {
   const [activePage, setActivePage] = useState(1);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("");
   const [orderToEdit, setOrderToEdit] = useState<Partial<Order>>({
     creationDate: new Date().toISOString(),
@@ -29,6 +31,7 @@ const OrdersScreen = () => {
     deliveringDate: new Date().toISOString(),
     vat: 0,
   });
+  const [orderToView, setOrderToView] = useState<Order>();
 
   const [width, ref] = useElementWidth();
 
@@ -53,6 +56,11 @@ const OrdersScreen = () => {
     setIsEditModalOpen(true);
   };
 
+  const viewOrderDetailsHandler = (order: Order) => {
+    setOrderToView(order);
+    setIsDetailsModalOpen(true);
+  };
+
   return (
     <S.Screen>
       <Modal
@@ -73,8 +81,19 @@ const OrdersScreen = () => {
         centered={true}
       >
         {/* @ts-ignore */}
-        {/* <EditOrderForm onCloseModal={() => setIsEditModalOpen(false)} order={orderToEdit} /> */}
+        <EditOrderForm onCloseModal={() => setIsEditModalOpen(false)} order={orderToEdit} />
       </Modal>
+
+      <Modal
+        opened={isDetailsModalOpen}
+        onClose={() => setIsDetailsModalOpen(false)}
+        title={<S.ModalTitle>Order Details</S.ModalTitle>}
+        size={550}
+        centered={true}
+      >
+        <OrderDetails onCloseModal={() => setIsDetailsModalOpen(false)} order={orderToView} />
+      </Modal>
+
       <S.Title>Orders</S.Title>
       <S.Container ref={ref}>
         <Flex justifyContent="space-between" alignItems="center">
@@ -84,7 +103,14 @@ const OrdersScreen = () => {
             Add Order
           </Button>
         </Flex>
-        {!!orders && <OrdersTable items={displayedOrders} width={width} editOrderHandler={editOrderHandler} />}
+        {!!orders && (
+          <OrdersTable
+            items={displayedOrders}
+            width={width}
+            editOrderHandler={editOrderHandler}
+            viewOrderDetailsHandler={viewOrderDetailsHandler}
+          />
+        )}
         <Pagination page={activePage} total={orders.length / 10 + 1} onChange={onPageChange} style={{ margin: "20px 0" }} />
       </S.Container>
     </S.Screen>

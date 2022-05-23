@@ -75,7 +75,7 @@ export class OrdersService {
   // }
 
   async update(id: number, attrs: Partial<UpdateOrderDto>) {
-    const order = await this.repo.findOne({ id });
+    const order = await this.repo.findOne(id);
     if (!order) {
       throw new NotFoundException('order not found');
     }

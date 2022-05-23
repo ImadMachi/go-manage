@@ -1,3 +1,4 @@
+import { log } from "console";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -53,4 +54,13 @@ export const IsBlocked = styled(IsStatus)`
   &::after {
     background-color: ${({ theme }) => theme.danger};
   }
+`;
+
+interface IconProps {
+  isDropdownOpen: boolean;
+}
+export const Icon = styled.span<IconProps>`
+  display: inline-block;
+  transform: ${({ isDropdownOpen }) => (isDropdownOpen ? "rotate(90deg)" : null)};
+  padding: 0.5rem;
 `;

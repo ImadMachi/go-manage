@@ -20,13 +20,13 @@ export class Order {
   @Column({ type: 'enum', enum: PaymentMethod })
   paymentMethod: PaymentMethod[];
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', default: () => 'CURRENT_DATE' })
   paymentDate: Date;
 
   @Column({ type: 'enum', enum: DeliveryStatus, default: [DeliveryStatus.Pending] })
   deliveryStatus: DeliveryStatus[];
 
-  @Column({ type: 'date' })
+  @Column({ type: 'date', default: () => 'CURRENT_DATE' })
   deliveringDate: Date;
 
   @Column()

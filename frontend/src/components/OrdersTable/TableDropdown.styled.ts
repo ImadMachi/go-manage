@@ -14,6 +14,10 @@ export const DropdownItem = styled.li`
   text-transform: capitalize;
 `;
 
+export const ViewIcon = styled.span`
+  color: ${({ theme }) => theme.primary};
+`;
+
 export const EditIcon = styled.span`
   color: ${({ theme }) => theme.success};
 `;

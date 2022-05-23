@@ -3,13 +3,8 @@ import { editOrder } from "../../features/thunks/orderThunk";
 import { Group, NumberInput, Select, TextInput } from "@mantine/core";
 import { Order } from "../../models/orderModel";
 import Button from "../../common/components/Button";
-import { useEffect, useState } from "react";
-import { useCustomers } from "../../hooks/useCustomers";
-import { useProducts } from "../../hooks/useProducts";
 import * as S from "./EditOrderForm.styled";
 import { DatePicker } from "@mantine/dates";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useForm } from "@mantine/form";
 
 interface EditOrderFormProps {
@@ -21,10 +16,10 @@ const EditOrderForm = ({ onCloseModal, order }: EditOrderFormProps) => {
 
   const form = useForm<{
     creationDate: Date;
-    paymentStatus: String;
-    paymentMethod: String;
+    paymentStatus: string;
+    paymentMethod: string;
     paymentDate: Date;
-    deliveryStatus: String;
+    deliveryStatus: string;
     deliveringDate: Date;
     vat: number;
   }>({
@@ -44,8 +39,15 @@ const EditOrderForm = ({ onCloseModal, order }: EditOrderFormProps) => {
 
   const submitHandler = async (values: typeof form.values) => {
     try {
-      const result = await dispatch(editOrder({ ...form.values, creationDate: form.values.creationDate.toISOString() })).unwrap();
-
+      const result = await dispatch(
+        editOrder({
+          ...order,
+          ...form.values,
+          creationDate: form.values.creationDate.toISOString(),
+          paymentDate: form.values.paymentDate.toISOString(),
+          deliveringDate: form.values.deliveringDate.toISOString(),
+        })
+      ).unwrap();
       onCloseModal();
     } catch (err) {
       console.log(err);
@@ -54,32 +56,22 @@ const EditOrderForm = ({ onCloseModal, order }: EditOrderFormProps) => {
   return (
     <form onSubmit={form.onSubmit((values) => submitHandler(values))}>
       <S.Grid>
+        <NumberInput mb={15} label="VAT" placeholder="enter VAT percentage" {...form.getInputProps("vat")} />
+        <DatePicker mb={15} placeholder="Pick date" label="Creation Date" required {...form.getInputProps("creationDate")} />
         <Select
           mb={15}
-          label="Customer"
-          placeholder="Customer"
-          searchable
-          nothingFound="No customers"
-          data={customers.map((customer) => ({ value: String(customer.id), label: customer.name }))}
+          label="Payment Status"
+          placeholder="Pick an option"
+          nothingFound="No options"
+          data={[
+            { value: "Refunded", label: "refunded" },
+            { value: "Approved", label: "approved" },
+            { value: "Pending", label: "pending" },
+          ]}
+          {...form.getInputProps("paymentStatus")}
           required
-          {...form.getInputProps("customerId")}
         />
-        <DatePicker mb={15} placeholder="Pick date" label="Creation Date" required {...form.getInputProps("creationDate")} />
-      </S.Grid>
-      <Select
-        mb={15}
-        label="Product"
-        placeholder="Product"
-        searchable
-        nothingFound="No Product"
-        onChange={(value) =>
-          value && selectedProducts.every((p) => p.id !== +value) && setSelectedProducts([...selectedProducts, { id: +value, qty: 1 }])
-        }
-        data={loadedProducts.map((product) => ({ value: String(product.id), label: `${product.title} ($${product.price})` }))}
-        required
-      />
-
-      <S.Grid>
+        <DatePicker mb={15} placeholder="Pick date" label="Payment Date" required {...form.getInputProps("paymentDate")} />
         <Select
           mb={15}
           label="Payment Method"
@@ -92,12 +84,28 @@ const EditOrderForm = ({ onCloseModal, order }: EditOrderFormProps) => {
           required
           {...form.getInputProps("paymentMethod")}
         />
-        <NumberInput mb={15} label="VAT" placeholder="enter VAT percentage" {...form.getInputProps("vat")} />
-      </S.Grid>
+        <Select
+          mb={15}
+          label="Delivery Status"
+          placeholder="Pick an option"
+          nothingFound="No options"
+          data={[
+            { value: "Delivered", label: "delivered" },
+            { value: "Cancelled", label: "cancelled" },
+            { value: "InProgress", label: "inProgress" },
+            { value: "Pending", label: "pending" },
+            { value: "Returns", label: "returns" },
+            { value: "PickUps", label: "pickUps" },
+          ]}
+          {...form.getInputProps("deliveryStatus")}
+          required
+        />
+        <DatePicker mb={15} placeholder="Pick date" label="Delivering Date" required {...form.getInputProps("deliveringDate")} />
 
-      <Group position="right" mt="md">
-        <Button type="submit">Add Order</Button>
-      </Group>
+        <Group position="right" mt="md">
+          <Button type="submit">Add Order</Button>
+        </Group>
+      </S.Grid>
     </form>
   );
 };

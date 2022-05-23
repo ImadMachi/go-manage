@@ -9,8 +9,9 @@ interface TableProps {
   item: Order;
   width: number;
   editOrderHandler: (order: Order) => void;
+  viewOrderDetailsHandler: (order: Order) => void;
 }
-const TableRow = ({ item, width, editOrderHandler }: TableProps) => {
+const TableRow = ({ item, width, editOrderHandler, viewOrderDetailsHandler }: TableProps) => {
   const total = item.orderLines.reduce((acc, curr) => acc + curr.qty * curr.product.price, 0);
   const cols: Array<[string, string | number | boolean]> = [
     ["id", item.id],
@@ -56,13 +57,21 @@ const TableRow = ({ item, width, editOrderHandler }: TableProps) => {
     <S.Container>
       <S.Row colsLength={displayedCols.length}>
         <S.Col>
-          <FontAwesomeIcon icon={faAngleRight} onClick={dropdownHandler} />
+          <S.Icon isDropdownOpen={isDropdownOpen} onClick={dropdownHandler}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </S.Icon>
         </S.Col>
         {displayedCols.slice(1).map(([_, col], i) => (
           <S.Col key={i}>{col}</S.Col>
         ))}
       </S.Row>
-      <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} item={item} editOrderHandler={editOrderHandler} />
+      <TableDropdown
+        isOpen={isDropdownOpen}
+        hiddenCols={hiddenCols}
+        item={item}
+        editOrderHandler={editOrderHandler}
+        viewOrderDetailsHandler={viewOrderDetailsHandler}
+      />
     </S.Container>
   );
 };

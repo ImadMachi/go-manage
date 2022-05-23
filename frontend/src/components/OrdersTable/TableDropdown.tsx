@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteOrder } from "../../features/thunks/orderThunk";
 import { Order } from "../../models/orderModel";
@@ -11,8 +11,9 @@ interface TableDropdownProps {
   isOpen: boolean;
   item: Order;
   editOrderHandler: (order: Order) => void;
+  viewOrderDetailsHandler: (order: Order) => void;
 }
-const TableDropdown = ({ hiddenCols, isOpen, item, editOrderHandler }: TableDropdownProps) => {
+const TableDropdown = ({ hiddenCols, isOpen, item, editOrderHandler, viewOrderDetailsHandler }: TableDropdownProps) => {
   const dispatch = useAppDispatch();
   const deleteItemHandler = () => {
     dispatch(deleteOrder(item.id));
@@ -28,6 +29,9 @@ const TableDropdown = ({ hiddenCols, isOpen, item, editOrderHandler }: TableDrop
       ))}
       <S.DropdownItem>
         Actions:{" "}
+        <S.ViewIcon>
+          <FontAwesomeIcon icon={faEye} onClick={() => viewOrderDetailsHandler(item)} />
+        </S.ViewIcon>{" "}
         <S.EditIcon>
           <FontAwesomeIcon icon={faEdit} onClick={() => editOrderHandler(item)} />
         </S.EditIcon>{" "}
