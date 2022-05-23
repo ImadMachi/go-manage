@@ -11,6 +11,7 @@ import { Order } from "../../models/orderModel";
 import OrdersTable from "../../components/OrdersTable/OrdersTable";
 import EditOrderForm from "../../components/EditOrderForm";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
+import CreateOrderForm from "../../components/CreateOrderForm";
 
 const PAGE_SIZE = 10;
 
@@ -19,14 +20,14 @@ const OrdersScreen = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("");
-  const [orderToEdit, setOrderToEdit] = useState<Order>({
-    id: -1,
-    date: -1,
-    billingName: "",
-    total: -1,
+  const [orderToEdit, setOrderToEdit] = useState<Partial<Order>>({
+    creationDate: new Date().toISOString(),
     paymentStatus: "",
     paymentMethod: "",
-    customerId: -1,
+    paymentDate: new Date().toISOString(),
+    deliveryStatus: "",
+    deliveringDate: new Date().toISOString(),
+    vat: 0,
   });
 
   const [width, ref] = useElementWidth();
@@ -36,10 +37,12 @@ const OrdersScreen = () => {
   const displayedOrders = useMemo(() => {
     const firstPageIndex = (activePage - 1) * 10;
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return orders
-      .filter((order) => order.billingName.toLowerCase().includes(searchCriteria.toLowerCase()))
-      .slice(firstPageIndex, lastPageIndex);
-  }, [activePage, orders, searchCriteria]);
+    return (
+      orders
+        // .filter((order) => order.toLowerCase().includes(searchCriteria.toLowerCase()))
+        .slice(firstPageIndex, lastPageIndex)
+    );
+  }, [activePage, orders]);
 
   const onPageChange = (page: number) => {
     setActivePage(page);
@@ -59,7 +62,7 @@ const OrdersScreen = () => {
         size={550}
         centered={true}
       >
-        <CreateCustomerForm onCloseModal={() => setIsCreateModalOpen(false)} />
+        <CreateOrderForm onCloseModal={() => setIsCreateModalOpen(false)} />
       </Modal>
 
       <Modal
@@ -69,7 +72,8 @@ const OrdersScreen = () => {
         size={550}
         centered={true}
       >
-        <EditOrderForm onCloseModal={() => setIsEditModalOpen(false)} order={orderToEdit} />
+        {/* @ts-ignore */}
+        {/* <EditOrderForm onCloseModal={() => setIsEditModalOpen(false)} order={orderToEdit} /> */}
       </Modal>
       <S.Title>Orders</S.Title>
       <S.Container ref={ref}>

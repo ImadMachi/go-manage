@@ -35,23 +35,24 @@ export class OrdersService {
       await this.orderLinesService.create(product, order, item.qty);
     }
 
-    return this.repo.save(order);
+    await this.repo.save(order);
+    return this.repo
+      .createQueryBuilder('order')
+      .where('order.id = :orderId', { orderId: order.id })
+      .leftJoinAndSelect('order.customer', 'customer')
+      .leftJoinAndSelect('order.orderLines', 'orderLine')
+      .leftJoinAndSelect('orderLine.product', 'product')
+      .getOne();
   }
 
   async findAll(userId: number) {
     return this.repo
       .createQueryBuilder('order')
-      .leftJoin('order.customer', 'customer')
+      .leftJoinAndSelect('order.customer', 'customer')
       .where('customer.userId = :userId', { userId })
+      .leftJoinAndSelect('order.orderLines', 'orderLine')
+      .leftJoinAndSelect('orderLine.product', 'product')
       .getMany();
-
-    // return this.repo
-    //   .createQueryBuilder('order')
-    //   .leftJoinAndSelect('order.customer', 'customer')
-    //   .where('customer.userId = :userId', { userId })
-    //   .leftJoinAndSelect('order.orderLines', 'orderLine')
-    //   .leftJoinAndSelect('orderLine.product', 'product')
-    //   .getMany();
   }
 
   findOrderDetailsForBill(orderId: number) {

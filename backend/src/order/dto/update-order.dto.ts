@@ -1,4 +1,7 @@
 import { IsBoolean, IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import { DeliveryStatus } from '../enums/deliveryStatus.enum';
+import { PaymentMethod } from '../enums/paymentMethod.enum';
+import { PaymentStatus } from '../enums/paymentStatus.enum';
 
 export class UpdateOrderDto {
   @IsOptional()
@@ -6,24 +9,20 @@ export class UpdateOrderDto {
   creationDate: Date;
 
   @IsOptional()
-  @IsNumber()
-  totalPrice: number;
+  @IsString()
+  paymentStatus: PaymentStatus[];
 
   @IsOptional()
   @IsString()
-  paymentStatus: string;
-
-  @IsOptional()
-  @IsString()
-  paymentMethod: string;
+  paymentMethod: PaymentMethod[];
 
   @IsOptional()
   @IsDateString()
   paymentDate: Date;
 
   @IsOptional()
-  @IsBoolean()
-  isDelivered: boolean;
+  @IsString()
+  deliveryStatus: DeliveryStatus[];
 
   @IsOptional()
   @IsDateString()

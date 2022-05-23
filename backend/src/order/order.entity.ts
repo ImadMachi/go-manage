@@ -2,6 +2,9 @@ import { Bill } from 'src/bills/bill.entity';
 import { Customer } from 'src/customer/customer.entity';
 import { OrderLine } from 'src/order-lines/orderLine.entity';
 import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { DeliveryStatus } from './enums/deliveryStatus.enum';
+import { PaymentMethod } from './enums/paymentMethod.enum';
+import { PaymentStatus } from './enums/paymentStatus.enum';
 
 @Entity()
 export class Order {
@@ -11,20 +14,17 @@ export class Order {
   @Column({ type: 'date' })
   creationDate: Date;
 
-  @Column()
-  totalPrice: number;
+  @Column({ type: 'enum', enum: PaymentStatus, default: [PaymentStatus.Pending] })
+  paymentStatus: PaymentStatus[];
 
-  @Column()
-  paymentStatus: string;
-
-  @Column()
-  paymentMethod: string;
+  @Column({ type: 'enum', enum: PaymentMethod })
+  paymentMethod: PaymentMethod[];
 
   @Column({ type: 'date' })
   paymentDate: Date;
 
-  @Column()
-  isDelivered: boolean;
+  @Column({ type: 'enum', enum: DeliveryStatus, default: [DeliveryStatus.Pending] })
+  deliveryStatus: DeliveryStatus[];
 
   @Column({ type: 'date' })
   deliveringDate: Date;

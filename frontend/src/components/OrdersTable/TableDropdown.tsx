@@ -14,8 +14,6 @@ interface TableDropdownProps {
 }
 const TableDropdown = ({ hiddenCols, isOpen, item, editOrderHandler }: TableDropdownProps) => {
   const dispatch = useAppDispatch();
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
   const deleteItemHandler = () => {
     dispatch(deleteOrder(item.id));
   };

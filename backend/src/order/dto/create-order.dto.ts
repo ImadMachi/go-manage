@@ -1,26 +1,12 @@
-import { IsArray, IsBoolean, IsDateString, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsDateString, IsNumber, IsString } from 'class-validator';
+import { PaymentMethod } from '../enums/paymentMethod.enum';
 
 export class CreateOrderDto {
   @IsDateString()
   creationDate: Date;
 
-  @IsNumber()
-  totalPrice: number;
-
   @IsString()
-  paymentStatus: string;
-
-  @IsString()
-  paymentMethod: string;
-
-  @IsDateString()
-  paymentDate: Date;
-
-  @IsBoolean()
-  isDelivered: boolean;
-
-  @IsDateString()
-  deliveringDate: Date;
+  paymentMethod: PaymentMethod[];
 
   @IsNumber()
   vat: number;
@@ -29,5 +15,5 @@ export class CreateOrderDto {
   customerId: number;
 
   @IsArray()
-  products: { id; qty }[];
+  products: Array<{ id; qty }>;
 }

@@ -1,9 +1,25 @@
+import { Customer } from "./customerModel";
+import { Product } from "./productModel";
+
 export interface Order {
   id: number;
-  billingName: string;
+  creationDate: string;
   paymentStatus: string;
   paymentMethod: string;
-  total: number;
-  date: number;
+  paymentDate: string;
+  deliveryStatus: string;
+  deliveringDate: string;
+  vat: number;
   customerId: number;
+  billId: number;
+  date: number;
+  total: number;
+  customer: Customer;
+  orderLines: [
+    {
+      id: number;
+      qty: number;
+      product: Product;
+    }
+  ];
 }

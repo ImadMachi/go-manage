@@ -21,13 +21,11 @@ export const fetchOrders = createAsyncThunk<Array<Order>, unknown, { state: Root
 });
 
 interface CreateOrder {
-  billingName: string;
-  date: number;
-  total: number;
-  paymentStatus: string;
+  creationDate: string;
   paymentMethod: string;
+  vat: number;
   customerId: number;
-  products: { id: number; qty: number }[];
+  products: Array<{ id: number; qty: number }>;
 }
 export const createOrder = createAsyncThunk<Order, CreateOrder, { state: RootState }>("orders/createOrder", async (order, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
@@ -40,22 +38,14 @@ export const createOrder = createAsyncThunk<Order, CreateOrder, { state: RootSta
       },
     };
     const { data } = await axios.post(`/orders`, order, config);
+
     return data;
   } catch (err: any) {
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
   }
 });
 
-interface EditOrder {
-  id: number;
-  billingName: string;
-  date: number;
-  total: number;
-  paymentStatus: string;
-  paymentMethod: string;
-  customerId: number;
-}
-export const editOrder = createAsyncThunk<Order, EditOrder, { state: RootState }>("orders/editOrder", async (order, thunkAPI) => {
+export const editOrder = createAsyncThunk<Order, Partial<Order>, { state: RootState }>("orders/editOrder", async (order, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
 
   try {

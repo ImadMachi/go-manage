@@ -22,7 +22,6 @@ const CreateCustomerForm = ({ onCloseModal }: CreateCustomerFormProps) => {
     }),
   });
   const submitHandler = async (values: typeof form.values) => {
-    form.validate();
     try {
       const result = await dispatch(createCustomer(form.values)).unwrap();
       onCloseModal();

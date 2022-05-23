@@ -1,29 +1,32 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
+import { ValidateNested } from 'class-validator';
+import { CustomerDto } from 'src/customer/dto/customer.dto';
+import { OrderLineDto } from 'src/order-lines/dto/orderLine.dto';
+import { DeliveryStatus } from '../enums/deliveryStatus.enum';
+import { PaymentMethod } from '../enums/paymentMethod.enum';
+import { PaymentStatus } from '../enums/paymentStatus.enum';
 
 export class OrderDto {
   @Expose()
   id: number;
 
   @Expose()
-  creationDate: Date;
+  creationDate: String;
 
   @Expose()
-  totalPrice: number;
+  paymentStatus: PaymentStatus[];
 
   @Expose()
-  paymentStatus: string;
+  paymentMethod: PaymentMethod[];
 
   @Expose()
-  paymentMethod: string;
+  paymentDate: String;
 
   @Expose()
-  paymentDate: Date;
+  deliveryStatus: DeliveryStatus[];
 
   @Expose()
-  isDelivered: boolean;
-
-  @Expose()
-  deliveringDate: Date;
+  deliveringDate: String;
 
   @Expose()
   vat: number;
@@ -35,14 +38,15 @@ export class OrderDto {
   billId: number;
 
   @Expose()
-  customersId: number;
-
-  @Expose()
   date: number;
 
+  @Type(() => CustomerDto)
+  @ValidateNested()
   @Expose()
-  billingName: string;
+  customer: CustomerDto;
 
+  @Type(() => OrderLineDto)
+  @ValidateNested()
   @Expose()
-  total: number;
+  orderLines: OrderLineDto[];
 }

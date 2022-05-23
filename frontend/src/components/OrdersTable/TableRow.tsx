@@ -11,8 +11,16 @@ interface TableProps {
   editOrderHandler: (order: Order) => void;
 }
 const TableRow = ({ item, width, editOrderHandler }: TableProps) => {
-  const { customerId, ...restItem } = item;
-  const cols = Object.entries(restItem);
+  const total = item.orderLines.reduce((acc, curr) => acc + curr.qty * curr.product.price, 0);
+  const cols: Array<[string, string | number | boolean]> = [
+    ["id", item.id],
+    ["customer", item.customer.name],
+    ["Creation date", item.creationDate],
+    ["total", `$${total}`],
+    ["payment Method", item.paymentMethod],
+    ["payment Status", item.paymentStatus],
+    ["delivery Status", item.deliveryStatus],
+  ];
   const [displayedCols, setDisplayedCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
