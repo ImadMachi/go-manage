@@ -1,5 +1,7 @@
 import { Bill } from 'src/bills/bill.entity';
 import { Order } from 'src/order/order.entity';
+import { Quote } from 'src/quotes/quote.entity';
+import { Shipping } from 'src/shippings/shipping.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -46,4 +48,14 @@ export class Customer {
 
   @OneToMany(() => Bill, (bill) => bill.customer, { cascade: true })
   bills: Bill[];
+
+
+  // @OneToMany(() => Quote, (quote) => quote.customer, { cascade: true })
+  // quotes:Quote[];
+
+  @OneToMany(() => Shipping, (shippings) => shippings.customer, { cascade: true })
+  shippings: Shipping[];
+
+  @OneToMany(()=> Quote,(quotes)=>quotes.customer,{cascade:true})
+  quotes:  Quote[]
 }

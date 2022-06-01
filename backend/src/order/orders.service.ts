@@ -24,12 +24,6 @@ export class OrdersService {
     order.customer = customer;
     await this.repo.save(order);
 
-    // can't await inside foreach
-    // orderDto.products.forEach(async ({ id, qty }) => {
-    //   const product = await this.productsService.findOne(id, user);
-    //   await this.orderLinesService.create(product, order, qty);
-    // });
-
     for (const item of orderDto.products) {
       const product = await this.productsService.findOne(item.id, user);
       await this.orderLinesService.create(product, order, item.qty);

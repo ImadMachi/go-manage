@@ -15,13 +15,7 @@ export class OrderLinesService {
     return this.repo.save(orderLine);
   }
 
-  // async findOne(id: number) {
-  //   const orderLine = await this.repo.findOne(id);
-  //   if (!orderLine) {
-  //     throw new NotFoundException('orderline not found');
-  //   }
-  //   return orderLine;
-  // }
+  
   findByOrder(orderId:number){
     return this.repo
     .createQueryBuilder('orderLine')
@@ -31,22 +25,6 @@ export class OrderLinesService {
     .getMany();
     
   }
-
-  
-  // async deleteOrderLine(id: number) {
-  //   const orderline = await this.repo.findOne({ id });
-  //   if (!orderline) {
-  //     throw new NotFoundException('orderline not found');
-  //   }
-  //   return this.repo.remove(orderline);
-  // }
-
-  // async update(id: number, attrs: Partial<UpdateOrdeLineDto>) {
-  //   const orderline = await this.repo.findOne({ id });
-  //   if (!orderline) {
-  //     throw new NotFoundException('orderline not found');
-  //   }
-  //   Object.assign(orderline, attrs);
-  //   return this.repo.save(orderline);
-  // }
 }
+  
+ 

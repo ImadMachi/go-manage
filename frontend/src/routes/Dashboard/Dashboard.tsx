@@ -9,6 +9,8 @@ import ServiceScreen from "../../screens/ServiceScreen";
 import OrdersScreen from "../../screens/OrdersScreen";
 import * as S from "./Dashboard.styled";
 import StocksScreen from "../../screens/StocksScreen";
+import Analytic from "../../screens/Analytic";
+import QuotesScreen from "../../screens/QuotesScreen";
 
 const Dashboard = () => {
   const [ref, isVisible, setIsVisibleTrue] = useOutsideAlerter();
@@ -20,6 +22,9 @@ const Dashboard = () => {
       <S.Main>
         <Routes>
           <Route path="/customers" element={<CustomersScreen />} />
+          <Route path="/analytic" element={<Analytic />} />
+          <Route path="/quotes" element={<QuotesScreen />} />
+
           <Route path="/products" element={<ProductScreen />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/stocks" element={<StocksScreen />} />

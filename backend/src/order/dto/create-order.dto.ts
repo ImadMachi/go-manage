@@ -1,4 +1,4 @@
-import { IsArray, IsDateString, IsNumber, IsString } from 'class-validator';
+import { IsArray, IsDateString ,IsNumber,IsString} from 'class-validator';
 import { PaymentMethod } from '../enums/paymentMethod.enum';
 
 export class CreateOrderDto {

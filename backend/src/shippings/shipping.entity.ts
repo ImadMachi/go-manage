@@ -1,5 +1,6 @@
 import { Customer } from 'src/customer/customer.entity';
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from 'src/order/order.entity';
+import { Column, Entity, ManyToOne,OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Shipping {
@@ -7,35 +8,31 @@ export class Shipping {
   id: number;
 
   @Column()
-  phone: string;
+  numQuote: string;
 
   @Column()
-  city: string;
+  description: string;
 
   @Column()
-  country: string;
+  qte: number;
 
   @Column()
-  region: string;
+  unitePrice: number;
 
   @Column()
-  lastName: string;
+  tva: number;
 
   @Column()
-  firstName: string;
+  totalHt: number;
 
   @Column()
-  zip: string;
+  totalTtc: number;
 
-  @Column()
-  address1: string;
+  @ManyToOne(() => Customer, (customer) => customer.shippings, { onDelete: 'CASCADE' })
+  customer: Customer;
 
-  @Column()
-  address2: string;
+  @OneToOne(() => Order, (order) => order.shipping, { cascade: true })
+  order: Order;
 
-  @Column()
-  reference: number;
 
-  //  @ManyToOne(() => Customer, (customer) => customer.shippings)
-  //  customer:Customer;
 }

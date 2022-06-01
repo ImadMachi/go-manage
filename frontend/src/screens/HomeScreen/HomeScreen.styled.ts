@@ -2,28 +2,28 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-
 `;
 
 export const SubContainer = styled.div`
-display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-     background-color: #F5F5F5; 
-    padding:100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background-color: #F5F5F5; 
+  padding: 0 8rem;
 `;
 
 export const ContainerText = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
 `;
 export const Button = styled.div`
 
 `;
 
+export const ContainerT = styled.div`
+`;
+
+
 export const ContainerImage = styled.img`
-width: 100%;
+width: 500px;
 `;
 export const Text = styled.div`
 margin: 10px;
@@ -32,8 +32,8 @@ text-align: center;
 `;
 
 export const Sub1Container = styled.div`
-margin:20px;
-padding: 20px;
+margin:35px auto;
+padding: 0 8rem;
 background-color:#FFFFFF;
 `;
 
@@ -67,8 +67,22 @@ export const Tab = styled.button<TabProps>`
   }
 `;
 export const Content = styled.div<TabProps>`
-  ${props => (props.active ? "" : "display:none")}
-  display: grid;
+  display: ${({active})=>active? 'grid': 'none'};
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+`;
+export const Sub2Container=styled.div`
+padding: 1rem 8rem;
+
+`
+export const Container1Image=styled.div`
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+row-gap: 2rem;`
+ 
+ export const Title=styled.p`
+  color:#C9C9C9;
+`;
+export const Image=styled.img``;
+export const Sub3Container=styled.div`
 `;

@@ -1,0 +1,40 @@
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "Nouha123@"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
+
+### Create Supplier
+POST {{url}}/Suppliers
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "test12",
+  "email": "test12@gmail.com",
+  "address": "Nowhere",
+  "phone": "0603065801"
+}
+
+### Update Supplier
+PATCH  {{url}}/Suppliers/3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "phone": "872726263"
+}
+
+### Find a Supplier
+GET {{url}}/Suppliers/3
+Authorization: Bearer {{token}}
+
+### Find all Suppliers
+GET {{url}}/Suppliers
+Authorization: Bearer {{token}}

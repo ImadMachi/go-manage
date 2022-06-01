@@ -1,9 +1,15 @@
 import { Module } from '@nestjs/common';
-import { SuppliersService } from './suppliers.service';
+
 import { SuppliersController } from './suppliers.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Supplier } from './supplier.entity';
+import { SuppliersService } from './suppliers.service';
+import { UsersModule } from 'src/users/users.module';
+import { CaslModule } from 'src/casl/casl.module';
 
 @Module({
-  providers: [SuppliersService],
-  controllers: [SuppliersController]
+  imports:[TypeOrmModule.forFeature([Supplier]), UsersModule, CaslModule],
+  controllers: [SuppliersController],
+  providers: [SuppliersService]
 })
 export class SuppliersModule {}

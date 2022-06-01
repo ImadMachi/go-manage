@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShop, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 import * as S from "./Sidebar.styled";
-
-const commerceItems = { title: "Commerce", items: ["customers", "orders", "products", "services", "stocks"] };
+const AnalyticItems = { title: "Analytic", items: ["analytic"]};
+const commerceItems = { title: "Commerce", items: ["customers", "orders", "products", "services", "stocks",'quotes'] };
 const crmItems = { title: "CRM", items: ["companies", "contacts", "leads", "deals"] };
 
 interface SidebarProps {
@@ -17,6 +17,9 @@ const Sidebar = ({ forwardedRef, isOpen }: SidebarProps) => {
     <S.Sidebar isOpen={isOpen} ref={forwardedRef}>
       <S.Logo src="/images/logo.png"></S.Logo>
       <S.Title>APP</S.Title>
+      <Dropdown {...AnalyticItems} maxHeight={`${AnalyticItems.items.length * 2.5}rem`}>
+        <FontAwesomeIcon icon={faShop} />
+      </Dropdown>
       <Dropdown {...commerceItems} maxHeight={`${commerceItems.items.length * 2.5}rem`}>
         <FontAwesomeIcon icon={faShop} />
       </Dropdown>

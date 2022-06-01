@@ -6,6 +6,7 @@ import orderReducer from "./slices/orderSlice";
 import orderLineReducer from "./slices/orderSlice";
 import stockReducer from "./slices/stockSlice";
 import authReducer from "./slices/authSlice";
+import quotesReducer from "./slices/quoteSlice"
 
 const rootReducer = combineReducers({
   customers: customersReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   products: productReducer,
   services: serviceReducer,
   stocks: stockReducer,
+  quotes:quotesReducer,
   authUser: authReducer,
 });
 

@@ -7,10 +7,11 @@ import { Order } from 'src/order/order.entity';
 import { Pack } from 'src/packs/pack.entity';
 import { Product } from 'src/products/product.entity';
 import { Service } from 'src/services/Services.entity';
+import { Supplier } from 'src/suppliers/supplier.entity';
 import { User } from 'src/users/user.entity';
 
 // Add subjects
-type Subjects = InferSubjects<typeof User | typeof Pack | typeof Customer | typeof Product | typeof Order | typeof Service> | 'all';
+type Subjects = InferSubjects<typeof User | typeof Pack | typeof Customer | typeof Product | typeof Order | typeof Service |typeof Supplier > | 'all';
 
 export type AppAbility = Ability<[Action, Subjects]>;
 
@@ -34,6 +35,8 @@ export class CaslAbilityFactory {
     can(Action.Manage, Customer, { userId: user.id });
     can(Action.Manage, Product, { userId: user.id });
     can(Action.Manage, Service, { userId: user.id });
+    can(Action.Manage, Supplier, { userId: user.id });
+
 
     //  can(Action.Manage, Order, { userId: user.id });
 

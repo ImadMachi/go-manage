@@ -24,7 +24,6 @@ export class BillsService {
         this.generateHeader(doc);
         this.generateCompanyInformation(doc, invoice);
         this.generateCustomerInformation(doc, invoice);
-        // this.generateTotal(doc,invoice, )
         this.generateFooter(doc, invoice);
       });
 
@@ -73,9 +72,48 @@ export class BillsService {
       .text(`Emmission Date ${invoice.creationDate}`, 50, 285);
   }
 
-  generateFooter(doc, invoice) {
-    doc.moveTo(50, 700).lineTo(565, 700).stroke();
-    doc.fontSize(10).text('Payment is due within 15 days. Thank you for your business.', 50, 710, { align: 'center', width: 500 });
+  generateFooter(doc: typeof PDFDocument, invoice) {
+    doc
+      .moveTo(50, 650)
+      .lineTo(565, 650)
+      .stroke()
+      .fontSize(10)
+      .font('Helvetica-Bold')
+      .text('Capital:', 220, 665)
+      .font('Helvetica')
+      .text('10000.00Dhs', 260, 665)
+      .font('Helvetica-Bold')
+      .text('Patence:', 325, 665)
+      .font('Helvetica')
+      .text('4003200', 370, 665)
+      .font('Helvetica-Bold')
+      .text('IF:', 150, 675)
+      .font('Helvetica')
+      .text('50358836', 165, 675)
+      .font('Helvetica-Bold')
+      .text('ICE:', 215, 675)
+      .font('Helvetica')
+      .text('002800326000079', 240, 675)
+      .font('Helvetica-Bold')
+      .text('RC:', 335, 675)
+      .font('Helvetica')
+      .text('116523', 355, 675)
+      .font('Helvetica-Bold')
+      .text('CNSS:', 400, 675)
+      .font('Helvetica')
+      .text('268336', 435, 675)
+      .font('Helvetica-Bold')
+      .text('Tèl:', 183, 685)
+      .font('Helvetica')
+      .text('+212 6 03 06 58 01', 199, 685)
+      .font('Helvetica-Bold')
+      .text('Email:', 297, 685)
+      .font('Helvetica')
+      .text('contact@gomanage.ma', 327, 685)
+      .font('Helvetica-Bold')
+      .text('www.gomanage.ma', 260, 695)
+      .font('Helvetica');
+
   }
 
   generateCustomerInformation(doc: typeof PDFDocument, invoice) {
@@ -136,9 +174,14 @@ export class BillsService {
   generateTotal(doc, invoice, totalPrice, position) {
     doc
       .fontSize(12)
-      .text(`SUBTOTAL: $${totalPrice}`, 50, position + 30, { align: 'right' })
-      .text(`VAT(${invoice.vat}%): $${(invoice.vat / 100) * totalPrice}`, 50, position + 60, { align: 'right' })
-      .text(`TOTAL: $${totalPrice + totalPrice * (invoice.vat / 100)}`, 50, position + 90, { align: 'right' });
+      .text(`Paimement par Chèque`, 50, position + 1, { align: 'left' })
+      .text(`Rib:03706`, 50, position + 14, { align: 'left' })
+      .text(`Code Swift :17607`, 50, position + 29, { align: 'left' })
+      .text(`IBAN: FR0 012 345 678 912 345 678 912 345`, 50, position + 44, { align: 'left' })
+      .text(`SUBTOTAL: $${totalPrice}`, 50, position + 1, { align: 'right' })
+      .text(`VAT(${invoice.vat}%): $${(invoice.vat / 100) * totalPrice}`, 50, position +14 , { align: 'right' })
+      .text(`TOTAL: $${totalPrice + totalPrice * (invoice.vat / 100)}`, 50, position + 29, { align: 'right' })
+      .text(`Cachet Signature`, 50, position + 44, { align: 'right' });
   }
 }
 

@@ -9,7 +9,7 @@ export class BillsController {
   @Get()
   @Public()
   async create(@Body() payload, @Res() res) {
-    const doc = await this.billsService.create(34);
+    const doc = await this.billsService.create(1);
     res.set({
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'attachment; filename=example.pdf',
