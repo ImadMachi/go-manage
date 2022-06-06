@@ -6,7 +6,7 @@ import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";
 import Button from "../../common/components/Button";
 import { useAppDispatch } from "../../features/store";
-import { createOrder } from "../../features/thunks/orderThunk";
+import { createOrder } from "../../features/thunks/ordersThunk";
 import { useCustomers } from "../../hooks/useCustomers";
 import { useProducts } from "../../hooks/useProducts";
 import * as S from "./CreateOrderForm.styled";

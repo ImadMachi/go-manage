@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Stock } from "../../models/stockModel";
 import { RootState } from "../rootReducer";
-import { createStock, deleteStock, editStock, fetchStocks } from "../thunks/stockThunk";
+import { createStock, deleteStock, editStock, fetchStocks } from "../thunks/stocksThunk";
 
 type StocksState = {
   stocks: Stock[];

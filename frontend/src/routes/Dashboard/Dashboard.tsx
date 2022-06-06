@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "../../components/Navbar";
-import ProductDetail from "../../components/ProductDetail";
+import ProductDetail from "../../screens/ProductDetailsScreen";
 import Sidebar from "../../components/Sidebar";
 import { useOutsideAlerter } from "../../hooks/useOutsideAlerter";
 import CustomersScreen from "../../screens/CustomersScreen";
@@ -9,6 +9,7 @@ import ServiceScreen from "../../screens/ServiceScreen";
 import OrdersScreen from "../../screens/OrdersScreen";
 import * as S from "./Dashboard.styled";
 import StocksScreen from "../../screens/StocksScreen";
+import TasksScreen from "../../screens/TasksScreen";
 import Analytic from "../../screens/Analytic";
 import QuotesScreen from "../../screens/QuotesScreen";
 import PurchasesScreen from "../../screens/PurchasesScreen";
@@ -40,6 +41,7 @@ const Dashboard = () => {
           <Route path="/stocks" element={<StocksScreen />} />
           <Route path="/services" element={<ServiceScreen />} />
           <Route path="/orders" element={<OrdersScreen />} />
+          <Route path="/tasks" element={<TasksScreen />} />
 
           {/* <Route path="teams" element={<Teams />}>
       <Route path=":teamId" element={<Team />} />

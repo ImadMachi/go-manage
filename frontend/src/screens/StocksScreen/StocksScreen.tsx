@@ -43,9 +43,11 @@ const StocksScreen = () => {
   const displayedStocks = useMemo(() => {
     const firstPageIndex = (activePage - 1) * 10;
     const lastPageIndex = firstPageIndex + PAGE_SIZE;
-    return stocks
-      .filter((stock) => stock.warehouse.toLowerCase().includes(searchCriteria.toLowerCase()))
-      .slice(firstPageIndex, lastPageIndex);
+    return (
+      stocks
+        // .filter((stock) => stock.warehouse.toLowerCase().includes(searchCriteria.toLowerCase()))
+        .slice(firstPageIndex, lastPageIndex)
+    );
   }, [activePage, stocks, searchCriteria]);
 
   const onPageChange = (page: number) => {

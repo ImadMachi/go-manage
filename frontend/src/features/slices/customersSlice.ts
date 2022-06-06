@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Customer } from "../../models/customerModel";
 import { RootState } from "../rootReducer";
-import { createCustomer, deleteCustomer, editCustomer, fetchCustomers } from "../thunks/customerThunk";
+import { createCustomer, deleteCustomer, editCustomer, fetchCustomers } from "../thunks/customersThunk";
 
 type CustomersState = {
   customers: Customer[];

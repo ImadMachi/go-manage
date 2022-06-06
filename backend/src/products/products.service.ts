@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, forwardRef, Inject, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Action } from 'src/auth/enums/action.enum';
 import { CaslAbilityFactory } from 'src/casl/casl-ability.factory';
@@ -8,6 +8,7 @@ import { Product } from './Product.entity';
 import { CreateProductDto } from './dto/create-Product.dto';
 import { UsersService } from 'src/users/users.service';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { StocksService } from 'src/stocks/stocks.service';
 
 @Injectable()
 export class ProductsService {
@@ -15,6 +16,8 @@ export class ProductsService {
     @InjectRepository(Product) private repo: Repository<Product>,
     private caslAbilityFactory: CaslAbilityFactory,
     private usersService: UsersService,
+    @Inject(forwardRef(() => StocksService))
+    private stocksService: StocksService,
   ) {}
 
   async create(productDto: CreateProductDto, email: string) {
@@ -60,5 +63,14 @@ export class ProductsService {
 
     Object.assign(product, attrs);
     return this.repo.save(product);
+  }
+
+  async delete(id: number) {
+    const product = await this.repo.findOne({ where: { id }, relations: ['stock'] });
+    if (!product) {
+      throw new NotFoundException('product not found');
+    }
+    await this.stocksService.delete(product.stock?.id);
+    return this.repo.remove(product);
   }
 }

@@ -10,7 +10,7 @@ export class StockDto {
   qty: number;
 
   @Expose()
-  creationDate: Date;
+  creationDate: string;
 
   @Type(() => ProductDto)
   @ValidateNested()

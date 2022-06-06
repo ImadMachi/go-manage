@@ -6,8 +6,5 @@ export class CreateStockDto {
   qty: number;
 
   @IsDateString()
-  creationDate: string;
-
-  @IsString()
-  warehouse: string;
+  creationDate: Date;
 }

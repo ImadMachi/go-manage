@@ -1,5 +1,6 @@
 import { Bill } from 'src/bills/bill.entity';
 import { Order } from 'src/order/order.entity';
+import { Task } from 'src/tasks/task.entity';
 import { Quote } from 'src/quotes/quote.entity';
 import { Shipping } from 'src/shippings/shipping.entity';
 import { User } from 'src/users/user.entity';
@@ -49,6 +50,8 @@ export class Customer {
   @OneToMany(() => Bill, (bill) => bill.customer, { cascade: true })
   bills: Bill[];
 
+  @OneToMany(() => Task, (task) => task.customer, { cascade: true })
+  tasks: Task[];
 
   // @OneToMany(() => Quote, (quote) => quote.customer, { cascade: true })
   // quotes:Quote[];
@@ -56,6 +59,6 @@ export class Customer {
   @OneToMany(() => Shipping, (shippings) => shippings.customer, { cascade: true })
   shippings: Shipping[];
 
-  @OneToMany(()=> Quote,(quotes)=>quotes.customer,{cascade:true})
-  quotes:  Quote[]
+  @OneToMany(() => Quote, (quotes) => quotes.customer, { cascade: true })
+  quotes: Quote[];
 }

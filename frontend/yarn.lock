@@ -1536,6 +1536,11 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@kommunicate/kommunicate-chatbot-plugin@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@kommunicate/kommunicate-chatbot-plugin/-/kommunicate-chatbot-plugin-0.0.5.tgz#c6e28695e369e077dbb8512ce7871ee2ddcb28c5"
+  integrity sha512-MrZPjKRibMl8Z81FzH7LrN+9evniOg7rRxDwg7J6tnqxEnGRvU1WD+mGKRlj9QT2sWS39hvcE4yA51+bwF+GOQ==
+
 "@mantine/core@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@mantine/core/-/core-4.2.2.tgz#ef63b6494f1d709d82d0d676fe667e577d32e532"
@@ -1551,6 +1556,13 @@
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/@mantine/dates/-/dates-4.2.6.tgz#e44e8532e452ac6212ba9c2f7910926f0159123b"
   integrity sha512-/Zsrv+cZRkmelriHkWvpUHnANX+d7XBVM7WfNalRhp6R44lR7YGYx3BuHpCexR7cj3zb62Paz9ooMhf7kxertA==
+
+"@mantine/dropzone@^4.2.6":
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@mantine/dropzone/-/dropzone-4.2.6.tgz#45b48c44f699d94801d2ac708f2977cc8087f2b7"
+  integrity sha512-BqG0FAkJa8ThH5XyVhS/zQnSWTS5SdizTabbYMJIkOL75DfV8ITJx6S30iv9FPMwmJDSSvXneVgDLBfLpeGoTw==
+  dependencies:
+    react-dropzone "^11.4.2"
 
 "@mantine/form@^4.2.2":
   version "4.2.2"
@@ -2795,6 +2807,11 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.npmjs.org/atob/-/atob-2.1.2.tgz"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+attr-accept@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
+  integrity sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==
 
 autoprefixer@^10.4.2:
   version "10.4.2"
@@ -4568,6 +4585,13 @@ file-loader@^6.2.0:
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
+
+file-selector@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/file-selector/-/file-selector-0.4.0.tgz#59ec4f27aa5baf0841e9c6385c8386bef4d18b17"
+  integrity sha512-iACCiXeMYOvZqlF1kTiYINzgepRBymz1wwjiuup9u9nayhb6g4fSwiyJ/6adli+EPwrWtpgQAh2PoS7HukEGEg==
+  dependencies:
+    tslib "^2.0.3"
 
 filelist@^1.0.1:
   version "1.0.2"
@@ -7479,6 +7503,15 @@ react-dom@^17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-dropzone@^11.4.2:
+  version "11.7.1"
+  resolved "https://registry.yarnpkg.com/react-dropzone/-/react-dropzone-11.7.1.tgz#3851bb75b26af0bf1b17ce1449fd980e643b9356"
+  integrity sha512-zxCMwhfPy1olUEbw3FLNPLhAm/HnaYH5aELIEglRbqabizKAdHs0h+WuyOpmA+v1JXn0++fpQDdNfUagWt5hJQ==
+  dependencies:
+    attr-accept "^2.2.2"
+    file-selector "^0.4.0"
+    prop-types "^15.8.1"
 
 react-error-overlay@^6.0.10:
   version "6.0.10"

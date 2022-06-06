@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CustomerService } from 'src/customer/customer.service';
 import { OrderLinesService } from 'src/order-lines/orderLines.service';
 import { ProductsService } from 'src/products/products.service';
+import { StocksService } from 'src/stocks/stocks.service';
 import { User } from 'src/users/user.entity';
 import { Repository } from 'typeorm';
 import { CreateOrderDto } from './dto/create-order.dto';
@@ -16,6 +17,7 @@ export class OrdersService {
     private customerService: CustomerService,
     private productsService: ProductsService,
     private orderLinesService: OrderLinesService,
+    private stocksService: StocksService,
   ) {}
 
   async create(orderDto: CreateOrderDto, user: Partial<User>) {
@@ -24,9 +26,20 @@ export class OrdersService {
     order.customer = customer;
     await this.repo.save(order);
 
+    // can't async await inside foreach
+    // orderDto.products.forEach(async ({ id, qty }) => {
+    //   const product = await this.productsService.findOne(id, user);
+    //   await this.orderLinesService.create(product, order, qty);
+    // });
+
     for (const item of orderDto.products) {
+      if (!(await this.stocksService.isProductInStock(item.id, item.qty))) {
+        await this.deleteOne(order.id);
+        throw new BadRequestException('Product is out of stock');
+      }
       const product = await this.productsService.findOne(item.id, user);
       await this.orderLinesService.create(product, order, item.qty);
+      await this.stocksService.substractQty(product.id, item.qty);
     }
 
     await this.repo.save(order);

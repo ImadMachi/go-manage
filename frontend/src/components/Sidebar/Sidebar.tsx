@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShop, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./Dropdown";
 import * as S from "./Sidebar.styled";
-const AnalyticItems = { title: "Analytic", items: ["analytic"]};
-const commerceItems = { title: "Commerce", items: ["customers", "orders", "products", "services", "stocks",'quotes'] };
+
+const AnalyticItems = { title: "Analytic", items: ["analytic"] };
+const commerceItems = { title: "Commerce", items: ["customers", "orders", "products", "services", "stocks", "quotes", "tasks"] };
 const crmItems = { title: "CRM", items: ["companies", "contacts", "leads", "deals"] };
 
 interface SidebarProps {

@@ -7,14 +7,8 @@ export class CreateProductDto {
   @IsString()
   title: string;
 
-  @IsString()
-  image: string;
-
   @IsNumber()
   rating: number;
-
-  @IsNumber()
-  stock: number;
 
   @IsString()
   description: string;

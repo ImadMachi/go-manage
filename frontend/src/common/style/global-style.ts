@@ -4,6 +4,9 @@ export default createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+  a {
+    text-decoration: none;
+  }
   /* html {
     font-size: 80%;
   } */
@@ -21,5 +24,6 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
 }
 `;

@@ -2,7 +2,7 @@ import { useForm } from "@mantine/form";
 import { useAppDispatch } from "../../features/store";
 import isEmail from "validator/es/lib/isEmail";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
-import { editCustomer } from "../../features/thunks/customerThunk";
+import { editCustomer } from "../../features/thunks/customersThunk";
 import { Checkbox, Group, TextInput } from "@mantine/core";
 import { Customer } from "../../models/customerModel";
 import { useState } from "react";

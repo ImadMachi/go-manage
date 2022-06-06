@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../../features/store";
-import { editOrder } from "../../features/thunks/orderThunk";
+import { editOrder } from "../../features/thunks/ordersThunk";
 import { Group, NumberInput, Select, TextInput } from "@mantine/core";
 import { Order } from "../../models/orderModel";
 import Button from "../../common/components/Button";

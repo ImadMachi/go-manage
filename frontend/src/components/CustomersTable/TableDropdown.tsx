@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteCustomer } from "../../features/thunks/customerThunk";
+import { deleteCustomer } from "../../features/thunks/customersThunk";
 import { Customer } from "../../models/customerModel";
 import * as S from "./TableDropdown.styled";
 import { useAppDispatch } from "../../features/store";
