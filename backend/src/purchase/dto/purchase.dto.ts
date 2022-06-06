@@ -11,7 +11,7 @@ export class PurchaseDto {
   creationDate: String;
 
   @Expose()
-  supplierrId: number;
+  supplierId: number;
 
   @Type(() => SupplierDto)
   @ValidateNested()

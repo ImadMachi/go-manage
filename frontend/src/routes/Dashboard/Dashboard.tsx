@@ -11,17 +11,27 @@ import * as S from "./Dashboard.styled";
 import StocksScreen from "../../screens/StocksScreen";
 import Analytic from "../../screens/Analytic";
 import QuotesScreen from "../../screens/QuotesScreen";
+import PurchasesScreen from "../../screens/PurchasesScreen";
+import SuppliersScreen from "../../screens/SuppliersScreen";
+import ContactScreen from "../../screens/ContactScreen";
 
 const Dashboard = () => {
   const [ref, isVisible, setIsVisibleTrue] = useOutsideAlerter();
 
   return (
     <>
+   
       <Sidebar forwardedRef={ref} isOpen={isVisible} />
       <Navbar setSidebarIsOpen={setIsVisibleTrue} />
       <S.Main>
         <Routes>
           <Route path="/customers" element={<CustomersScreen />} />
+          <Route path="/suppliers" element={<SuppliersScreen />} />
+
+          <Route path="/purchases" element={<PurchasesScreen />} />
+        
+
+
           <Route path="/analytic" element={<Analytic />} />
           <Route path="/quotes" element={<QuotesScreen />} />
 

@@ -8,8 +8,9 @@ import { UsersModule } from 'src/users/users.module';
 import { CaslModule } from 'src/casl/casl.module';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([Supplier]), UsersModule, CaslModule],
+  imports: [TypeOrmModule.forFeature([Supplier]), UsersModule, CaslModule],
   controllers: [SuppliersController],
-  providers: [SuppliersService]
+  providers: [SuppliersService],
+  exports: [SuppliersService],
 })
 export class SuppliersModule {}

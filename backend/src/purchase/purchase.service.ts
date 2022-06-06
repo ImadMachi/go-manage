@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { ProductsService } from 'src/products/products.service';
 import { PurchaseLinesService } from 'src/purchase-lines/purchase-lines.service';
+import { SuppliersService } from 'src/suppliers/suppliers.service';
 import { User } from 'src/users/user.entity';
 import { Repository } from 'typeorm';
 import { CreatePurchaseDto } from './dto/create-purchase.dto';
@@ -13,21 +14,21 @@ import { Purchase } from './purchase.entity';
 export class PurchasesService {
   constructor(
     @InjectRepository(Purchase) private repo: Repository<Purchase>,
-    // private supplierService: SuppliersService,
+    private supplierService: SuppliersService,
     private productsService: ProductsService,
     private purchaseLinesService: PurchaseLinesService,
   ) {}
 
   async create(purchaseDto: CreatePurchaseDto, user: Partial<User>) {
-    // const supplier = await this.supplierService.findOne(purchaseDto.supplierId, user);
+    const supplier = await this.supplierService.findOne(purchaseDto.supplierId, user);
     const purchase = this.repo.create(purchaseDto);
-    // purchase.supplier = supplier;
+    purchase.supplier = supplier;
     await this.repo.save(purchase);
 
-    // for (const item of purchaseDto.products) {
-    //   const product = await this.productsService.findOne(item.id, user);
-    //   await this.purchaseLinesService.create(product, purchase, item.qty);
-    // }
+    for (const item of purchaseDto.products) {
+      const product = await this.productsService.findOne(item.id, user);
+      await this.purchaseLinesService.create(product, purchase, item.qty);
+    }
 
     await this.repo.save(purchase);
     return this.repo

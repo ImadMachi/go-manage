@@ -1,26 +1,29 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePurchaseLineDto } from './dto/create-purchase-line.dto';
-import { UpdatePurchaseLineDto } from './dto/update-purchase-line.dto';
+import { BadRequestException, HttpException, Injectable, NotFoundException, Query } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Purchase } from 'src/purchase/purchase.entity';
+import { Product } from 'src/products/product.entity';
+import { QueryBuilder, Repository } from 'typeorm';
+import { PurchaseLine } from './purchase-line.entity';
 
 @Injectable()
 export class PurchaseLinesService {
-  create(createPurchaseLineDto: CreatePurchaseLineDto) {
-    return 'This action adds a new purchaseLine';
+  constructor(@InjectRepository(PurchaseLine) private repo: Repository<PurchaseLine>) {}
+  async create(product: Product, purchase: Purchase, qty: number) {
+    const purchaseLines = this.repo.create({ qty });
+    purchaseLines.product = product;
+    purchaseLines.purchase = purchase;
+    return this.repo.save(purchaseLines);
   }
 
-  findAll() {
-    return `This action returns all purchaseLines`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} purchaseLine`;
-  }
-
-  update(id: number, updatePurchaseLineDto: UpdatePurchaseLineDto) {
-    return `This action updates a #${id} purchaseLine`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} purchaseLine`;
+  
+  findByPurchase(purchaseId:number){
+    return this.repo
+    .createQueryBuilder('purchaseLines')
+    .where('purchaseId=purchaseId',{purchaseId})
+    .leftJoinAndSelect('purchaseLines.product', 'product')
+    .select(['purchaseLines.qty','product.image','product.price','product.title'])
+    .getMany();
+    
   }
 }
+  

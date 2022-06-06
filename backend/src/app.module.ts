@@ -16,7 +16,6 @@ import { CaslModule } from './casl/casl.module';
 import { UsersModule } from './users/users.module';
 import { PacksModule } from './packs/packs.module';
 
-import { ArticlesModule } from './articles/articles.module';
 import { ServicesModule } from './services/services.module';
 import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';
@@ -48,7 +47,6 @@ import { SuppliersModule } from './suppliers/suppliers.module';
     CaslModule,
     UsersModule,
     PacksModule,
-    ArticlesModule,
     ServicesModule,
     ProductsModule,
     StocksModule,

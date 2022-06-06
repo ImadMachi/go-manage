@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreatePurchaseLineDto } from './create-purchase-line.dto';
+import { IsNumber, IsString } from 'class-validator';
 
-export class UpdatePurchaseLineDto extends PartialType(CreatePurchaseLineDto) {}
+export class UpdatePurchaseLineDto {
+
+ 
+
+
+  @IsNumber()
+  qty: number;
+}
+

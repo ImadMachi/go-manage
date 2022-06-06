@@ -6,8 +6,6 @@ export class UpdatePurchaseDto {
   @IsDateString()
   creationDate: Date;
 
-  @IsOptional()
-  @IsNumber()
-  vat: number;
+  
 }
 

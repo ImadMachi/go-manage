@@ -5,6 +5,7 @@ import { Pack } from 'src/packs/pack.entity';
 import { Product } from 'src/products/product.entity';
 import { Stock } from 'src/stocks/stock.entity';
 import { Supplier } from 'src/suppliers/supplier.entity';
+import { Service } from 'src/services/Services.entity';
 
 @Entity()
 export class User {
@@ -74,4 +75,8 @@ export class User {
 
   @OneToMany(() => Supplier, (suppliers) => suppliers.user, { cascade: true })
   suppliers: Supplier[];
+
+@OneToMany(()=>Service,(service)=>service.user,{cascade:true})
+services:Service[]
+
 }

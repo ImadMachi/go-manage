@@ -1,0 +1,43 @@
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "Nouha123@"
+}
+###
+@token = {{ loginAPI.response.body.access_token }}
+
+# ### Create purchase-line
+# POST {{url}}/purchases
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+# {
+#   "billingName":"skitina",
+#   "total":123,
+#   "paymentMethod":"visa",
+#   "paymentStatus":"paid",
+#   "customerId":1,
+#   "products":[{"id": 3, "qty": 30}]
+# }
+
+# ### Update purchase
+
+# PATCH  {{url}}/purchases/3
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+# {
+#   "phone": "872726263"
+# }
+
+# ### Find a purchases
+# GET {{url}}/purchases/3
+# Authorization: Bearer {{token}}
+
+### Find  by purchaseLin
+GET {{url}}/purchaseLines
+Authorization: Bearer {{token}}

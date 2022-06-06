@@ -1,0 +1,39 @@
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "nouhailaskitina6@gmail.com",
+  "password": "Nouha123@"
+}
+###
+@token = {{ loginAPI.response.body.access_token }}
+
+### Create purchase
+POST {{url}}/purchases
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "creationDate": "2022-05-19T10:54:07.902Z",
+  "supplierId": 1,
+  "products":[{"id": 1, "qty": 3}]
+}
+
+### Update purchase
+PATCH  {{url}}/purchase/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "creationDate":"2022-10-19T10:54:07.902Z"
+}
+
+### Find a purchase
+GET {{url}}/purchase/1
+Authorization: Bearer {{token}}
+
+### Find all purchase
+GET {{url}}/purchase
+Authorization: Bearer {{token}}

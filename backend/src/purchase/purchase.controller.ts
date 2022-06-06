@@ -7,7 +7,7 @@ import { UpdatePurchaseDto } from './dto/update-purchase.dto';
 import { PurchasesService } from './purchase.service';
 
 @Serialize(PurchaseDto)
-@Controller('purchase')
+@Controller('purchases')
 export class PurchasesController {
   constructor(private purchaseService: PurchasesService) {}
 
