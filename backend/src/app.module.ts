@@ -8,7 +8,6 @@ import { APP_GUARD } from '@nestjs/core';
 import { CustomerModule } from './customer/customer.module';
 
 import { BillsModule } from './bills/bills.module';
-import { CurrenciesModule } from './currencies/currencies.module';
 import { ShippingsModule } from './shippings/shippings.module';
 import { OrdersModule } from './order/orders.module';
 
@@ -21,11 +20,15 @@ import { ArticlesModule } from './articles/articles.module';
 import { ServicesModule } from './services/services.module';
 import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';
-import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
 import { OrderLinesModule } from './order-lines/orderLines.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { TasksModule } from './tasks/tasks.module';
+import { QuotesModule } from './quotes/quotes.module';
+import { QuoteProductModule } from './quote-product/quote-product.module';
+import { PurchaseModule } from './purchase/purchase.module';
+import { PurchaseLinesModule } from './purchase-lines/purchase-lines.module';
+import { SuppliersModule } from './suppliers/suppliers.module';
 
 @Module({
   imports: [
@@ -45,7 +48,6 @@ import { TasksModule } from './tasks/tasks.module';
     AuthModule,
     CustomerModule,
     BillsModule,
-    CurrenciesModule,
     ShippingsModule,
     OrdersModule,
     CaslModule,
@@ -55,10 +57,14 @@ import { TasksModule } from './tasks/tasks.module';
     ServicesModule,
     ProductsModule,
     StocksModule,
-    SuppliersModule,
     OrderLinesModule,
     OrderFormsModule,
     TasksModule,
+    QuotesModule,
+    QuoteProductModule,
+    PurchaseModule,
+    PurchaseLinesModule,
+    SuppliersModule,
   ],
   controllers: [AppController],
   providers: [

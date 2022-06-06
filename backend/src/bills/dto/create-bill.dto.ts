@@ -1,10 +1,8 @@
-import { IsNumber, IsString } from "class-validator";
-
-
+import { IsNumber, IsString } from 'class-validator';
 
 export class CreateBillDto {
   @IsString()
- description: string;
+  description: string;
 
   @IsNumber()
   qte: number;
@@ -23,6 +21,4 @@ export class CreateBillDto {
 
   @IsNumber()
   totalTtc: number;
-
- 
 }

@@ -1,33 +1,20 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
-import { CreateShippingDto } from './dto/create-shipping.dto';
-import { UpdateShippingDto } from './dto/update-shipping.dto';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Res } from '@nestjs/common';
+import { Public } from 'src/auth/decorators/public.decorator';
 import { ShippingsService } from './shippings.service';
-
-
-
 
 @Controller('shippings')
 export class ShippingsController {
-  constructor(private shippingService: ShippingsService) {}
+  constructor(private shippingsService: ShippingsService) {}
 
-  @Post()
-  create(@Body() body: CreateShippingDto) {
-    return this.shippingService.create(body);
+  @Get()
+  @Public()
+  async create(@Body() payload, @Res() res) {
+    const doc = await this.shippingsService.create(1);
+    res.set({
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment; filename=example.pdf',
+      'Content-Length': doc.length,
+    });
+    res.end(doc);
   }
-
-  @Get('/id/:id')
-  findByShipping(id: number) {
-    return this.shippingService.findByShipping(id);
-  }
-
-  @Patch('/:id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateShippingDto) {
-    return this.shippingService.update(id, body);
-  }
-
-  @Delete('/id/:id')
-  deleteUser(@Param('id') id: number) {
-    return this.shippingService.deleteShipping(id);
 }
-}
-

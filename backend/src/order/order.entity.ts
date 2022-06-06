@@ -1,6 +1,7 @@
 import { Bill } from 'src/bills/bill.entity';
 import { Customer } from 'src/customer/customer.entity';
 import { OrderLine } from 'src/order-lines/orderLine.entity';
+import { Shipping } from 'src/shippings/shipping.entity';
 import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { DeliveryStatus } from './enums/deliveryStatus.enum';
 import { PaymentMethod } from './enums/paymentMethod.enum';
@@ -46,4 +47,7 @@ export class Order {
 
   @OneToOne(() => Bill, (bill) => bill.order, { onDelete: 'CASCADE' })
   bill: Bill;
+
+  @OneToOne(() => Shipping, (shipping) => shipping.order, { onDelete: 'CASCADE' })
+  shipping: Shipping;
 }

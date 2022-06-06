@@ -8,6 +8,7 @@ import orderLinesReducer from "./slices/ordersSlice";
 import stockReducer from "./slices/stocksSlice";
 import authReducer from "./slices/authSlice";
 import taskReducer from "./slices/tasksSlice";
+import quotesReducer from "./slices/quoteSlice";
 
 const rootReducer = combineReducers({
   customers: customersReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   services: servicesReducer,
   stocks: stockReducer,
   tasks: taskReducer,
+  quotes: quotesReducer,
   authUser: authReducer,
 });
 
