@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Stock } from "../../models/stockModel";
+import { Task } from "../../models/taskModel";
 import { RootState } from "../rootReducer";
 
-export const fetchStocks = createAsyncThunk<Array<Stock>, unknown, { state: RootState }>("stocks/fetchStocks", async (_, thunkAPI) => {
+export const fetchTasks = createAsyncThunk<Array<Task>, unknown, { state: RootState }>("tasks/fetchTasks", async (_, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
 
   try {
@@ -13,19 +13,20 @@ export const fetchStocks = createAsyncThunk<Array<Stock>, unknown, { state: Root
         Authorization: `Bearer ${getState().authUser.userInfo.access_token}`,
       },
     };
-    const { data } = await axios.get("/stocks", config);
+    const { data } = await axios.get("/tasks", config);
     return data;
   } catch (err: any) {
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
   }
 });
 
-interface CreateStock {
-  qty: number;
-  creationDate: string;
-  warehouse: string;
+interface CreateTask {
+  task: string;
+  dueDate: string;
+  priority: string;
+  customerId: number;
 }
-export const createStock = createAsyncThunk<Stock, CreateStock, { state: RootState }>("stocks/createStock", async (stock, thunkAPI) => {
+export const createTask = createAsyncThunk<Task, CreateTask, { state: RootState }>("tasks/createTask", async (task, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
 
   try {
@@ -35,20 +36,15 @@ export const createStock = createAsyncThunk<Stock, CreateStock, { state: RootSta
         Authorization: `Bearer ${getState().authUser?.userInfo?.access_token}`,
       },
     };
-    const { data } = await axios.post(`/stocks`, stock, config);
-    return data;
+    const { data } = await axios.post(`/tasks`, task, config);
+
+    return { ...data, dueDate: data.dueDate.slice(0, 10) };
   } catch (err: any) {
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
   }
 });
 
-interface EditStock {
-  id: number;
-  qty: number;
-  creationDate: string;
-  warehouse: string;
-}
-export const editStock = createAsyncThunk<Stock, EditStock, { state: RootState }>("stocks/editStock", async (stock, thunkAPI) => {
+export const editTask = createAsyncThunk<Task, Partial<Task>, { state: RootState }>("tasks/editTask", async (task, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
 
   try {
@@ -58,15 +54,14 @@ export const editStock = createAsyncThunk<Stock, EditStock, { state: RootState }
         Authorization: `Bearer ${getState().authUser?.userInfo?.access_token}`,
       },
     };
-    const { data } = await axios.patch(`/stocks/${stock.id}`, stock, config);
-
+    const { data } = await axios.patch(`/tasks/${task.id}`, task, config);
     return data;
   } catch (err: any) {
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
   }
 });
 
-export const deleteStock = createAsyncThunk<Stock, number, { state: RootState }>("stocks/deleteStock", async (id: number, thunkAPI) => {
+export const deleteTask = createAsyncThunk<Task, number, { state: RootState }>("tasks/deleteTask", async (id: number, thunkAPI) => {
   const { rejectWithValue, getState } = thunkAPI;
 
   try {
@@ -75,7 +70,7 @@ export const deleteStock = createAsyncThunk<Stock, number, { state: RootState }>
         Authorization: `Bearer ${getState().authUser.userInfo.access_token}`,
       },
     };
-    const { data } = await axios.delete(`/stocks/${id}`, config);
+    const { data } = await axios.delete(`/tasks/${id}`, config);
     return data;
   } catch (err: any) {
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);

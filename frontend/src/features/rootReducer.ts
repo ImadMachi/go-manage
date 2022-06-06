@@ -1,19 +1,23 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import customersReducer from "./slices/customerSlice";
+import customersReducer from "./slices/customersSlice";
 import productReducer from "./slices/productSlice";
-import serviceReducer from "./slices/serviceSlice";
-import orderReducer from "./slices/orderSlice";
-import orderLineReducer from "./slices/orderSlice";
-import stockReducer from "./slices/stockSlice";
+import productsReducer from "./slices/productsSlice";
+import servicesReducer from "./slices/servicesSlice";
+import ordersReducer from "./slices/ordersSlice";
+import orderLinesReducer from "./slices/ordersSlice";
+import stockReducer from "./slices/stocksSlice";
 import authReducer from "./slices/authSlice";
+import taskReducer from "./slices/tasksSlice";
 
 const rootReducer = combineReducers({
   customers: customersReducer,
-  orders: orderReducer,
-  orderLines: orderLineReducer,
-  products: productReducer,
-  services: serviceReducer,
+  orders: ordersReducer,
+  orderLines: orderLinesReducer,
+  product: productReducer,
+  products: productsReducer,
+  services: servicesReducer,
   stocks: stockReducer,
+  tasks: taskReducer,
   authUser: authReducer,
 });
 

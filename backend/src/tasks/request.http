@@ -1,0 +1,56 @@
+### Login user
+# @name loginAPI
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "imadoxmachi@gmail.com",
+  "password": "Qwerty@1234"
+}
+###
+@token = {{ loginAPI.response.body.$.access_token }}
+
+### Create task
+POST {{url}}/tasks
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "task": "validate order",
+  "dueDate": "2022-01-01",
+  "priority": "low",
+  "customerId": 7
+}
+
+### Update a task
+PATCH  {{url}}/tasks/3
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "dueDate": "2023-05-15",
+  "priority": "high",
+}
+
+### Find a task
+GET {{url}}/tasks/2
+Authorization: Bearer {{token}}
+
+### Delete a task
+delete {{url}}/tasks/2
+Authorization: Bearer {{token}}
+
+### Find all tasks
+GET {{url}}/tasks
+Authorization: Bearer {{token}}
+
+
+# ### Test
+# POST {{url}}/stocks/test
+# Content-Type: application/json
+# Authorization: Bearer {{token}}
+
+# {
+#   "qty": 15,
+#   "id": 10
+# }

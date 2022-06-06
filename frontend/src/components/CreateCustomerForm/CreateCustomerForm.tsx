@@ -4,7 +4,7 @@ import isEmail from "validator/es/lib/isEmail";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 import Button from "../../common/components/Button";
 import { useAppDispatch } from "../../features/store";
-import { createCustomer } from "../../features/thunks/customerThunk";
+import { createCustomer } from "../../features/thunks/customersThunk";
 import * as S from "./CreateCustomerForm.styled";
 
 interface CreateCustomerFormProps {

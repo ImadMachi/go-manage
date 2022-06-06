@@ -1,6 +1,6 @@
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteStock } from "../../features/thunks/stockThunk";
+import { deleteStock } from "../../features/thunks/stocksThunk";
 import { Stock } from "../../models/stockModel";
 import * as S from "./TableDropdown.styled";
 import { useAppDispatch } from "../../features/store";

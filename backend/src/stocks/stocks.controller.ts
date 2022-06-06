@@ -4,6 +4,7 @@ import { CreateStockDto } from './dto/create-stock.dto';
 import { UpdateStockDto } from './dto/update-stock.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 import { StockDto } from './dto/stockDto';
+import { Public } from 'src/auth/decorators/public.decorator';
 
 @Serialize(StockDto)
 @Controller('stocks')
@@ -16,8 +17,8 @@ export class StocksController {
   }
 
   @Get()
-  findAll() {
-    return this.stocksService.findAll();
+  findAll(@Request() request) {
+    return this.stocksService.findAll(request.user.id);
   }
 
   @Get(':id')
@@ -26,12 +27,18 @@ export class StocksController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStockDto: UpdateStockDto) {
-    return this.stocksService.update(+id, updateStockDto);
+  update(@Param('id', ParseIntPipe) id: number, @Body() updateStockDto: UpdateStockDto) {
+    return this.stocksService.update(id, updateStockDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.stocksService.remove(+id);
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.stocksService.delete(id);
+  }
+
+  @Post('/test')
+  @Public()
+  isProductInStock(@Body() body) {
+    return this.stocksService.isProductInStock(body.id, body.qty);
   }
 }

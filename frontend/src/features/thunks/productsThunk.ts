@@ -25,14 +25,15 @@ export const fetchProducts = createAsyncThunk<Array<Product>, unknown, { state: 
 
 interface CreateProduct {
   price: number;
+  category: string;
   title: string;
-  image: string;
   rating: number;
   stock: number;
+  description: string;
 }
 export const createProduct = createAsyncThunk<Product, CreateProduct, { state: RootState }>(
   "products/createProduct",
-  async ( product, thunkAPI) => {
+  async (product, thunkAPI) => {
     const { rejectWithValue, getState } = thunkAPI;
 
     try {
@@ -42,7 +43,7 @@ export const createProduct = createAsyncThunk<Product, CreateProduct, { state: R
           Authorization: `Bearer ${getState().authUser?.userInfo?.access_token}`,
         },
       };
-      const { data } = await axios.post(`/products`,  product, config);
+      const { data } = await axios.post(`/products`, product, config);
       return data;
     } catch (err: any) {
       return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
@@ -68,5 +69,3 @@ export const deleteProduct = createAsyncThunk<Product, number, { state: RootStat
     }
   }
 );
-
-

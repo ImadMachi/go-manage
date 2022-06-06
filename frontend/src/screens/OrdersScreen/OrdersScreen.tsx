@@ -10,7 +10,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Order } from "../../models/orderModel";
 import OrdersTable from "../../components/OrdersTable/OrdersTable";
 import EditOrderForm from "../../components/EditOrderForm";
-import CreateCustomerForm from "../../components/CreateCustomerForm";
 import CreateOrderForm from "../../components/CreateOrderForm";
 import OrderDetails from "../../components/OrderDetails";
 

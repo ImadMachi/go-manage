@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
-import { selectOrders } from "../features/slices/orderSlice";
+import { selectOrders } from "../features/slices/ordersSlice";
 import { useAppDispatch } from "../features/store";
-import { fetchOrders } from "../features/thunks/orderThunk";
+import { fetchOrders } from "../features/thunks/ordersThunk";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useOrders = () => {

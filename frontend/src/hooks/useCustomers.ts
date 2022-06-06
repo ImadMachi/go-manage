@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
-import { selectCustomers } from "../features/slices/customerSlice";
+import { selectCustomers } from "../features/slices/customersSlice";
 import { useAppDispatch } from "../features/store";
-import { fetchCustomers } from "../features/thunks/customerThunk";
+import { fetchCustomers } from "../features/thunks/customersThunk";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useCustomers = () => {

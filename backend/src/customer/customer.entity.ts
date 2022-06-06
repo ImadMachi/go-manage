@@ -1,5 +1,6 @@
 import { Bill } from 'src/bills/bill.entity';
 import { Order } from 'src/order/order.entity';
+import { Task } from 'src/tasks/task.entity';
 import { User } from 'src/users/user.entity';
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -46,4 +47,7 @@ export class Customer {
 
   @OneToMany(() => Bill, (bill) => bill.customer, { cascade: true })
   bills: Bill[];
+
+  @OneToMany(() => Task, (task) => task.customer, { cascade: true })
+  tasks: Task[];
 }

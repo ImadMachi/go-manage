@@ -8,6 +8,7 @@ import { OrderLine } from './orderLine.entity';
 @Injectable()
 export class OrderLinesService {
   constructor(@InjectRepository(OrderLine) private repo: Repository<OrderLine>) {}
+
   async create(product: Product, order: Order, qty: number) {
     const orderLine = this.repo.create({ qty });
     orderLine.product = product;
@@ -22,17 +23,15 @@ export class OrderLinesService {
   //   }
   //   return orderLine;
   // }
-  findByOrder(orderId:number){
+  findByOrder(orderId: number) {
     return this.repo
-    .createQueryBuilder('orderLine')
-    .where('orderId=orderId',{orderId})
-    .leftJoinAndSelect('orderLine.product', 'product')
-    .select(['orderLine.qty','product.image','product.price','product.title'])
-    .getMany();
-    
+      .createQueryBuilder('orderLine')
+      .where('orderId=orderId', { orderId })
+      .leftJoinAndSelect('orderLine.product', 'product')
+      .select(['orderLine.qty', 'product.image', 'product.price', 'product.title'])
+      .getMany();
   }
 
-  
   // async deleteOrderLine(id: number) {
   //   const orderline = await this.repo.findOne({ id });
   //   if (!orderline) {

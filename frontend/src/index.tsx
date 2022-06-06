@@ -10,6 +10,11 @@ import GlobalCSS from "./common/style/global-style";
 import { lightTheme, themeReducer } from "./common/style/theme";
 import store from "./features/store";
 import "normalize.css";
+// @ts-ignore
+import Kommunicate from "@kommunicate/kommunicate-chatbot-plugin";
+import Chatbot from "./components/Chatbot";
+
+Kommunicate.init("29d152c34aa45e56414668ec94ca8c0cb");
 
 export interface ThemeContextInterface {
   theme: DefaultTheme;
@@ -36,6 +41,7 @@ const Index = () => {
         <GlobalCSS />
         <Provider store={store}>
           <App />
+          <Chatbot />
         </Provider>
       </ThemeContext.Provider>
     </ThemeProvider>

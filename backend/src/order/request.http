@@ -16,11 +16,11 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "paymentMethod":"visa",
+  "paymentMethod": "visa",
   "creationDate": "2022-05-19T10:54:07.902Z",
   "vat": 20,
   "customerId": 6,
-  "products":[{"id": 7, "qty": 3}]
+  "products": [{"id": 10, "qty": 10}]
 }
 
 ### Update order

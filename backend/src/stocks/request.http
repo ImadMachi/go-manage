@@ -4,38 +4,51 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "nouhailaskitina6@gmail.com",
-  "password": "test1234"
+  "email": "imadoxmachi@gmail.com",
+  "password": "Qwerty@1234"
 }
 ###
 @token = {{ loginAPI.response.body.$.access_token }}
 
 ### Create Stock
-POST {{url}}/stocks?productId=2
+POST {{url}}/stocks?productId=26
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
   "qty": 20,
-  "creationDate": "2022-05-17T11:51:32.198Z",
-  "warehouse": "wh1"
+  "creationDate": "2022-05-17"
 }
 
-### Update products
-PATCH  {{url}}/products/1
+### Update a stock
+PATCH  {{url}}/stocks/21
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "stock": 8
+  "qty": 5,
+  "creationDate": "2022-05-15"
 }
 
-### Find a product
-GET {{url}}/products/1
+### Find a stock
+GET {{url}}/stocks/21
 Authorization: Bearer {{token}}
 
-### Find all products
-GET {{url}}/products
+### Delete a stock
+delete {{url}}/stocks/20
+Authorization: Bearer {{token}}
+
+### Find all stocks
+GET {{url}}/stocks
 Authorization: Bearer {{token}}
 
 
+### Test
+POST {{url}}/stocks/test
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "qty": 15,
+  "id": 10
+}

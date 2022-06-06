@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 
 import { CreateProductDto } from './dto/create-Product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -6,6 +6,10 @@ import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 import { ProductsService } from './products.service';
 import { ProductDto } from './dto/product.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Public } from 'src/auth/decorators/public.decorator';
+import { diskStorage } from 'multer';
+import { editFileName, imageFileFilter } from 'src/utils/file-uploading.utils';
 
 @Serialize(ProductDto)
 @Controller('products')
@@ -27,10 +31,33 @@ export class ProductsController {
     return this.productsService.findOne(id, request.user);
   }
 
-  // @Get('/:id')
-  // findBy(@Param('id') id: number) {
-  //   return this.customerService.findOne(id);
-  // }
+  @Post('/images')
+  @Public()
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './public/images',
+        filename: editFileName,
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async uploadImage(@UploadedFile() file) {
+    if (!file) {
+      return 'No file';
+    }
+    const response = {
+      originalname: file.originalname,
+      filename: file.filename,
+    };
+    return response.filename;
+  }
+
+  @Get('/images/:filename')
+  @Public()
+  seeUploadedFile(@Param('filename') filename, @Res() res) {
+    return res.sendFile(filename, { root: './public/images' });
+  }
 
   @Patch('/:id')
   update(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateProductDto, @Request() request) {

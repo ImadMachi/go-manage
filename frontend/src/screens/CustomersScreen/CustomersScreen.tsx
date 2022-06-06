@@ -3,7 +3,6 @@ import { Modal, Pagination } from "@mantine/core";
 import { Flex } from "../../common/components/Flex";
 import { useCustomers } from "../../hooks/useCustomers";
 import { useElementWidth } from "../../hooks/useElementWidth";
-import { ThemeContext } from "../..";
 import * as S from "./CustomersScreen.styled";
 import CreateCustomerForm from "../../components/CreateCustomerForm";
 import Button from "../../common/components/Button";
@@ -12,7 +11,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Customer } from "../../models/customerModel";
 import EditCustomerForm from "../../components/EditCustomerForm";
 import CustomersTable from "../../components/CustomersTable/CustomersTable";
-import { fileToBase64 } from "../../utils/fileToBase64";
 
 const PAGE_SIZE = 10;
 

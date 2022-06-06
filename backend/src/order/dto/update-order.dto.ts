@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
 import { DeliveryStatus } from '../enums/deliveryStatus.enum';
 import { PaymentMethod } from '../enums/paymentMethod.enum';
 import { PaymentStatus } from '../enums/paymentStatus.enum';

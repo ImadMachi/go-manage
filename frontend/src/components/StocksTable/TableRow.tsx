@@ -12,7 +12,10 @@ interface TableProps {
 }
 const TableRow = ({ item, width, editStockHandler }: TableProps) => {
   const { product, ...restItem } = item;
-  const cols = Object.entries(restItem).splice(1, 0, ["product", product.title]);
+  const cols = Object.entries(restItem);
+  cols.splice(1, 0, ["product", product.title]);
+  //dummy warehouse
+  cols.push(["warehouse", "dummy"]);
 
   const [displayedCols, setDisplayedCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<[string, string | number | boolean]>>([]);
@@ -52,9 +55,7 @@ const TableRow = ({ item, width, editStockHandler }: TableProps) => {
           <FontAwesomeIcon icon={faAngleRight} onClick={dropdownHandler} />
         </S.Col>
         {displayedCols.slice(1).map(([_, col], i) => (
-          <S.Col key={i}>
-            {typeof col === "boolean" ? col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> : col}
-          </S.Col>
+          <S.Col key={i}>{col}</S.Col>
         ))}
       </S.Row>
       <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} item={item} editStockHandler={editStockHandler} />

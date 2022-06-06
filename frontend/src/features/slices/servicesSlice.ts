@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Service } from "../../models/serviceModel";
 import { RootState } from "../rootReducer";
-import { createService, deleteService, fetchServices } from "../thunks/serviceThunk";
+import { createService, deleteService, fetchServices } from "../thunks/servicesThunk";
 
 type servicesState = {
   services: Service[];

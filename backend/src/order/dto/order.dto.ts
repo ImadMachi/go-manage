@@ -11,7 +11,7 @@ export class OrderDto {
   id: number;
 
   @Expose()
-  creationDate: String;
+  creationDate: string;
 
   @Expose()
   paymentStatus: PaymentStatus[];
@@ -20,13 +20,13 @@ export class OrderDto {
   paymentMethod: PaymentMethod[];
 
   @Expose()
-  paymentDate: String;
+  paymentDate: string;
 
   @Expose()
   deliveryStatus: DeliveryStatus[];
 
   @Expose()
-  deliveringDate: String;
+  deliveringDate: string;
 
   @Expose()
   vat: number;

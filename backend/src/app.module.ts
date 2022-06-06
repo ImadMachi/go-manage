@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_GUARD } from '@nestjs/core';
 import { CustomerModule } from './customer/customer.module';
 
 import { BillsModule } from './bills/bills.module';
@@ -24,9 +24,14 @@ import { StocksModule } from './stocks/stocks.module';
 import { SuppliersModule } from './suppliers/suppliers.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
 import { OrderLinesModule } from './order-lines/orderLines.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
+    MulterModule.register({
+      dest: './public/images',
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -53,6 +58,7 @@ import { OrderLinesModule } from './order-lines/orderLines.module';
     SuppliersModule,
     OrderLinesModule,
     OrderFormsModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [

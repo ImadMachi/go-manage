@@ -10,22 +10,14 @@ export class UpdateProductDto {
   title: string;
 
   @IsOptional()
-  @IsString()
-  image: string;
-
-  @IsOptional()
   @IsNumber()
   rating: number;
 
   @IsOptional()
   @IsString()
-  category:string;
+  category: string;
 
   @IsOptional()
   @IsNumber()
-  stock: number;
-
-  @IsOptional()
-  @IsNumber()
-  description:string;
+  description: string;
 }

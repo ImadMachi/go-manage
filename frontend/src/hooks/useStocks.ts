@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
-import { selectStocks } from "../features/slices/stockSlice";
+import { selectStocks } from "../features/slices/stocksSlice";
 import { useAppDispatch } from "../features/store";
-import { fetchStocks } from "../features/thunks/stockThunk";
+import { fetchStocks } from "../features/thunks/stocksThunk";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useStocks = () => {
