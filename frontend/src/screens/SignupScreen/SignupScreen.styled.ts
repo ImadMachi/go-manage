@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -9,6 +10,18 @@ export const Container = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr;
   }
+`;
+
+export const Message = styled.p`
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+`;
+
+export const StyledLink = styled(Link)`
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
 `;
 
 export const ImageLayer = styled.div`

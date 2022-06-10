@@ -1,7 +1,7 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import { Button } from "@mantine/core";
 
-import * as S from './HomeNavbar.styled'
+import * as S from "./HomeNavbar.styled";
 const HomeNavbar = () => {
   const navigate = useNavigate();
   return (
@@ -19,12 +19,17 @@ const HomeNavbar = () => {
                 <Link to='/contact'> <S.Lien4>Contact</S.Lien4></Link>
                
                 
+      
 
-                <S.Animation></S.Animation>
-            </S.Cnav>
-            <div><Button ml={15} onClick={()=>navigate('/signup')}>Sing Up</Button></div>
+        <S.Animation></S.Animation>
+      </S.Cnav>
+      <div>
+        <Button ml={15} onClick={() => navigate("/signup")}>
+          Sign Up
+        </Button>
+      </div>
     </S.Container>
-  )
-}
+  );
+};
 
-export default HomeNavbar
+export default HomeNavbar;

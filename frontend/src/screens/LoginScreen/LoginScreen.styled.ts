@@ -61,15 +61,13 @@ export const InputContainer = styled.div`
   }
 `;
 export const Message = styled.p`
-
-
-margin: 15px 0 0;
+  margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
 `;
 
 export const StyledLink = styled(Link)`
-color: #4CAF50;
+  color: #4caf50;
   text-decoration: none;
-font-weight: bold;
+  font-weight: bold;
 `;

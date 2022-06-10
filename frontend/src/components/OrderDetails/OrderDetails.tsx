@@ -1,6 +1,3 @@
-import axios from "axios";
-import Button from "../../common/components/Button";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { Order } from "../../models/orderModel";
 import * as S from "./OrderDetails.styled";
 

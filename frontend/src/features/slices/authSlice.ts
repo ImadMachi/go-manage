@@ -19,7 +19,9 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    resetUser: () => initialState,
+  },
   extraReducers: (builder) => {
     // Signup
     builder.addCase(signupThunk.pending, (state) => {
@@ -65,3 +67,5 @@ export const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+const { resetUser } = authSlice.actions;
+export { resetUser };
