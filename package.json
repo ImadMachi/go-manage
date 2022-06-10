@@ -15,8 +15,5 @@
   "devDependencies": {
     "concurrently": "^7.1.0"
   },
-  "dependencies": {
-    "@coreui/react-chartjs": "^2.0.3",
-    "react-simple-chatbot": "^0.6.1"
-  }
+  "dependencies": {}
 }

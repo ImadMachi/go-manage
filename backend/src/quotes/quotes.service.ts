@@ -75,7 +75,7 @@ export class QuotesService {
 
       for (let i = 0; i <= steps; i++) {
         // this.generateCustomerInformation(doc, quote);
-        const position = this.generateInvoiceTable(doc, quote, i);
+        const position = this.generateQuoteTable(doc, quote, i);
         if (i == steps) {
           this.generateTotal(doc, quote, totalPrice, position);
         }
@@ -186,7 +186,7 @@ export class QuotesService {
       .stroke();
   }
 
-  generateInvoiceTable(doc: typeof PDFDocument, quote, step: number) {
+  generateQuoteTable(doc: typeof PDFDocument, quote, step: number) {
     let i,
       quoteTableTop = 330;
     let j;

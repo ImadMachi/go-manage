@@ -6,10 +6,10 @@ import { BillsService } from './bills.service';
 export class BillsController {
   constructor(private billsService: BillsService) {}
 
-  @Get()
+  @Post()
   @Public()
   async create(@Body() payload, @Res() res) {
-    const doc = await this.billsService.create(1);
+    const doc = await this.billsService.create(2);
     res.set({
       'Content-Type': 'application/pdf',
       'Content-Disposition': 'attachment; filename=example.pdf',

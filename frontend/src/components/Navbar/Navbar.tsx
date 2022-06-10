@@ -1,5 +1,6 @@
 import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Input, TextInput } from "@mantine/core";
 import { useContext } from "react";
 import { ThemeContext } from "../..";
 import { Icon } from "../../common/components/Icon";
@@ -27,7 +28,8 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
   const { theme, dispatch } = useContext(ThemeContext);
 
   return (
-    <S.Nav>
+<S.Nav>
+
       <S.Menu>
         <FontAwesomeIcon icon={faBars} onClick={menuClickHandler} />
       </S.Menu>
@@ -43,6 +45,8 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
           </Icon>
         )}
       </S.Right>
+
+
     </S.Nav>
   );
 };
