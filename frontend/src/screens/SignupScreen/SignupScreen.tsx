@@ -86,11 +86,14 @@ const Signup = () => {
           <PasswordInput label="Password" placeholder="Password" {...form.getInputProps("password")} />
           <PasswordInput label="Confirm Password" placeholder="Confirm Password" {...form.getInputProps("confirmPassword")} />
           <Group position="right" mt="md">
-            <Button  type="submit">
+            <Button type="submit">
               <Loader style={{ display: loading === "pending" ? "inline" : "none" }} size={15} color="white" />
               Signup
             </Button>
           </Group>
+          <S.Message>
+            Already have an account? <S.StyledLink to="/login">Login</S.StyledLink>
+          </S.Message>
         </form>
       </S.FormContainer>
     </S.Container>

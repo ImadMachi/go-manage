@@ -113,7 +113,6 @@ export class BillsService {
       .font('Helvetica-Bold')
       .text('www.gomanage.ma', 260, 695)
       .font('Helvetica');
-
   }
 
   generateCustomerInformation(doc: typeof PDFDocument, invoice) {
@@ -179,7 +178,7 @@ export class BillsService {
       .text(`Code Swift :17607`, 50, position + 29, { align: 'left' })
       .text(`IBAN: FR0 012 345 678 912 345 678 912 345`, 50, position + 44, { align: 'left' })
       .text(`SUBTOTAL: $${totalPrice}`, 50, position + 1, { align: 'right' })
-      .text(`VAT(${invoice.vat}%): $${(invoice.vat / 100) * totalPrice}`, 50, position +14 , { align: 'right' })
+      .text(`VAT(${invoice.vat}%): $${(invoice.vat / 100) * totalPrice}`, 50, position + 14, { align: 'right' })
       .text(`TOTAL: $${totalPrice + totalPrice * (invoice.vat / 100)}`, 50, position + 29, { align: 'right' })
       .text(`Cachet Signature`, 50, position + 44, { align: 'right' });
   }

@@ -1,4 +1,3 @@
-import Button from "../../common/components/Button";
 import { Order } from "../../models/orderModel";
 import * as S from "./OrderDetails.styled";
 
