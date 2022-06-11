@@ -4,9 +4,11 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "nouhailaskitina6@gmail.com",
-  "password": "Nouha123@"
+  "email": "imadoxmachi@gmail.com",
+  "password": "Azerty@1234"
 }
+###
+@token = {{ loginAPI.response.body.$.access_token }}
 
 ### signup user
 POST {{url}}/auth/signup
@@ -25,4 +27,14 @@ Content-Type: application/json
   "city": "agadir",
   "country": "Morocco",
   "fix": "+21255458789"
+}
+
+### change password
+PATCH {{url}}/auth/change-password
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "oldPassword": "Qwerty@1234",
+  "newPassword": "Azerty@1234"
 }

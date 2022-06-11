@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../../models/userModel";
-import { loginThunk, signupThunk, updateUserThunk } from "../thunks/authThunk";
+import { changePasswordThunk, loginThunk, signupThunk, updateUserThunk } from "../thunks/authThunk";
 
 export type AuthState = {
   userInfo: { user?: User; access_token?: string };
@@ -52,7 +52,6 @@ export const authSlice = createSlice({
       state.error = payload;
     });
     // Update
-    // Login
     builder.addCase(updateUserThunk.pending, (state) => {
       state.loading = "pending";
     });
@@ -62,6 +61,19 @@ export const authSlice = createSlice({
       state.userInfo = payload;
     });
     builder.addCase(updateUserThunk.rejected, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = payload;
+    });
+    // ChnagePassword
+    builder.addCase(changePasswordThunk.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(changePasswordThunk.fulfilled, (state, { payload }) => {
+      state.loading = "idle";
+      state.error = undefined;
+      state.userInfo = payload;
+    });
+    builder.addCase(changePasswordThunk.rejected, (state, { payload }) => {
       state.loading = "idle";
       state.error = payload;
     });

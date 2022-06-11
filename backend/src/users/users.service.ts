@@ -55,4 +55,8 @@ export class UsersService {
   find(payload: Partial<UserDto>) {
     return this.repo.find(payload);
   }
+
+  saveUser(user: User) {
+    return this.repo.save(user);
+  }
 }

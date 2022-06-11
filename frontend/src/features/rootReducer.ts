@@ -13,13 +13,10 @@ import authReducer from "./slices/authSlice";
 import taskReducer from "./slices/tasksSlice";
 import quotesReducer from "./slices/quoteSlice";
 
-
 const rootReducer = combineReducers({
   customers: customersReducer,
   suppliers: suppliersReducer,
-
   purchases: purchaseReducer,
-
   orders: ordersReducer,
   orderLines: orderLinesReducer,
   product: productReducer,

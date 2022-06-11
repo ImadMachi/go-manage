@@ -41,7 +41,7 @@ const ProfileScreen = () => {
       </S.Side>
       <S.Main>
         {user && sideTitle === 1 && <UserDetails user={user} />}
-        {user && sideTitle === 2 && <UserChangePassword user={user} />}
+        {user && sideTitle === 2 && <UserChangePassword user={user} setSideTitle={setSideTitle} />}
       </S.Main>
     </S.Screen>
   );
