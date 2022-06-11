@@ -43,8 +43,7 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
   };
 
   return (
-<S.Nav>
-
+    <S.Nav>
       <S.Menu>
         <FontAwesomeIcon icon={faBars} onClick={menuClickHandler} />
       </S.Menu>
@@ -72,9 +71,9 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
               <FontAwesomeIcon icon={faCaretDown} />
             </S.DropdownHeader>
             <S.DropdownMenu isOpen={isDropdownOpen}>
-              <Link to="/dashboard/profile">
+              <S.Link to="/dashboard/profile">
                 <S.DropdownItem>Profile</S.DropdownItem>
-              </Link>
+              </S.Link>
               <S.DropdownItem onClick={logout}>Logout</S.DropdownItem>
             </S.DropdownMenu>
           </S.Dropdown>
@@ -83,8 +82,6 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
           <FontAwesomeIcon icon={faGear} style={{ color: theme.textSecondary }} />
         </Icon>
       </S.Right>
-
-
     </S.Nav>
   );
 };

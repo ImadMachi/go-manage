@@ -36,13 +36,14 @@ interface NavigationItemProps {
 }
 export const NavigationItem = styled.div<NavigationItemProps>`
   padding: 1rem 0.7rem;
+
   &:hover {
     background-color: ${({ theme }) => theme.primary};
     color: #eee;
     opacity: ${({ isSelected }) => (isSelected ? 1 : 0.8)};
   }
   background-color: ${({ isSelected, theme }) => (isSelected ? theme.primary : "none")};
-  color: ${({ isSelected }) => (isSelected ? "#eee" : "auto")};
+  color: ${({ isSelected, theme }) => (isSelected ? "#eee" : theme.textSecondary)};
 `;
 
 export const NavigationTitle = styled.span`
