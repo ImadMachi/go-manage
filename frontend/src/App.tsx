@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Dashboard from "./routes/Dashboard/Dashboard";
 import AboutScreen from "./screens/AboutScreen";
+import BlogScreen from "./screens/BlogScreen";
 import CompleteSignup from "./screens/CompleteSignup";
 import ContactScreen from "./screens/ContactScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -14,6 +15,9 @@ const App = () => {
         <Route path="/">
         <Route path="contact" element={<ContactScreen />} />
         <Route path="about" element={<AboutScreen />} />
+        <Route path="blog" element={<BlogScreen />} />
+
+
 
           <Route index element={<HomeScreen />} />
           <Route path="login" element={<LoginScreen />} />

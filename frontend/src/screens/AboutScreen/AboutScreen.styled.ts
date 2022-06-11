@@ -48,11 +48,7 @@ export const Tbutton=styled.div`
 margin-top: 30px;
 
 `;
-export const Social=styled.div`
-margin-top: 40px;
-display: flex;
 
-`;
 export const ContainerImage=styled.div`
 float:right;
 width: 40%;
@@ -81,4 +77,9 @@ color: a52a2a;
 font-size: 30px;
 padding: 0px 10px;
 
-`
+`;
+export const Social=styled.div`
+margin-top: 40px;
+display: flex;
+
+`;

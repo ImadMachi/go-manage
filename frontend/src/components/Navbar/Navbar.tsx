@@ -43,7 +43,8 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
   };
 
   return (
-    <S.Nav>
+<S.Nav>
+
       <S.Menu>
         <FontAwesomeIcon icon={faBars} onClick={menuClickHandler} />
       </S.Menu>
@@ -82,6 +83,8 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
           <FontAwesomeIcon icon={faGear} style={{ color: theme.textSecondary }} />
         </Icon>
       </S.Right>
+
+
     </S.Nav>
   );
 };

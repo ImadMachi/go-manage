@@ -1,15 +1,30 @@
 import { Order } from "../../models/orderModel";
 import * as S from "./OrderDetails.styled";
 
+
 interface OrderDetailsProps {
   onCloseModal: () => void;
   order: Order | undefined;
+
 }
+
 
 const OrderDetails = ({ order, onCloseModal }: OrderDetailsProps) => {
   if (!order) {
     return <>{onCloseModal()}</>;
   }
+//   const createBillHandler = async () => {
+//   try {
+//     const { data } = await axios.post('/bills', { orderId: OrderDetails.id}, config);
+//   } catch (e) {
+//     console.log(e);
+//   }
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${useTypedSelector().userInfo.access_token}`,
+//     },
+//   };
+// };
   const subTotal = order.orderLines.reduce((acc, curr) => acc + curr.qty * curr.product.price, 0);
   return (
     <div>
@@ -44,6 +59,11 @@ const OrderDetails = ({ order, onCloseModal }: OrderDetailsProps) => {
           <span>{orderLine.qty}</span>
         </S.TableRow>
       ))}
+      {/* <S.Pdf>
+
+<FontAwesomeIcon icon={pbkdf2} ></FontAwesomeIcon>
+const 
+      </S.Pdf> */}
       <S.TotalPrice>
         <b>SubTotal:</b>
         <span>${subTotal}</span>
