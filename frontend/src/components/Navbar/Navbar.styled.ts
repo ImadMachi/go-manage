@@ -32,7 +32,6 @@ export const NotificationCounter = styled.div`
 
 export const Dropdown = styled.span`
   cursor: pointer;
-
   display: inline-block;
   padding: 0 0.5rem;
   color: ${({ theme }) => theme.textPrimary};

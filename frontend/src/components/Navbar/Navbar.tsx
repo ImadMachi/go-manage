@@ -1,8 +1,8 @@
-import { faArrowDown, faBars, faBell, faCaretDown, faGear, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBell, faCaretDown, faGear, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Input } from "@mantine/core";
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../..";
 import { Icon } from "../../common/components/Icon";
 import { darkTheme, lightTheme } from "../../common/style/theme";
@@ -71,7 +71,9 @@ const Navbar = ({ setSidebarIsOpen }: NavbarProps) => {
               <FontAwesomeIcon icon={faCaretDown} />
             </S.DropdownHeader>
             <S.DropdownMenu isOpen={isDropdownOpen}>
-              <S.DropdownItem>Profile</S.DropdownItem>
+              <Link to="/dashboard/profile">
+                <S.DropdownItem>Profile</S.DropdownItem>
+              </Link>
               <S.DropdownItem onClick={logout}>Logout</S.DropdownItem>
             </S.DropdownMenu>
           </S.Dropdown>

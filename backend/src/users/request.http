@@ -4,8 +4,8 @@ POST {{url}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "nouhailaskitina6@gmail.com",
-  "password": "Nouha123@"
+  "email": "imadoxmachi@gmail.com",
+  "password": "Qwerty@1234"
 }
 ###
 @token = {{ loginAPI.response.body.$.access_token }}
@@ -20,7 +20,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "firstName": "Nouhaila"
+  "firstName": "Imadox"
 }
 
 ### Find all users (roles = admin)

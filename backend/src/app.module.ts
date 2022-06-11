@@ -6,16 +6,13 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { APP_GUARD } from '@nestjs/core';
 import { CustomerModule } from './customer/customer.module';
-
 import { BillsModule } from './bills/bills.module';
 import { ShippingsModule } from './shippings/shippings.module';
 import { OrdersModule } from './order/orders.module';
-
 import { RolesGuard } from './auth/guards/roles.guard';
 import { CaslModule } from './casl/casl.module';
 import { UsersModule } from './users/users.module';
 import { PacksModule } from './packs/packs.module';
-
 import { ServicesModule } from './services/services.module';
 import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';

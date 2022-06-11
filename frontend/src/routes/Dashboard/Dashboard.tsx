@@ -15,39 +15,29 @@ import QuotesScreen from "../../screens/QuotesScreen";
 import PurchasesScreen from "../../screens/PurchasesScreen";
 import SuppliersScreen from "../../screens/SuppliersScreen";
 import ContactScreen from "../../screens/ContactScreen";
+import ProfileScreen from "../../screens/ProfileScreen";
 
 const Dashboard = () => {
   const [ref, isVisible, setIsVisibleTrue] = useOutsideAlerter();
 
   return (
     <>
-   
       <Sidebar forwardedRef={ref} isOpen={isVisible} />
       <Navbar setSidebarIsOpen={setIsVisibleTrue} />
       <S.Main>
         <Routes>
           <Route path="/customers" element={<CustomersScreen />} />
           <Route path="/suppliers" element={<SuppliersScreen />} />
-
           <Route path="/purchases" element={<PurchasesScreen />} />
-        
-
-
           <Route path="/analytic" element={<Analytic />} />
           <Route path="/quotes" element={<QuotesScreen />} />
-
           <Route path="/products" element={<ProductScreen />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
           <Route path="/stocks" element={<StocksScreen />} />
           <Route path="/services" element={<ServiceScreen />} />
           <Route path="/orders" element={<OrdersScreen />} />
           <Route path="/tasks" element={<TasksScreen />} />
-
-          {/* <Route path="teams" element={<Teams />}>
-      <Route path=":teamId" element={<Team />} />
-      <Route path="new" element={<NewTeamForm />} />
-      <Route index element={<LeagueStandings />} /> */}
-          {/* </Route> */}
+          <Route path="/profile" element={<ProfileScreen />} />
         </Routes>
       </S.Main>
     </>
