@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as S from "./TableHeader.styled";
 
-const headers = ["#", "supplier", "Purchase Date", "Total", "Payment Method", "Payment Status", "Delivery Status"];
+const headers = ["#", "Customer", "Creation Date", "Total", "Payment Method", "Payment Status", "Delivery Status"];
 
 interface TableProps {
   width: number;

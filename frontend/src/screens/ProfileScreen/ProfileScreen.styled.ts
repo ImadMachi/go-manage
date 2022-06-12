@@ -6,8 +6,7 @@ export const Screen = styled.div`
   gap: 2rem;
   background-color: ${({ theme }) => theme.bgPrimary};
   margin-top: 1rem;
-  min-height: 80vh;
-  padding: 0.5rem;
+  padding: 1rem;
 `;
 
 export const Side = styled.div`

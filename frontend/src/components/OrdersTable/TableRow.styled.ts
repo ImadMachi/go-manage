@@ -1,4 +1,3 @@
-import { log } from "console";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -26,6 +25,7 @@ export const Col = styled.div`
   white-space: nowrap;
   color: ${({ theme }) => theme.textPrimary};
   font-size: ${({ theme }) => theme.sm};
+  text-transform: capitalize;
 `;
 
 const IsStatus = styled.span`
@@ -63,4 +63,60 @@ export const Icon = styled.span<IconProps>`
   display: inline-block;
   transform: ${({ isDropdownOpen }) => (isDropdownOpen ? "rotate(90deg)" : null)};
   padding: 0.5rem;
+`;
+
+const Status = styled.span`
+  display: inline-block;
+  padding: 0.2rem 0.3rem;
+  font-weight: bold;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    border-radius: 5px;
+  }
+`;
+
+export const Gray = styled(Status)`
+  color: #777;
+  &::after {
+    background-color: #777;
+  }
+`;
+
+export const Orange = styled(Status)`
+  color: #e07706;
+  &::after {
+    background-color: #e07706;
+  }
+`;
+
+export const Green = styled(Status)`
+  color: #05b1bd;
+  &::after {
+    background-color: #05b1bd;
+  }
+`;
+
+export const Blue = styled(Status)`
+  color: #3577f1;
+  &::after {
+    background-color: #3577f1;
+  }
+`;
+
+export const Purple = styled(Status)`
+  color: #40519a;
+  &::after {
+    background-color: #40519a;
+  }
+`;
+
+export const OffBlue = styled(Status)`
+  color: #299cdb;
+  &::after {
+    background-color: #299cdb;
+  }
 `;
