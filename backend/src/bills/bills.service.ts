@@ -56,7 +56,7 @@ export class BillsService {
   }
 
   generateHeader(doc) {
-    doc.image('dist/images/logo.png', 50, 45, { width: 100 }).moveDown();
+    doc.image('public/images/logo.png', 50, 45, { width: 100 }).moveDown();
   }
 
   generateCompanyInformation(doc: typeof PDFDocument, invoice) {

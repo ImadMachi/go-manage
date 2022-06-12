@@ -1,15 +1,10 @@
-
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Shipping } from './shipping.entity';
 import * as PDFDocument from 'pdfkit';
-import fs from 'fs';
 import { OrdersService } from 'src/order/orders.service';
 
 @Injectable()
 export class ShippingsService {
-  constructor(@InjectRepository(Shipping) private repo: Repository<Shipping>, private ordersService: OrdersService) {}
+  constructor(private ordersService: OrdersService) {}
   async create(orderId: number) {
     const shipping = await this.ordersService.findOrderDetailsForBill(orderId);
     const totalPrice = shipping.orderLines.reduce((acc, curr) => acc + curr.product.price * curr.qty, 0);
@@ -57,7 +52,7 @@ export class ShippingsService {
   }
 
   generateHeader(doc) {
-    doc.image('dist/images/logo.png', 50, 45, { width: 100 }).moveDown();
+    doc.image('public/images/logo.png', 50, 45, { width: 100 }).moveDown();
   }
 
   generateCompanyInformation(doc: typeof PDFDocument, shipping) {
@@ -114,9 +109,8 @@ export class ShippingsService {
       .font('Helvetica-Bold')
       .text('www.gomanage.ma', 260, 695)
       .font('Helvetica');
-
   }
-  generateCustomerInformation(doc: typeof PDFDocument,quote) {
+  generateCustomerInformation(doc: typeof PDFDocument, quote) {
     const shipping = {
       name: 'John Doe',
       address: '1234 Main Street',
@@ -175,20 +169,18 @@ export class ShippingsService {
     doc
       .fontSize(12)
       .font('Helvetica-Bold')
-      
+
       .text(`Visa du Client`, 50, position + 1, { align: 'left' })
       .font('Helvetica')
 
-      .text(`Reçu le:`, 50, position +14 , { align: 'left' })
+      .text(`Reçu le:`, 50, position + 14, { align: 'left' })
       .text(`Cachet Signature`, 50, position + 31, { align: 'left' })
 
-      
       .font('Helvetica-Bold')
-      
+
       .text(`Visa du Fournisseur`, 30, position + 1, { align: 'right' })
       .font('Helvetica')
 
-      .text(`Livre le:`, 20, position +14 , { align: 'right' })
+      .text(`Livre le:`, 20, position + 14, { align: 'right' });
   }
 }
-

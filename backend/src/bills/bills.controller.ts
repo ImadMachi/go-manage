@@ -1,18 +1,16 @@
-import { Body, Controller, Get, Res } from '@nestjs/common';
-import { Public } from 'src/auth/decorators/public.decorator';
+import { Body, Controller, Get, Param, Res } from '@nestjs/common';
 import { BillsService } from './bills.service';
 
 @Controller('bills')
 export class BillsController {
   constructor(private billsService: BillsService) {}
 
-  @Get()
-  @Public()
-  async create(@Body() payload, @Res() res) {
-    const doc = await this.billsService.create(payload.orderId);
+  @Get('/orderId/:orderId')
+  async create(@Param('orderId') orderId, @Res() res) {
+    const doc = await this.billsService.create(+orderId);
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename=example.pdf',
+      'Content-Disposition': 'attachment; filename=bill.pdf',
       'Content-Length': doc.length,
     });
     res.end(doc);

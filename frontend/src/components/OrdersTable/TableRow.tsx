@@ -120,17 +120,15 @@ const TableRow = ({ item, width, editOrderHandler, viewOrderDetailsHandler }: Ta
           </S.Icon>
         </S.Col>
         {displayedCols.slice(1).map(([key, value], i) => (
-          <>
-            <S.Col key={i}>
-              {key === "Payment Status"
-                ? paymentStatus(value)
-                : key === "Payment Method"
-                ? paymentMethod(value)
-                : key === "Delivery Status"
-                ? deliveryStatus(value)
-                : value}
-            </S.Col>
-          </>
+          <S.Col key={i}>
+            {key === "Payment Status"
+              ? paymentStatus(value)
+              : key === "Payment Method"
+              ? paymentMethod(value)
+              : key === "Delivery Status"
+              ? deliveryStatus(value)
+              : value}
+          </S.Col>
         ))}
       </S.Row>
       <TableDropdown
