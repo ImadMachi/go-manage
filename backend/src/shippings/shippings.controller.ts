@@ -1,18 +1,16 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Res } from '@nestjs/common';
-import { Public } from 'src/auth/decorators/public.decorator';
+import { Controller, Get, Param, Res } from '@nestjs/common';
 import { ShippingsService } from './shippings.service';
 
 @Controller('shippings')
 export class ShippingsController {
   constructor(private shippingsService: ShippingsService) {}
 
-  @Get()
-  @Public()
-  async create(@Body() payload, @Res() res) {
-    const doc = await this.shippingsService.create(1);
+  @Get('/orderId/:orderId')
+  async create(@Param('orderId') orderId, @Res() res) {
+    const doc = await this.shippingsService.create(+orderId);
     res.set({
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename=example.pdf',
+      'Content-Disposition': 'attachment; filename=shipping.pdf',
       'Content-Length': doc.length,
     });
     res.end(doc);
