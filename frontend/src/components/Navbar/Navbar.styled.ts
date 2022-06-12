@@ -1,3 +1,4 @@
+import { Link as RouterLink } from "react-router-dom";
 import styled from "styled-components";
 
 export const Nav = styled.nav`
@@ -32,7 +33,6 @@ export const NotificationCounter = styled.div`
 
 export const Dropdown = styled.span`
   cursor: pointer;
-
   display: inline-block;
   padding: 0 0.5rem;
   color: ${({ theme }) => theme.textPrimary};
@@ -67,5 +67,11 @@ export const DropdownItem = styled.div`
   padding: 0.4rem 0.7rem;
   &:hover {
     background-color: ${({ theme }) => theme.bgSecondary};
+  }
+`;
+
+export const Link = styled(RouterLink)`
+  &:visited {
+    color: ${({ theme }) => theme.textPrimary};
   }
 `;

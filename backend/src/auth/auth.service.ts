@@ -1,8 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
+import { ChangePasswordDto } from 'src/users/dtos/change-password.dto';
 import { CreateUserDto } from 'src/users/dtos/create-user.dto';
 import { UserDto } from 'src/users/dtos/user.dto';
+import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { promisify } from 'util';
 
@@ -45,6 +47,17 @@ export class AuthService {
     payload.password = result;
     const user = await this.usersService.create(payload);
 
+    return this.login(user);
+  }
+
+  async changePassword(changePasswordDto: ChangePasswordDto, email: string) {
+    const user = await this.validateUser(email, changePasswordDto.oldPassword);
+
+    const salt = randomBytes(8).toString('hex');
+    const hash = (await scrypt(changePasswordDto.newPassword, salt, 32)) as Buffer;
+    const result = salt + '.' + hash.toString('hex');
+    user.password = result;
+    await this.usersService.saveUser(user);
     return this.login(user);
   }
 }

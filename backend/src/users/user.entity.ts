@@ -76,7 +76,6 @@ export class User {
   @OneToMany(() => Supplier, (suppliers) => suppliers.user, { cascade: true })
   suppliers: Supplier[];
 
-@OneToMany(()=>Service,(service)=>service.user,{cascade:true})
-services:Service[]
-
+  @OneToMany(() => Service, (service) => service.user, { cascade: true })
+  services: Service[];
 }

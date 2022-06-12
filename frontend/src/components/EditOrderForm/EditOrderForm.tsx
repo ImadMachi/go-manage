@@ -103,7 +103,7 @@ const EditOrderForm = ({ onCloseModal, order }: EditOrderFormProps) => {
         <DatePicker mb={15} placeholder="Pick date" label="Delivering Date" required {...form.getInputProps("deliveringDate")} />
 
         <Group position="right" mt="md">
-          <Button type="submit">Add Order</Button>
+          <Button type="submit">Edit Order</Button>
         </Group>
       </S.Grid>
     </form>

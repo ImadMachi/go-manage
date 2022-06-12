@@ -33,7 +33,7 @@ export class UsersService {
   async updateProfile(email: string, attrs: Partial<User>) {
     const user = await this.repo.findOne({ email });
     if (!user) {
-      throw new NotFoundException('utilisateur non trouvé');
+      throw new NotFoundException('user not found');
     }
     Object.assign(user, attrs);
     return this.repo.save(user);
@@ -54,5 +54,9 @@ export class UsersService {
 
   find(payload: Partial<UserDto>) {
     return this.repo.find(payload);
+  }
+
+  saveUser(user: User) {
+    return this.repo.save(user);
   }
 }

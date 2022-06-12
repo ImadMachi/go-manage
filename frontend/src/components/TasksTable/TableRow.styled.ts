@@ -55,3 +55,38 @@ export const IsBlocked = styled(IsStatus)`
     background-color: ${({ theme }) => theme.danger};
   }
 `;
+
+const Status = styled.span`
+  display: inline-block;
+  padding: 0.2rem 0.3rem;
+  font-weight: bold;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+    border-radius: 5px;
+  }
+`;
+
+export const Gray = styled(Status)`
+  color: #777;
+  &::after {
+    background-color: #777;
+  }
+`;
+
+export const Orange = styled(Status)`
+  color: #e07706;
+  &::after {
+    background-color: #e07706;
+  }
+`;
+
+export const Green = styled(Status)`
+  color: #05b1bd;
+  &::after {
+    background-color: #05b1bd;
+  }
+`;
