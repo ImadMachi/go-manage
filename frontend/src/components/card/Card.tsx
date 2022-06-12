@@ -24,7 +24,7 @@ const Card = ({ id, title, image, price, rating }: Product | Service) => {
     <Link to={`/dashboard/products/${id}`}>
       <S.Container>
         <S.ImageContainer>
-          <S.Image src={img} loading="lazy" />
+          <S.Image src='../images/download.jfif' />
         </S.ImageContainer>
 
         <S.Actions>

@@ -5,7 +5,7 @@ import Dropdown from "./Dropdown";
 import * as S from "./Sidebar.styled";
 
 const AnalyticItems = { title: "Analytic", items: ["analytic"] };
-const commerceItems = { title: "Commerce", items: ["customers", "orders", "products", "services", "stocks", "quotes", "tasks"] };
+const commerceItems = { title: "Commerce", items: ["customers","Suppliers", "orders","Purchases" ,"products", "services", "stocks", "quotes", "tasks"] };
 const crmItems = { title: "CRM", items: ["companies", "contacts", "leads", "deals"] };
 
 interface SidebarProps {
