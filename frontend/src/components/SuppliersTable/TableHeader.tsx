@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import * as S from "./TableRow.styled";
+import * as S from "./TableHeader.styled";
 
 const headers = ["#", "Supplier", "Email", "Address", "Phone", "Status", "Joining Date", "Actions"];
 

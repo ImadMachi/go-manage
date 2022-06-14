@@ -30,6 +30,7 @@ interface CreateProduct {
   rating: number;
   stock: number;
   description: string;
+  image: string;
 }
 export const createProduct = createAsyncThunk<Product, CreateProduct, { state: RootState }>(
   "products/createProduct",

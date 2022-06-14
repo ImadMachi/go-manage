@@ -8,11 +8,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Purchase } from "../../models/purchaseModel";
 import { usePurchases } from "../../hooks/usePurchase";
-import PurchaseDetails from "../../components/PurchaseDetails";
 import EditPurchaseForm from "../../components/EditPurchaseForm";
 import CreatePurchaseForm from "../../components/CreatePurchaseForm";
 import PurchasesTable from "../../components/PurchasesTable";
-
 
 const PAGE_SIZE = 10;
 
@@ -20,11 +18,9 @@ const PurchasesScreen = () => {
   const [activePage, setActivePage] = useState(1);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("");
   const [ourchaseToEdit, setPurchaseToEdit] = useState<Partial<Purchase>>({
     creationDate: new Date().toISOString(),
-  
   });
   const [ourchaseToView, setPurchaseToView] = useState<Purchase>();
 
@@ -51,11 +47,6 @@ const PurchasesScreen = () => {
     setIsEditModalOpen(true);
   };
 
-  const viewPurchaseDetailsHandler = (ourchase: Purchase) => {
-    setPurchaseToView(ourchase);
-    setIsDetailsModalOpen(true);
-  };
-
   return (
     <S.Screen>
       <Modal
@@ -79,16 +70,6 @@ const PurchasesScreen = () => {
         <EditPurchaseForm onCloseModal={() => setIsEditModalOpen(false)} purchase={ourchaseToEdit} />
       </Modal>
 
-      <Modal
-        opened={isDetailsModalOpen}
-        onClose={() => setIsDetailsModalOpen(false)}
-        title={<S.ModalTitle>Purchase Details</S.ModalTitle>}
-        size={550}
-        centered={true}
-      >
-        <PurchaseDetails onCloseModal={() => setIsDetailsModalOpen(false)} purchase={ourchaseToView} />
-      </Modal>
-
       <S.Title>Purchases</S.Title>
       <S.Container ref={ref}>
         <Flex justifyContent="space-between" alignItems="center">
@@ -98,14 +79,7 @@ const PurchasesScreen = () => {
             Add Purchase
           </Button>
         </Flex>
-        {!!purchases && (
-          <PurchasesTable
-            items={displayedPurchases}
-            width={width}
-            editPurchaseHandler={editPurchaseHandler}
-            viewPurchaseDetailsHandler={viewPurchaseDetailsHandler}
-          />
-        )}
+        {!!purchases && <PurchasesTable items={displayedPurchases} width={width} editPurchaseHandler={editPurchaseHandler} />}
         <Pagination page={activePage} total={purchases.length / 10 + 1} onChange={onPageChange} style={{ margin: "20px 0" }} />
       </S.Container>
     </S.Screen>

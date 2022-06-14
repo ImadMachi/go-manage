@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Quote } from "../../models/quoteModel";
 import QuotesTable from "../../components/QuotesTable/QuotesTable";
+import CreateQuoteForm from "../../components/CreateQuoteForm";
+import EditQuoteForm from "../../components/EditQuoteForm";
 // import EditQuoteForm from "../../components/EditQuoteForm";
 // import CreateQuoteForm from "../../components/CreateQuoteForm";
 
@@ -19,15 +21,11 @@ const QuotesScreen = () => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [searchCriteria, setSearchCriteria] = useState("");
-  // const [quoteToEdit, setQuoteToEdit] = useState<Partial<Quote>>({
-  //   creationDate: new Date().toISOString(),
-  //   paymentStatus: "",
-  //   paymentMethod: "",
-  //   paymentDate: new Date().toISOString(),
-  //   deliveryStatus: "",
-  //   deliveringDate: new Date().toISOString(),
-  //   vat: 0,
-  // });
+  const [quoteToEdit, setQuoteToEdit] = useState<Partial<Quote>>({
+    id: -1,
+    creationDate: new Date().toISOString(),
+    vat: 0,
+  });
   const [quoteToView, setQuoteToView] = useState<Quote>();
 
   const [width, ref] = useElementWidth();
@@ -47,16 +45,14 @@ const QuotesScreen = () => {
   const onPageChange = (page: number) => {
     setActivePage(page);
   };
-
   const editQuoteHandler = (quote: Quote) => {
-    // setQuoteToEdit(quote);
+    setQuoteToEdit(quote);
     setIsEditModalOpen(true);
   };
 
-
   return (
     <S.Screen>
-      {/* <Modal
+      <Modal
         opened={isCreateModalOpen}
         onClose={() => setIsCreateModalOpen(false)}
         title={<S.ModalTitle>Add Quote</S.ModalTitle>}
@@ -64,19 +60,18 @@ const QuotesScreen = () => {
         centered={true}
       >
         <CreateQuoteForm onCloseModal={() => setIsCreateModalOpen(false)} />
-      </Modal> */}
+      </Modal>
 
-      {/* <Modal
+      <Modal
         opened={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         title={<S.ModalTitle>Edit Quote</S.ModalTitle>}
         size={550}
         centered={true}
       >
+        {/* @ts-ignore */}
         <EditQuoteForm onCloseModal={() => setIsEditModalOpen(false)} quote={quoteToEdit} />
       </Modal>
-      */}
-
 
       <S.Title>Quotes</S.Title>
       <S.Container ref={ref}>
@@ -87,13 +82,7 @@ const QuotesScreen = () => {
             Add Quote
           </Button>
         </Flex>
-        {!!quotes && (
-          <QuotesTable
-            items={displayedQuotes}
-            width={width}
-            editQuoteHandler={editQuoteHandler}
-          />
-        )}
+        {!!quotes && <QuotesTable items={displayedQuotes} width={width} editQuoteHandler={editQuoteHandler} />}
         <Pagination page={activePage} total={quotes.length / 10 + 1} onChange={onPageChange} style={{ margin: "20px 0" }} />
       </S.Container>
     </S.Screen>

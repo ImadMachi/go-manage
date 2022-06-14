@@ -13,7 +13,6 @@ import { RolesGuard } from './auth/guards/roles.guard';
 import { CaslModule } from './casl/casl.module';
 import { UsersModule } from './users/users.module';
 import { PacksModule } from './packs/packs.module';
-import { ServicesModule } from './services/services.module';
 import { ProductsModule } from './products/products.module';
 import { StocksModule } from './stocks/stocks.module';
 import { OrderFormsModule } from './order-forms/order-forms.module';
@@ -49,7 +48,6 @@ import { SuppliersModule } from './suppliers/suppliers.module';
     CaslModule,
     UsersModule,
     PacksModule,
-    ServicesModule,
     ProductsModule,
     StocksModule,
     OrderLinesModule,

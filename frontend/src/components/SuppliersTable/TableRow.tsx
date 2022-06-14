@@ -15,9 +15,11 @@ const TableRow = ({ item, width, editSupplierHandler }: TableProps) => {
   const [displayedCols, setDisplayedCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const dropdownHandler = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
+
   useEffect(() => {
     if (width < 360) {
       setDisplayedCols(cols.slice(0, 2));
@@ -51,7 +53,7 @@ const TableRow = ({ item, width, editSupplierHandler }: TableProps) => {
         </S.Col>
         {displayedCols.slice(1).map(([_, col], i) => (
           <S.Col key={i}>
-            {typeof col === "boolean" ? (col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> ): col}
+            {typeof col === "boolean" ? col ? <S.IsActive>Active</S.IsActive> : <S.IsBlocked>Blocked</S.IsBlocked> : col}
           </S.Col>
         ))}
       </S.Row>

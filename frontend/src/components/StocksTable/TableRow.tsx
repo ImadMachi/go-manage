@@ -54,8 +54,10 @@ const TableRow = ({ item, width, editStockHandler }: TableProps) => {
         <S.Col>
           <FontAwesomeIcon icon={faAngleRight} onClick={dropdownHandler} />
         </S.Col>
-        {displayedCols.slice(1).map(([_, col], i) => (
-          <S.Col key={i}>{col}</S.Col>
+        {displayedCols.slice(1).map(([key, value], i) => (
+          <S.Col key={i}>
+            {key === "warehouse" ? <S.Green>{value}</S.Green> : key === "creationDate" ? <S.Orange>{value}</S.Orange> : value}
+          </S.Col>
         ))}
       </S.Row>
       <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} item={item} editStockHandler={editStockHandler} />

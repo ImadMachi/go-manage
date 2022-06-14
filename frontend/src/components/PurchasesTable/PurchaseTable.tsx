@@ -1,26 +1,19 @@
 import { Purchase } from "../../models/purchaseModel";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
-import * as S from './PurchaseTable.Styled'
+import * as S from "./PurchaseTable.Styled";
 
 interface TableProps {
   items: Array<Purchase>;
   width: number;
   editPurchaseHandler: (purchase: Purchase) => void;
-  viewPurchaseDetailsHandler: (purchase: Purchase) => void;
 }
-const PurchasesTable = ({ items, width, editPurchaseHandler, viewPurchaseDetailsHandler }: TableProps) => {
+const PurchasesTable = ({ items, width, editPurchaseHandler }: TableProps) => {
   return (
     <S.Container>
       <TableHeader width={width} />
       {items.map((item) => (
-        <TableRow
-          item={item}
-          width={width}
-          key={item.id}
-          editPurchaseHandler={editPurchaseHandler}
-          viewPurchaseDetailsHandler={viewPurchaseDetailsHandler}
-        />
+        <TableRow item={item} width={width} key={item.id} editPurchaseHandler={editPurchaseHandler} />
       ))}
     </S.Container>
   );

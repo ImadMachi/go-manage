@@ -11,9 +11,8 @@ interface TableDropdownProps {
   isOpen: boolean;
   item: Purchase;
   editPurchaseHandler: (order: Purchase) => void;
-  viewPurchaseDetailsHandler: (order: Purchase) => void;
 }
-const TableDropdown = ({ hiddenCols, isOpen, item, editPurchaseHandler, viewPurchaseDetailsHandler }: TableDropdownProps) => {
+const TableDropdown = ({ hiddenCols, isOpen, item, editPurchaseHandler }: TableDropdownProps) => {
   const dispatch = useAppDispatch();
   const deleteItemHandler = () => {
     dispatch(deletePurchase(item.id));
@@ -29,9 +28,6 @@ const TableDropdown = ({ hiddenCols, isOpen, item, editPurchaseHandler, viewPurc
       ))}
       <S.DropdownItem>
         Actions:{" "}
-        <S.ViewIcon>
-          <FontAwesomeIcon icon={faEye} onClick={() => viewPurchaseDetailsHandler(item)} />
-        </S.ViewIcon>{" "}
         <S.EditIcon>
           <FontAwesomeIcon icon={faEdit} onClick={() => editPurchaseHandler(item)} />
         </S.EditIcon>{" "}

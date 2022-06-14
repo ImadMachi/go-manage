@@ -1,6 +1,6 @@
 import { Modal } from "@mantine/core";
 import { useState } from "react";
-import Card from "../../components/card";
+import Card from "../../components/Card";
 import CreateProductForm from "../../components/CreateProductForm";
 import { useElementWidth } from "../../hooks/useElementWidth";
 import { useProducts } from "../../hooks/useProducts";

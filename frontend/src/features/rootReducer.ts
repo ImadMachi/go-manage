@@ -5,7 +5,6 @@ import purchaseReducer from "./slices/purchaseSlice";
 import suppliersReducer from "./slices/supplierSlice";
 
 import productsReducer from "./slices/productsSlice";
-import servicesReducer from "./slices/servicesSlice";
 import ordersReducer from "./slices/ordersSlice";
 import orderLinesReducer from "./slices/ordersSlice";
 import stockReducer from "./slices/stocksSlice";
@@ -21,7 +20,6 @@ const rootReducer = combineReducers({
   orderLines: orderLinesReducer,
   product: productReducer,
   products: productsReducer,
-  services: servicesReducer,
   stocks: stockReducer,
   tasks: taskReducer,
   quotes: quotesReducer,

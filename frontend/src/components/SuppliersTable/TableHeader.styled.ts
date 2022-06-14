@@ -6,7 +6,6 @@ export const Container = styled.div`
 
 interface RowProps {
   colsLength: number;
-  isTHeader?: boolean;
 }
 export const Row = styled.div<RowProps>`
   display: grid;
@@ -17,7 +16,7 @@ export const Row = styled.div<RowProps>`
   padding: 1.3rem 0.5rem;
   font-size: ${({ theme }) => theme.sm};
   color: ${({ theme }) => theme.textPrimary};
-  font-weight: ${({ isTHeader }) => (isTHeader ? "bold" : "normal")};
+  font-weight: bold;
 `;
 
 export const Col = styled.div`
@@ -54,12 +53,4 @@ export const IsBlocked = styled(IsStatus)`
   &::after {
     background-color: ${({ theme }) => theme.danger};
   }
-`;
-
-export const Green = styled.div`
-  color: #05b1bd;
-`;
-
-export const Orange = styled.div`
-  color: #e07706;
 `;

@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { faEdit, faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faFilePdf, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteQuote } from "../../features/thunks/quoteThunk";
+import { deleteQuote, printQuote } from "../../features/thunks/quotesThunk";
 import { Quote } from "../../models/quoteModel";
 import * as S from "./TableDropdown.styled";
 import { useAppDispatch } from "../../features/store";
@@ -14,8 +13,13 @@ interface TableDropdownProps {
 }
 const TableDropdown = ({ hiddenCols, isOpen, item, editQuoteHandler }: TableDropdownProps) => {
   const dispatch = useAppDispatch();
+
   const deleteItemHandler = () => {
     dispatch(deleteQuote(item.id));
+  };
+
+  const printQuoteHandler = async () => {
+    await dispatch(printQuote(item.id));
   };
 
   return (
@@ -33,7 +37,10 @@ const TableDropdown = ({ hiddenCols, isOpen, item, editQuoteHandler }: TableDrop
         </S.EditIcon>{" "}
         <S.TrashIcon onClick={() => deleteItemHandler()}>
           <FontAwesomeIcon icon={faTrash} />
-        </S.TrashIcon>
+        </S.TrashIcon>{" "}
+        <S.PrintIcon onClick={() => printQuoteHandler()}>
+          <FontAwesomeIcon icon={faFilePdf} />
+        </S.PrintIcon>
       </S.DropdownItem>
     </S.Dropdown>
   );

@@ -13,12 +13,7 @@ const QuotesTable = ({ items, width, editQuoteHandler }: TableProps) => {
     <S.Container>
       <TableHeader width={width} />
       {items.map((item) => (
-        <TableRow
-          item={item}
-          width={width}
-          key={item.id}
-          editQuoteHandler={editQuoteHandler}
-        />
+        <TableRow item={item} width={width} key={item.id} editQuoteHandler={editQuoteHandler} />
       ))}
     </S.Container>
   );

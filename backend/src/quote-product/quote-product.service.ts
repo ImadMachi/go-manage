@@ -14,13 +14,4 @@ export class QuoteProductService {
     quoteProduct.quote = quote;
     this.repo.save(quoteProduct);
   }
-
-  findByOrder(orderId: number) {
-    return this.repo
-      .createQueryBuilder('QuoteProduct')
-      .where('orderId=orderId', { orderId })
-      .leftJoinAndSelect('QuoteProduct.product', 'product')
-      .select(['QuoteProduct.qty', 'product.image', 'product.price', 'product.title'])
-      .getMany();
-  }
 }

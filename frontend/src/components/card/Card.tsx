@@ -14,7 +14,8 @@ const Card = ({ id, title, image, price, rating }: Product | Service) => {
     const imageObjectURL = URL.createObjectURL(data);
     // @ts-ignore
     setImg(imageObjectURL);
-    // setImg(data);
+
+    setImg(data);
   };
 
   useEffect(() => {

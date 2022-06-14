@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Quote } from './quote.entity';
 import * as PDFDocument from 'pdfkit';
@@ -8,6 +8,7 @@ import { CreateQuoteDto } from './dto/create-quote.dto';
 import { User } from 'src/users/user.entity';
 import { CustomerService } from 'src/customer/customer.service';
 import { QuoteProductService } from 'src/quote-product/quote-product.service';
+import { UpdateQuoteDto } from './dto/update-quote.dto';
 
 @Injectable()
 export class QuotesService {
@@ -18,13 +19,22 @@ export class QuotesService {
     private customerService: CustomerService,
   ) {}
 
+  async update(id: number, attrs: Partial<UpdateQuoteDto>) {
+    const quote = await this.repo.findOne(id);
+    if (!quote) {
+      throw new NotFoundException('quote not found');
+    }
+    Object.assign(quote, attrs);
+    return this.repo.save(quote);
+  }
+
   async delete(id: number) {
     const quote = await this.repo.findOne(id);
     if (!quote) {
-      throw new Error('quote not found');
+      throw new NotFoundException('quote not found');
     }
-
-    return this.repo.remove(quote);
+    const removedQuote = await this.repo.remove(quote);
+    return { ...removedQuote, id };
   }
 
   findAll() {
@@ -47,12 +57,27 @@ export class QuotesService {
       const product = await this.productsService.findOne(item.id, user);
       await this.quoteProductService.create(product, quote, item.qty);
     }
-    return quote;
+    await this.repo.save(quote);
+    return this.repo
+      .createQueryBuilder('quote')
+      .where('quote.id = :quoteId', { quoteId: quote.id })
+      .leftJoinAndSelect('quote.customer', 'customer')
+      .leftJoinAndSelect('quote.quoteProducts', 'quoteProducts')
+      .leftJoinAndSelect('quoteProducts.product', 'product')
+      .getOne();
   }
 
   async print(quoteId: number, user: Partial<User>) {
-    const quote = await this.productsService.findOne(quoteId, user);
-    const totalPrice = quote.orderLines.reduce((acc, curr) => acc + curr.product.price * curr.qty, 0);
+    const quote = await this.repo
+      .createQueryBuilder('quote')
+      .where('quote.id = :quoteId', { quoteId })
+      .leftJoinAndSelect('quote.customer', 'customer')
+      .leftJoinAndSelect('customer.user', 'user')
+      .leftJoinAndSelect('quote.quoteProducts', 'quoteProduct')
+      .leftJoinAndSelect('quoteProduct.product', 'product')
+      .getOne();
+
+    const totalPrice = quote.quoteProducts.reduce((acc, curr) => acc + curr.product.price * curr.qty, 0);
 
     const pdfBuffer: Buffer = await new Promise((resolve) => {
       const doc = new PDFDocument({
@@ -60,7 +85,7 @@ export class QuotesService {
         margin: 50,
       });
 
-      let steps = Math.floor(quote.orderLines.length / 7);
+      let steps = Math.floor(quote.quoteProducts.length / 7);
       doc.on('pageAdded', () => {
         this.generateHeader(doc);
         this.generateCompanyInformation(doc, quote);
@@ -97,7 +122,7 @@ export class QuotesService {
   }
 
   generateHeader(doc) {
-    doc.image('dist/images/logo.png', 50, 45, { width: 100 }).moveDown();
+    doc.image('public/images/logo.png', 50, 45, { width: 100 }).moveDown();
   }
 
   generateCompanyInformation(doc: typeof PDFDocument, quote) {
@@ -195,7 +220,7 @@ export class QuotesService {
     this.generateTableRow(doc, 330, 'Item', 'Description', 'Unit Price', 'Quantity', 'Total Price');
 
     for (i = step * 7, j = 0; i < (step + 1) * 7; i++, j++) {
-      const item = quote.orderLines[i];
+      const item = quote.quoteProducts[i];
       const position = quoteTableTop + (j + 1) * 30;
       !!item &&
         this.generateTableRow(

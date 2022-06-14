@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { Quote } from "../../models/quoteModel";
 import { RootState } from "../store";
-import { createQuote, deleteQuote, editQuote, fetchQuotes } from "../thunks/quoteThunk";
+import { createQuote, deleteQuote, editQuote, fetchQuotes } from "../thunks/quotesThunk";
 
 type QuotesState = {
   quotes: Quote[];

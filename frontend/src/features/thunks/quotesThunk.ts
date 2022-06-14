@@ -77,3 +77,20 @@ export const deleteQuote = createAsyncThunk<Quote, number, { state: RootState }>
     return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
   }
 });
+
+export const printQuote = createAsyncThunk<Quote, number, { state: RootState }>("quotes/printQuote", async (id: number, thunkAPI) => {
+  const { rejectWithValue, getState } = thunkAPI;
+
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${getState().authUser.userInfo.access_token}`,
+      },
+    };
+    const { data } = await axios.get(`/quotes/print/${id}`, config);
+
+    return data;
+  } catch (err: any) {
+    return rejectWithValue(err.response?.data.message ? err.response.data.message : err.message);
+  }
+});

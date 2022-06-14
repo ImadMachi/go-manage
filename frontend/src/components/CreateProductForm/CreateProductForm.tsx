@@ -22,26 +22,35 @@ const CreateProductForm = ({ onCloseModal }: CreateProductFormProps) => {
     stock: number;
     description: string;
   }>({
-    initialValues: { price: 0, category: "test", title: "test", rating: "1", stock: 0, description: "test" },
+    initialValues: {
+      price: 0,
+      category: "test",
+      title: "test",
+      rating: "1",
+      stock: 0,
+      description: "test",
+    },
     validate: (values) => ({
       price: values.price < 0 ? "Price should be greater than 0" : null,
       title: values.title.length < 2 ? "Title length should be greater than 2" : null,
     }),
   });
 
+  function getBase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  }
+
   const submitHandler = async (values: typeof form.values) => {
     if (!selectedImage) return;
     try {
-      // const result = await dispatch(createProduct({ ...form.values, rating: Number(form.values.rating) })).unwrap();
-      const formData = new FormData();
-      formData.append("image", selectedImage, selectedImage.name);
+      const base64Image = (await getBase64(selectedImage)) as string;
 
-      const config = {
-        headers: {},
-      };
-
-      const { data: filename } = await axios.post("/products/images", formData);
-      console.log(filename);
+      const result = await dispatch(createProduct({ ...form.values, rating: Number(form.values.rating), image: base64Image })).unwrap();
 
       // onCloseModal();
     } catch (err) {

@@ -64,3 +64,11 @@ export const Icon = styled.span<IconProps>`
   transform: ${({ isDropdownOpen }) => (isDropdownOpen ? "rotate(90deg)" : null)};
   padding: 0.5rem;
 `;
+
+export const Green = styled.div`
+  color: #05b1bd;
+`;
+
+export const Orange = styled.div`
+  color: #e07706;
+`;

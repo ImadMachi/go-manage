@@ -1,4 +1,3 @@
-import { log } from "console";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -63,4 +62,12 @@ export const Icon = styled.span<IconProps>`
   display: inline-block;
   transform: ${({ isDropdownOpen }) => (isDropdownOpen ? "rotate(90deg)" : null)};
   padding: 0.5rem;
+`;
+
+export const Green = styled.div`
+  color: #05b1bd;
+`;
+
+export const Orange = styled.div`
+  color: #e07706;
 `;

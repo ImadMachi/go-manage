@@ -9,18 +9,16 @@ interface TableProps {
   item: Purchase;
   width: number;
   editPurchaseHandler: (purchase: Purchase) => void;
-  viewPurchaseDetailsHandler: (purchase: Purchase) => void;
 }
-const TableRow = ({ item, width, editPurchaseHandler, viewPurchaseDetailsHandler }: TableProps) => {
-    console.log(item);
-    
+const TableRow = ({ item, width, editPurchaseHandler }: TableProps) => {
+  console.log(item);
+
   const total = item.purchaseLines.reduce((acc, curr) => acc + curr.qty * curr.product.price, 0);
   const cols: Array<[string, string | number | boolean]> = [
     ["id", item.id],
     ["supplier", item.supplier.name],
     ["Creation date", item.creationDate],
     ["total", `$${total}`],
-
   ];
   const [displayedCols, setDisplayedCols] = useState<Array<[string, string | number | boolean]>>([]);
   const [hiddenCols, setHiddenCols] = useState<Array<[string, string | number | boolean]>>([]);
@@ -61,17 +59,13 @@ const TableRow = ({ item, width, editPurchaseHandler, viewPurchaseDetailsHandler
             <FontAwesomeIcon icon={faAngleRight} />
           </S.Icon>
         </S.Col>
-        {displayedCols.slice(1).map(([_, col], i) => (
-          <S.Col key={i}>{col}</S.Col>
+        {displayedCols.slice(1).map(([key, value], i) => (
+          <S.Col key={i}>
+            {key === "total" ? <S.Green>{value}</S.Green> : key === "Creation date" ? <S.Orange>{value}</S.Orange> : value}
+          </S.Col>
         ))}
       </S.Row>
-      <TableDropdown
-        isOpen={isDropdownOpen}
-        hiddenCols={hiddenCols}
-        item={item}
-        editPurchaseHandler={editPurchaseHandler}
-        viewPurchaseDetailsHandler={viewPurchaseDetailsHandler}
-      />
+      <TableDropdown isOpen={isDropdownOpen} hiddenCols={hiddenCols} item={item} editPurchaseHandler={editPurchaseHandler} />
     </S.Container>
   );
 };

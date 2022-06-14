@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { selectQuotes } from "../features/slices/quoteSlice";
 import { useAppDispatch } from "../features/store";
-import { fetchQuotes } from "../features/thunks/quoteThunk";
+import { fetchQuotes } from "../features/thunks/quotesThunk";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useQuotes = () => {

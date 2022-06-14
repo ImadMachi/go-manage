@@ -26,6 +26,10 @@ export const TrashIcon = styled.span`
   color: ${({ theme }) => theme.danger};
 `;
 
+export const PrintIcon = styled.span`
+  color: ${({ theme }) => theme.info};
+`;
+
 const IsStatus = styled.span`
   display: inline-block;
   padding: 0.2rem 0.3rem;

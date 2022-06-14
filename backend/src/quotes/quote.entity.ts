@@ -14,7 +14,7 @@ export class Quote {
   @Column({ type: 'date' })
   creationDate: Date;
 
-  @IsNumber()
+  @Column()
   vat: number;
 
   @IsArray()

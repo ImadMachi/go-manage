@@ -9,6 +9,7 @@ import { CreateProductDto } from './dto/create-Product.dto';
 import { UsersService } from 'src/users/users.service';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { StocksService } from 'src/stocks/stocks.service';
+import * as fs from 'fs';
 
 @Injectable()
 export class ProductsService {
@@ -25,9 +26,22 @@ export class ProductsService {
     if (!user) {
       throw new NotFoundException('user not found');
     }
+    const path = this.uploadImage(productDto.image);
+    productDto.image = path;
     const product = this.repo.create(productDto);
     product.user = user;
     return this.repo.save(product);
+  }
+
+  uploadImage(imgData) {
+    const name = `public/images/${Math.floor(Math.random() * 10000000000000).toString(32)}${Date.now()}`;
+    const extension = imgData.match(/^data:image\/([A-Za-z-+\/]+);base64,/)[1];
+    const path = `${name}.${extension}`;
+
+    const base64Data = imgData.replace(/^data:([A-Za-z-+\/]+);base64,/, '');
+
+    fs.writeFileSync(path, base64Data, { encoding: 'base64' });
+    return path;
   }
 
   async findAll(userId: number) {

@@ -21,5 +21,5 @@ export class QuoteDto {
   @Type(() => QuoteProductDto)
   @ValidateNested()
   @Expose()
-  orderLines: QuoteProductDto[];
+  quoteProducts: QuoteProductDto[];
 }
