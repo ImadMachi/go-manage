@@ -37,7 +37,7 @@ const ProductDetails = () => {
       {!!product && (
         <>
           <S.ImageContainer>
-            <S.Image src={img} loading="lazy" />
+            <S.Image src='../images/download.jfif' />
           </S.ImageContainer>
 
           <S.Actions>
