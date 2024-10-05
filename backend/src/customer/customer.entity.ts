@@ -29,7 +29,7 @@ export class Customer {
   @Column({ default: 0 })
   ordersCount: number;
 
-  @Column()
+  @Column({ default: 1 })
   creationDate: number;
 
   @Column({ default: true })

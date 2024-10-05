@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
 
-import { CreateProductDto } from './dto/create-Product.dto';
+import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 

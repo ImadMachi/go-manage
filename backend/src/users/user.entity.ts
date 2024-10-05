@@ -23,37 +23,36 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
+  @Column({nullable: true})
   businessSector: string;
 
-  @Column()
+  @Column({nullable: true})
   website: string;
 
-  @Column()
+  @Column({nullable: true})
   size: number;
 
-  @Column()
+  @Column({nullable: true})
   companyName: string;
 
-  @Column()
+  @Column({nullable: true})
   address: string;
 
-  @Column()
+  @Column({nullable: true})
   zip: number;
 
-  @Column()
+  @Column({nullable: true})
   city: string;
 
-  @Column()
+  @Column({nullable: true})
   country: string;
 
-  @Column()
+  @Column({nullable: true})
   fix: string;
 
-  @Column()
+  @Column({nullable: true})
   phone: string;
 
-  @Column()
   @Column({ default: true })
   isActive: boolean;
 

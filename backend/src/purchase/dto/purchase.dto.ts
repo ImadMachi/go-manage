@@ -1,7 +1,7 @@
 import { Expose, Type } from 'class-transformer';
 import { ValidateNested } from 'class-validator';
 import { PurchaseLineDto } from 'src/purchase-lines/dto/purchaseLineDto';
-import { SupplierDto } from 'src/suppliers/dto/supplier.Dto';
+import { SupplierDto } from 'src/suppliers/dto/supplier.dto';
 
 export class PurchaseDto {
   @Expose()

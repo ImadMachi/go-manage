@@ -32,10 +32,11 @@ import { SuppliersModule } from './suppliers/suppliers.module';
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: 'mysql',
       port: 3306,
-      username: 'root',
       database: 'go-manage',
+      username: 'root',
+      password: 'root',
       // entities: [User],
       autoLoadEntities: true,
       synchronize: true,

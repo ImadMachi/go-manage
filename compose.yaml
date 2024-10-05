@@ -1,0 +1,55 @@
+services:
+  mysql:
+    image: mariadb:10.4.21
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go-manage
+      # MYSQL_USER: root
+      # MYSQL_PASSWORD: root
+    ports:
+      - 3306:3306
+    mem_limit: 512m
+
+  backend:
+    build: ./backend
+    ports:
+      - 5000:5000
+    depends_on:
+      - mysql
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./backend/:/app
+      - /app/node_modules
+    mem_limit: 512m
+
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=development
+    mem_limit: 3048m
+
+  # mobile:
+  #   build: ./mobile
+  #   volumes:
+  #     - ./mobile:/app
+  #     - /app/node_modules
+  #     - /app/.expo
+  #   ports:
+  #     - 19000:19000
+  #     - 19001:19001
+  #     - 19002:19002
+  #     - 19006:19006
+  #     - 8081:8081
+  #   depends_on:
+  #     - backend
+  #   mem_limit: 1014m
+

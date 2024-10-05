@@ -3,7 +3,7 @@ import { request } from 'http';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 import { CreateSupplierDto } from './dto/create-supplier.dto';
-import { SupplierDto } from './dto/supplier.Dto';
+import { SupplierDto } from './dto/supplier.dto';
 import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { SuppliersService } from './suppliers.service';
 
